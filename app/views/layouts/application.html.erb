@@ -15,10 +15,12 @@
 					<li class="sidebar-brand">
 						<div style="position:relative;">
 							<span style="position:absolute;">
-								<img src="logoshort.svg" style="width:220px; margin-top:10px;margin-left:0px;" />
+                <%= image_tag("logoShort.svg")%>
 							</span>
 							<span style="position:absolute;margin-top:-5px;">
-								<a class="menu-toggle" id="close-menu" href="#"><span><img src="close.svg"></span></a>
+                <a class="menu-toggle" id="close-menu" href="#">
+                  <span><%= image_tag("close.svg") %></span>
+                </a>
 							</span>
 						</div>
 						
@@ -53,7 +55,7 @@
 				<div class="container">
 					<div class = "row">
 						<div class="hidden-xs">
-							<img src="FKBLogo.svg" style="width:100%;" />
+              <%= image_tag("FKBLogo.svg") %>
 						</div>
 					</div>
 				</div>
