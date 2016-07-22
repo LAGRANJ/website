@@ -134,3 +134,10 @@ ul#bs-example-navbar-collapse-1{
   z-index: 1000;
 }
 
+.affix {
+  top: 0;
+  width: 100%;
+}
+.affix + .container-fluid {
+  padding-top: 160px;
+}
