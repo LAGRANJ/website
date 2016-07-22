@@ -1,14 +1,64 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>WEBSite</title>
-    <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
-  <body>
-    <%= yield %>
-  </body>
+	<head>
+		<title>WEBSite</title>
+		<%= csrf_meta_tags %>
+		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+		<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+	</head>
+	<body>
+		<div id="wrapper">
+			<div class="overlay"></div>
+			<!-- Sidebar -->
+			<div id="sidebar-wrapper">
+				<ul class="sidebar-nav">
+					<li class="sidebar-brand">
+						<div style="position:relative;">
+							<span style="position:absolute;">
+								<img src="logoshort.svg" style="width:220px; margin-top:10px;margin-left:0px;" />
+							</span>
+							<span style="position:absolute;margin-top:-5px;">
+								<a class="menu-toggle" id="close-menu" href="#"><span><img src="close.svg"></span></a>
+							</span>
+						</div>
+						
+						
+					</li>
+					<li>
+						<a href="#">Dashboard</a>
+					</li>
+					<li>
+						<a href="#">Shortcuts</a>
+					</li>
+					<li>
+						<a href="#">Overview</a>
+					</li>
+					<li>
+						<a href="#">Events</a>
+					</li>
+					<li>
+						<a href="#">About</a>
+					</li>
+					<li>
+						<a href="#">Services</a>
+					</li>
+					<li>
+						<a href="#">Contact</a>
+					</li>
+				</ul>
+			</div>
+			<!-- /#sidebar-wrapper -->
+			<!-- Page Content -->
+			<div id="page-content-wrapper">
+				<div class="container">
+					<div class = "row">
+						<div class="hidden-xs">
+							<img src="FKBLogo.svg" style="width:100%;" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<%= yield %>
+	</body>
 </html>
