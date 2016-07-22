@@ -15,7 +15,7 @@
 					<li class="sidebar-brand">
 						<div style="position:relative;">
 							<span style="position:absolute;">
-                <%= image_tag("logoShort.svg")%>
+                <%= image_tag("logoShort.svg",:id=>"logoshort")%>
 							</span>
 							<span style="position:absolute;margin-top:-5px;">
                 <a class="menu-toggle" id="close-menu" href="#">
@@ -55,16 +55,18 @@
 				<div class="container">
 					<div class = "row">
 						<div class="hidden-xs">
-              <%= image_tag("FKBLogo.svg") %>
+              <%= image_tag("FKBLogo.svg",:id=>"mainlogo") %>
 						</div>
 					</div>
+        </div>
 					<div id='mainmenu'>
             <div style="position:relative">
                 <span>
-                    <a style="position:absolute;top:0px;" class="menu-toggle" id = 'open-menu' href="#"><img src="hamburger.svg"></a>
+                  <a style="position:absolute;top:0px;" class="menu-toggle" id = 'open-menu' href="#">
+                    <%= image_tag("hamburger.svg")%></a>
                 </span>
                 <span>
-                    <img id='minibrand' src="logoshort.svg"/>
+                  <%= image_tag("logoShort.svg", :id=>"minibrand")%>
                 </span>
                 <ul class="nav navbar-nav" id="bs-example-navbar-collapse-1">
                     <li class="active"><a href="#"> Корпоративным клиентам</a></li>
@@ -128,14 +130,16 @@
                             <li><a href="#"><img style="width:30px; margin-right:8px;" src="ru.svg" />Русский</a></li>
                         </ul>
                     </div>
-                    <a id = 'search' href="#"><img src="search.svg"></a>
+                    <a id = 'search' href="#"><%= image_tag("search.svg") %></a>
                 </span>
             </div>
             
         </div>
+        <div class ="row">
+          <%= yield %>
+        </div>
 				</div>
 			</div>
 		</div>
-		<%= yield %>
 	</body>
 </html>

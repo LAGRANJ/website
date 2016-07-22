@@ -5,6 +5,7 @@ $(document).ready(function () {
 
     trigger.click(function () {
       hamburger_cross();      
+      return false;
     });
     $('.overlay,.sidebar-brand').click(function () {
       $("#wrapper").removeClass("toggled");
