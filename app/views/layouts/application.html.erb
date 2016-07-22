@@ -58,7 +58,81 @@
               <%= image_tag("FKBLogo.svg") %>
 						</div>
 					</div>
-					<a style="position:absolute;top:0px;" class="menu-toggle" id = 'open-menu' href="#"><%= image_tag("hamburger.svg")%></a>
+					<div id='mainmenu'>
+            <div style="position:relative">
+                <span>
+                    <a style="position:absolute;top:0px;" class="menu-toggle" id = 'open-menu' href="#"><img src="hamburger.svg"></a>
+                </span>
+                <span>
+                    <img id='minibrand' src="logoshort.svg"/>
+                </span>
+                <ul class="nav navbar-nav" id="bs-example-navbar-collapse-1">
+                    <li class="active"><a href="#"> Корпоративным клиентам</a></li>
+                    <li class="dropdown menu-large">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Частным клиентам</a>
+                        <ul class="dropdown-menu megamenu row">
+                            <li class="col-sm-3">
+                                <ul>
+                                    <li><a href="#" class="nav-child">Частным клиентам</a></li>
+                                    <li><a href="#">Central West</a></li>
+                                    <li><a href="#">City & East</a></li>
+                                    <li><a href="#">Inner West </a></li>
+                                    <li><a href="#">Canterbury Bankstown</a></li>
+                                </ul>
+                            </li>
+                            <li class="col-sm-3">
+                                <ul>
+                                    <li><a href="#" class="nav-child">Living in my home</a></li>
+                                    <li><a href="#">Rent & Payments</a></li>
+                                    <li><a href="#">Block Meetings</a></li>
+                                    <li><a href="#">Complaints & Appeals</a></li>
+                                    <li><a href="#">Neighbour Disputes</a></li>
+                                </ul>
+                            </li>
+                            <li class="col-sm-3">
+                                <ul>
+                                    <li><a href="#" class="nav-child">Getting involved</a></li>
+                                    <li><a href="#">Building bridges</a></li>
+                                    <li><a href="#">TAG</a></li>
+                                    <li><a href="#">Tenants workshops</a></li>
+                                    <li><a href="#">Aboriginal working group</a></li>
+                                    <li><a href="#">Tenant survey</a></li>
+                                    <li><a href="#">Your views</a></li>
+                                    <li><a href="#">What’s on</a></li>
+                                    <li><a href="#">Photos</a></li>
+                                    <li><a href="#">Stories</a></li>
+                                    <li><a href="#">Community gardens </a></li>
+                                </ul>
+                            </li>
+                            <li class="col-sm-3">
+                                <ul>
+                                    <li><a href="#" class="nav-child">I Need Help</a></li>
+                                    <li><a href="#">Services</a></li>
+                                    <li><a href="#">Housing team</a></li>
+                                    <li><a href="#">Jobs</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="#contact">О банке</a></li>
+                </ul>
+                
+                <span>
+                    <div id = "lang" class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" style="border:0px" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span style="color:#d40000;">Ru</span>
+                        <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><img style="width:30px; margin-right:8px;" src="gb.svg" />English</a></li>
+                            <li><a href="#"><img style="width:30px; margin-right:8px;" src="ru.svg" />Русский</a></li>
+                        </ul>
+                    </div>
+                    <a id = 'search' href="#"><img src="search.svg"></a>
+                </span>
+            </div>
+            
+        </div>
 				</div>
 			</div>
 		</div>
