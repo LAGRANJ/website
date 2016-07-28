@@ -1,2 +1,46 @@
-<h1>Main#index</h1>
-<p>Find me in app/views/main/index.html.erb</p>
+<div class = 'row'>
+<div class = 'col-xs-6 col-md-6'>
+<div class = 'main_content'>
+<h1>Новости</h1>
+<hr/>
+<div class='main_news'>
+	<span class = 'date'>19<br/>Jul</span>
+	<a href="#"><b><%= @mainnewsitem.caption %></b><br/>
+		<%= @mainnewsitem.description %>
+	</a>
+</div>
+
+<ul class = "news_list">
+	<% @newsitems.each do |newsitem| %>
+	<li>
+		<span class = 'date'>19<br/>Jul</span>
+		<a href="#"><b><%= newsitem.caption %></b><br/>
+		<%= newsitem.description %>
+		</a>
+	</li>
+	<% end %>
+</ul>
+</div>
+</div>
+<div class = "col-xs-3 col-md-3">
+</div>
+<div class = "col-xs-3 col-md-3">
+<div class = "main_content">
+<h1>Курсы валют</h1>
+<table>
+<tr>
+<td>rub</td>
+</tr>
+<tr>
+<td>eur</td>
+</tr>
+<tr>
+<td>usd</td>
+</tr>
+<tr>
+<td>kzt</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
