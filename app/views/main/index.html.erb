@@ -1,46 +1,79 @@
 <div class = 'row'>
-<div class = 'col-xs-6 col-md-6'>
-<div class = 'main_content'>
-<h1>Новости</h1>
-<hr/>
-<div class='main_news'>
-	<span class = 'date'>19<br/>Jul</span>
-	<a href="#"><b><%= @mainnewsitem.caption %></b><br/>
-		<%= @mainnewsitem.description %>
-	</a>
-</div>
-
-<ul class = "news_list">
-	<% @newsitems.each do |newsitem| %>
-	<li>
-		<span class = 'date'>19<br/>Jul</span>
-		<a href="#"><b><%= newsitem.caption %></b><br/>
-		<%= newsitem.description %>
-		</a>
-	</li>
-	<% end %>
-</ul>
-</div>
-</div>
-<div class = "col-xs-3 col-md-3">
-</div>
-<div class = "col-xs-3 col-md-3">
-<div class = "main_content">
-<h1>Курсы валют</h1>
-<table>
-<tr>
-<td>rub</td>
-</tr>
-<tr>
-<td>eur</td>
-</tr>
-<tr>
-<td>usd</td>
-</tr>
-<tr>
-<td>kzt</td>
-</tr>
-</table>
-</div>
-</div>
+  <div class = 'col-xs-6 col-md-6'>
+    <div class = 'main_content'>
+      <h1>Новости</h1>
+      <hr/>
+      <div class='main_news'>
+        <span class = 'date'>19<br/>
+          Jul</span>
+        <a href="#"><b><%= @mainnewsitem.caption %></b><br/>
+          <%= @mainnewsitem.description %>
+        </a>
+      </div>
+      <ul class = "news_list">
+        <% @newsitems.each do |newsitem| %>
+          <li>
+            <span class = 'date'>19<br/>
+              Jul</span>
+            <a href="#"><b><%= newsitem.caption %></b><br/>
+              <%= newsitem.description %>
+            </a>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <div class = "col-xs-3 col-md-3">
+    <div class = 'banners'>
+      <div class = 'first_bg'>
+        <div class = 'banner _ac_ban ac_ban'>
+          <a>
+            <%= image_tag("ban_main_11.jpg") %>
+          </a>
+        </div>
+        <div class = 'banner _ac_ban'>
+          <a>
+            <%= image_tag("ban_main_1280_6.jpg") %>
+          </a>
+        </div>
+        <div class = 'banner _ac_ban'>
+          <a>
+            <%= image_tag("ban_main_2.jpg") %>
+          </a>
+        </div>
+      </div>
+      <div class = 'second_bg'>
+        <div class = 'banner _ac_ban ac_ban'>
+          <a>
+            <%= image_tag("ban_main_11.jpg") %>
+          </a>
+        </div>
+        <div class = 'banner _ac_ban'>
+          <a>
+            <%= image_tag("ban_main_1280_6.jpg") %>
+          </a>
+        </div>
+        <div class = 'banner _ac_ban'>
+          <a>
+            <%= image_tag("ban_main_2.jpg") %>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class = "col-xs-3 col-md-3">
+    <div class = "main_content">
+      <h1>Курсы валют</h1>
+      <i class="fa fa-camera-retro fa-lg"></i> fa-lg
+<i class="fa fa-camera-retro fa-2x"></i> fa-2x
+<i class="fa fa-camera-retro fa-3x"></i> fa-3x
+<i class="fa fa-camera-retro fa-4x"></i> fa-4x
+<i class="fa fa-camera-retro fa-5x"></i> fa-5x
+<i class="fa fa-angle-right fa-5x"></i>
+<i class="fa fa-usd fa-3x"></i>
+<i class="fa fa-bars fa-5x" aria-hidden="true"></i>
+<i class="fa fa-search fa-5x" aria-hidden="true"></i>
+<i class="fa fa-times" style="color:red;"></i>
+    </div>
+  </div>
 </div>

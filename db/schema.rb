@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160728083718) do
+ActiveRecord::Schema.define(version: 20160729044001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "currency_rates", force: :cascade do |t|
+    t.integer  "currencyid"
+    t.integer  "officeid"
+    t.datetime "ratedate"
+    t.decimal  "sellrate",   precision: 5, scale: 2
+    t.decimal  "buyrate",    precision: 5, scale: 2
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
 
   create_table "newsitems", force: :cascade do |t|
     t.text     "caption"

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  currencyid: 
+  ratedate: 
+  sellrate: 
+  buyrate: 9.99
+
+two:
+  currencyid: 
+  ratedate: 
+  sellrate: 
+  buyrate: 9.99
