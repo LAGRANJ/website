@@ -1,197 +1,279 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>WEBSite</title>
-		<%= csrf_meta_tags %>
-		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-		<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-	</head>
-	<body>
-		<div id="wrapper">
-			<div class="overlay"></div>
-			<!-- Sidebar -->
-			<div id="sidebar-wrapper">
-				<ul class="sidebar-nav">
-					<li class="sidebar-brand">
-						<div style="position:relative;">
-                <%= image_tag("logoShort.svg",:id=>"logoshort")%>
-							<span style="position:absolute;margin-top:-5px;">
+  <head>
+    <title>WEBSite</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div class="overlay"></div>
+      <!-- Sidebar -->
+      <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+          <li class="sidebar-brand">
+            <div style="position:relative;">
+              <%= image_tag("logoShort.svg",:id=>"logoshort")%>
+              <span style="position:absolute;margin-top:-5px;">
                 <a class="menu-toggle" id="close-menu" href="#">
                   <span><%= image_tag("close.svg") %></span>
                 </a>
-							</span>
-						</div>
-						
-						
-					</li>
-					<li>
-						<a href="#">Dashboard</a>
-					</li>
-					<li>
-						<a href="#">Shortcuts</a>
-					</li>
-					<li>
-						<a href="#">Overview</a>
-					</li>
-					<li>
-						<a href="#">Events</a>
-					</li>
-					<li>
-						<a href="#">About</a>
-					</li>
-					<li>
-						<a href="#">Services</a>
-					</li>
-					<li>
-						<a href="#">Contact</a>
-					</li>
-				</ul>
-			</div>
-			<!-- /#sidebar-wrapper -->
-			<!-- Page Content -->
-			<div id="page-content-wrapper">
-				<div class="container">
-					<div class = "row">
-						<div class="hidden-xs">
+              </span>
+            </div>
+          </li>
+          <li>
+            <a href="#">Dashboard</a>
+          </li>
+          <li>
+            <a href="#">Shortcuts</a>
+          </li>
+          <li>
+            <a href="#">Overview</a>
+          </li>
+          <li>
+            <a href="#">Events</a>
+          </li>
+          <li>
+            <a href="#">About</a>
+          </li>
+          <li>
+            <a href="#">Services</a>
+          </li>
+          <li>
+            <a href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+      <!-- /#sidebar-wrapper -->
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <div class="container">
+          <div class = "row">
+            <div class="hidden-xs">
               <%= image_tag("FKBLogo.svg",:id=>"mainlogo") %>
-						</div>
-					</div>
+            </div>
+          </div>
         </div>
-					<div id='mainmenu'>
-            <div style="position:relative">
-                <span>
-                  <a style="position:absolute;top:0px;" class="menu-toggle" id = 'open-menu' href="#">
-                    <%= image_tag("hamburger.svg")%></a>
-                </span>
-                <span>
-                  <%= image_tag("logoShort.svg", :id=>"minibrand")%>
-                </span>
-                <ul class="nav navbar-nav" id="bs-example-navbar-collapse-1">
-                    <li class="active"><a href="#"> Корпоративным клиентам</a></li>
-                    <li class="dropdown menu-large">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Частным клиентам</a>
-                        <ul class="dropdown-menu megamenu row">
-                            <li class="col-sm-3">
-                                <ul>
-                                    <li><a href="#" class="nav-child">Частным клиентам</a></li>
-                                    <li><a href="#">Central West</a></li>
-                                    <li><a href="#">City & East</a></li>
-                                    <li><a href="#">Inner West </a></li>
-                                    <li><a href="#">Canterbury Bankstown</a></li>
-                                </ul>
-                            </li>
-                            <li class="col-sm-3">
-                                <ul>
-                                    <li><a href="#" class="nav-child">Living in my home</a></li>
-                                    <li><a href="#">Rent & Payments</a></li>
-                                    <li><a href="#">Block Meetings</a></li>
-                                    <li><a href="#">Complaints & Appeals</a></li>
-                                    <li><a href="#">Neighbour Disputes</a></li>
-                                </ul>
-                            </li>
-                            <li class="col-sm-3">
-                                <ul>
-                                    <li><a href="#" class="nav-child">Getting involved</a></li>
-                                    <li><a href="#">Building bridges</a></li>
-                                    <li><a href="#">TAG</a></li>
-                                    <li><a href="#">Tenants workshops</a></li>
-                                    <li><a href="#">Aboriginal working group</a></li>
-                                    <li><a href="#">Tenant survey</a></li>
-                                    <li><a href="#">Your views</a></li>
-                                    <li><a href="#">What’s on</a></li>
-                                    <li><a href="#">Photos</a></li>
-                                    <li><a href="#">Stories</a></li>
-                                    <li><a href="#">Community gardens </a></li>
-                                </ul>
-                            </li>
-                            <li class="col-sm-3">
-                                <ul>
-                                    <li><a href="#" class="nav-child">I Need Help</a></li>
-                                    <li><a href="#">Services</a></li>
-                                    <li><a href="#">Housing team</a></li>
-                                    <li><a href="#">Jobs</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a href="#contact">О банке</a></li>
+        <div id='mainmenu'>
+          <div style="position:relative">
+            <span>
+              <a style="position:absolute;top:0px;" class="menu-toggle" id = 'open-menu' href="#">
+                <%= image_tag("hamburger.svg")%></a>
+            </span>
+            <span>
+              <%= image_tag("logoShort.svg", :id=>"minibrand")%>
+            </span>
+            <ul class="nav navbar-nav" id="bs-example-navbar-collapse-1">
+              <li class="active"><a href="#"> Корпоративным клиентам</a></li>
+              <li class="dropdown menu-large">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Частным клиентам</a>
+                <ul class="dropdown-menu megamenu row">
+                  <li class="col-sm-3">
+                    <ul>
+                      <li><a href="#" class="nav-child">Частным клиентам</a></li>
+                      <li><a href="#">Central West</a></li>
+                      <li><a href="#">City & East</a></li>
+                      <li><a href="#">Inner West </a></li>
+                      <li><a href="#">Canterbury Bankstown</a></li>
+                    </ul>
+                  </li>
+                  <li class="col-sm-3">
+                    <ul>
+                      <li><a href="#" class="nav-child">Living in my home</a></li>
+                      <li><a href="#">Rent & Payments</a></li>
+                      <li><a href="#">Block Meetings</a></li>
+                      <li><a href="#">Complaints & Appeals</a></li>
+                      <li><a href="#">Neighbour Disputes</a></li>
+                    </ul>
+                  </li>
+                  <li class="col-sm-3">
+                    <ul>
+                      <li><a href="#" class="nav-child">Getting involved</a></li>
+                      <li><a href="#">Building bridges</a></li>
+                      <li><a href="#">TAG</a></li>
+                      <li><a href="#">Tenants workshops</a></li>
+                      <li><a href="#">Aboriginal working group</a></li>
+                      <li><a href="#">Tenant survey</a></li>
+                      <li><a href="#">Your views</a></li>
+                      <li><a href="#">What’s on</a></li>
+                      <li><a href="#">Photos</a></li>
+                      <li><a href="#">Stories</a></li>
+                      <li><a href="#">Community gardens </a></li>
+                    </ul>
+                  </li>
+                  <li class="col-sm-3">
+                    <ul>
+                      <li><a href="#" class="nav-child">I Need Help</a></li>
+                      <li><a href="#">Services</a></li>
+                      <li><a href="#">Housing team</a></li>
+                      <li><a href="#">Jobs</a></li>
+                    </ul>
+                  </li>
                 </ul>
-                
-                <span>
-                    <div id = "lang" class="btn-group">
-                        <button type="button" class="btn btn-default dropdown-toggle" style="border:0px" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span style="color:#d40000;">Ru</span>
-                        <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><img style="width:30px; margin-right:8px;" src="gb.svg" />English</a></li>
-                            <li><a href="#"><img style="width:30px; margin-right:8px;" src="ru.svg" />Русский</a></li>
-                        </ul>
-                    </div>
-                    <a id = 'search' href="#"><%= image_tag("search.svg") %></a>
-                </span>
-            </div>
-            
+              </li>
+              <li><a href="#contact">О банке</a></li>
+            </ul>
+            <span>
+              <div id = "lang" class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" style="border:0px" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span style="color:#d40000;">Ru</span>
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a href="#"><img style="width:30px; margin-right:8px;" src="gb.svg" />English</a></li>
+                  <li><a href="#"><img style="width:30px; margin-right:8px;" src="ru.svg" />Русский</a></li>
+                </ul>
+              </div>
+              <a id = 'search' href="#"><%= image_tag("search.svg") %></a>
+            </span>
+          </div>
         </div>
-<div class="container"  style="height:1000px">
-            <div class = "row">
-                    <!-- The carousel -->
-                    <div id="transition-timer-carousel" class="carousel slide transition-timer-carousel" data-ride="carousel">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                            <li data-target="#transition-timer-carousel" data-slide-to="0" class="active"></li>
-                            <li data-target="#transition-timer-carousel" data-slide-to="1"></li>
-                            <li data-target="#transition-timer-carousel" data-slide-to="2"></li>
-                        </ol>
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner">
-                            <div class="item active">
-                              <%= image_tag("carousel/rates.png")%>
-                                <div class="carousel-caption">
-                                    <h1 class="carousel-caption-header">Slide 1</h1>
-                                    <p class="carousel-caption-text hidden-sm hidden-xs">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dignissim aliquet rutrum. Praesent vitae ante in nisi condimentum egestas. Aliquam.
+        <div class="container"  style="height:1000px">
+          <div class = "row">
+            <!-- The carousel -->
+            <div id="transition-timer-carousel" class="carousel slide transition-timer-carousel" data-ride="carousel">
+              <!-- Indicators -->
+              <ol class="carousel-indicators">
+                <li data-target="#transition-timer-carousel" data-slide-to="0" class="active"></li>
+                <li data-target="#transition-timer-carousel" data-slide-to="1"></li>
+                <li data-target="#transition-timer-carousel" data-slide-to="2"></li>
+              </ol>
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner">
+                <div class="item active">
+                  <%= image_tag("carousel/rates.png")%>
+                  <div class="carousel-caption">
+                    <h1 class="carousel-caption-header">Slide 1</h1>
+                    <p class="carousel-caption-text hidden-sm hidden-xs">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dignissim aliquet rutrum. Praesent vitae ante in nisi condimentum egestas. Aliquam.
                                     </p>
-                                </div>
-                            </div>
-                            
-                            <div class="item">
-                                <%= image_tag("carousel/ipoteka.png")%>
-                                <div class="carousel-caption">
-                                    <h1 class="carousel-caption-header">Slide 2</h1>
-                                    <p class="carousel-caption-text hidden-sm hidden-xs">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dignissim aliquet rutrum. Praesent vitae ante in nisi condimentum egestas. Aliquam.
+                  </div>
+                </div>
+                <div class="item">
+                  <%= image_tag("carousel/ipoteka.png")%>
+                  <div class="carousel-caption">
+                    <h1 class="carousel-caption-header">Slide 2</h1>
+                    <p class="carousel-caption-text hidden-sm hidden-xs">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dignissim aliquet rutrum. Praesent vitae ante in nisi condimentum egestas. Aliquam.
                                     </p>
-                                </div>
-                            </div>
-                            
-                            <div class="item">
-                              <%= image_tag("carousel/card.png") %>
-                                <div class="carousel-caption">
-                                    <h1 class="carousel-caption-header">Slide 3</h1>
-                                    <p class="carousel-caption-text hidden-sm hidden-xs">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dignissim aliquet rutrum. Praesent vitae ante in nisi condimentum egestas. Aliquam.
+                  </div>
+                </div>
+                <div class="item">
+                  <%= image_tag("carousel/card.png") %>
+                  <div class="carousel-caption">
+                    <h1 class="carousel-caption-header">Slide 3</h1>
+                    <p class="carousel-caption-text hidden-sm hidden-xs">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dignissim aliquet rutrum. Praesent vitae ante in nisi condimentum egestas. Aliquam.
                                     </p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Controls -->
-                        <a class="left carousel-control" href="#transition-timer-carousel" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
-                        </a>
-                        <a class="right carousel-control" href="#transition-timer-carousel" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                        </a>
-                        
-                        <!-- Timer "progress bar" -->
-                        <hr class="transition-timer-carousel-progress-bar animate" />
-                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Controls -->
+              <a class="left carousel-control" href="#transition-timer-carousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+              </a>
+              <a class="right carousel-control" href="#transition-timer-carousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+              </a>
+              <!-- Timer "progress bar" -->
+              <hr class="transition-timer-carousel-progress-bar animate" />
             </div>
+          </div>
+          <div class="row">
+            <%= yield %>
+          </div>
+        </div>
+        <br>
+        <br>
+        <hr style="color:#d40000;">
+        <footer class="footer1">
+          <div class="container">
+            <div class="row"><!-- row -->
+              <div class="col-lg-3 col-md-3"><!-- widgets column left -->
+                <ul class="list-unstyled clear-margins"><!-- widgets -->
+                  <li class="widget-container widget_nav_menu"><!-- widgets list -->
+                    <h1 class="title-widget">Общая информация</h1>
+                    <ul>
+                      <li><a  href="#"><i class="fa fa-angle-double-right"></i> О банке</a></li>
+                      <li><a  href="#"><i class="fa fa-angle-double-right"></i> Филиальная сеть</a></li>
+                      <li><a  href="#"><i class="fa fa-angle-double-right"></i> Новости</a></li>
+                      <li><a  href="#"><i class="fa fa-angle-double-right"></i> Реквизиты</a></li>                      
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-lg-5 col-md-5"><!-- widgets column left -->
+                <ul class="list-unstyled clear-margins"><!-- widgets -->
+                  <li class="widget-container widget_nav_menu"><!-- widgets list -->
+                    <h1 class="title-widget">Режим работы</h1>
+                    <div class="footerp">
+                      <p>Понедельник - пятница:
+                      <b style="color:#ff0000;">9.00 - 17.00, </b>без перерыва
+                      </p>
+                      <p>Суббота:
+                      <b style="color:#ff0000;">10.00 - 14.00</b>
+                      </p>
+                      <p><b>ВЕЧЕРНЯЯ КАССА</b></p>
+                      <p>Понедельник - пятница:
+                      <b style="color:#ff0000;">17.00 - 21.00</b>
+                      </p>
+                      <p>Суббота:
+                      <b style="color:#ff0000;">14.00 - 21.00</b>
+                      </p>
+                        <p>Воскресенье и праздничные дни:
+                      <b style="color:#ff0000;">10.00 - 15.00 </b>
+                      </p>
+                        <p><b>Единая служба информации:</b>
+                        (0312) 443-443,(0312) 330-333</p>
+                    </div>
+                </li>
+                </ul>
+              </div>
+              <!-- widgets column left end -->
+              <div class="col-lg-4 col-md-4"><!-- widgets column center -->
+                <ul class="list-unstyled clear-margins"><!-- widgets -->
+                  <li class="widget-container widget_recent_news"><!-- widgets list -->
+                    <h1 class="title-widget">Наши контакты </h1>
+                    <div class="footerp">
+                      <h2 class="title-median">ОАО "ФинансКредитБанк КАБ"</h2>
+                      <p><b>Email:</b> <a href="mailto:fkb@fkb.kg">fkb@fkb.kg</a></p>                      
+                      <p><b>Адрес: Кыргызстан, г.Бишкек, ул.Абдрахманова 105</b></p>
+                      <p><b>Тел.: </b>(312) 30-30-14, </p>
+                      <p>(312) 30-35-10,(312) 30-34-87 </p>
+                    </div>
+                    <div class="social-icons">
+                      <ul class="nomargin">
+                        <a href="https://www.facebook.com/bootsnipp"><i class="fa fa-facebook-square fa-3x social-fb" id="social"></i></a>
+                        <a href="https://twitter.com/bootsnipp"><i class="fa fa-twitter-square fa-3x social-tw" id="social"></i></a>
+                        <a href="https://plus.google.com/+Bootsnipp-page"><i class="fa fa-google-plus-square fa-3x social-gp" id="social"></i></a>
+                        <a href="mailto:bootsnipp@gmail.com"><i class="fa fa-envelope-square fa-3x social-em" id="social"></i></a>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </footer>
+        <!--header-->
+        <div class="footer-bottom">
+          <div class="container">
             <div class="row">
-          <%= yield %>
+              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="copyright">
+                  © 2006-2016 ОАО "ФинансКредитБанк КАБ". Все права защищены.
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="design">
+                  <a href="#">Лицензия НБ КР № 047</a>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-				</div>
-			</div>
-	</body>
+      </div>
+    </div>
+  </body>
 </html>
