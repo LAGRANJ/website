@@ -83,6 +83,6 @@ test:
 #
 production:
   <<: *default
-  database: WEBSite_production
+  database: website_production
   username: deploy 
   password: <%= ENV['WEBSITE_DATABASE_PASSWORD'] %>
