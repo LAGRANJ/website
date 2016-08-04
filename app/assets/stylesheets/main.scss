@@ -68,6 +68,23 @@
 }
 
 img#kzt{
-    width: 16px;
+    width: 12px;
 
 }
+.rates_table{
+    width:100%;
+    text-align:center;
+    font-size:16px;
+}
+.rates_table tr td{
+    border-bottom:1px solid #ddd;
+}
+.rates_table tr td.cur_sym{
+    padding:4px 4px;
+    color: #d40000;
+}
+body{margin-top:50px;}
+.glyphicon { margin-right:10px; }
+.panel-body { padding:0px; }
+.panel-body table tr td { padding-left: 15px }
+.panel-body .table {margin-bottom: 0px; }

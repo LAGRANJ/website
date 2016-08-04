@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160729044001) do
+ActiveRecord::Schema.define(version: 20160802072407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,10 +19,11 @@ ActiveRecord::Schema.define(version: 20160729044001) do
     t.integer  "currencyid"
     t.integer  "officeid"
     t.datetime "ratedate"
-    t.decimal  "sellrate",   precision: 5, scale: 2
-    t.decimal  "buyrate",    precision: 5, scale: 2
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.decimal  "sellrate",   precision: 10, scale: 4
+    t.decimal  "buyrate",    precision: 10, scale: 4
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.integer  "typeid"
   end
 
   create_table "newsitems", force: :cascade do |t|

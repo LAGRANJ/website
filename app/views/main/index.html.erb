@@ -21,9 +21,11 @@
           </li>
         <% end %>
       </ul>
+      
+
     </div>
   </div>
-  <div class = "col-xs-3 col-md-3">
+  <div class = "col-xs-3 col-md-3" style="padding-right:0px;">
     <div class = 'banners'>
       <div class = 'first_bg'>
         <div class = 'banner _ac_ban ac_ban'>
@@ -61,66 +63,186 @@
       </div>
     </div>
   </div>
-  <div class = "col-xs-3 col-md-3">
-    <div class = "main_content">
-      <h1>Курсы валют</h1>
-      <hr/>
-      <table style="width:100%;text-align:center;font-size:16px;">
-      	<tr style="border-bottom:1px solid #d40000;">
-      		<td>
-      			Покупка
+  <div class = "col-xs-3 col-md-3" style="padding-left:0px;">
+  
+    <div class="panel-group" id="accordion">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+              Наличные курсы на <b style="float:right;">01.08.2016</b></a>
+          </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse in">
+          <div class="panel-body">
+            <table class = "rates_table">           
+            <tr>
+                <td width="45%">
+                  Покупка
+      			</td>
+                <td>
+                </td>
+                <td width="45%">
+                  Продажа
+      			</td>
+              </tr>
+        	<% @records.each do |record| %>
+              
+              <tr>
+                <td>
+                  <b><%= record['buy_rate'] %></b>
+      			</td>
+                <td class = 'cur_sym'>
+                <% if record['curid'] == 840%>
+                  <i class="fa fa-usd fa-1x"></i>
+                  <%end %>
+
+                </td>
+                <td>
+                  <b><%= record['sell_rate'] %></b>
+      			</td>
+              </tr>
+              <% end %>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+              Безналичные курсы валют</a>
+          </h4>
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse">
+          <div class="panel-body">
+            <table class = "rates_table">
+              <tr>
+                <td width="40%">
+                  Покупка
       		</td>
-      		<td>      			
+                <td>
+                </td>
+                <td width="40%">
+                  Продажа
       		</td>
-      		<td>
-      			Продажа
-      		</td>      		
-      	</tr>
-      	<tr style="border-bottom:1px solid #d40000;">
-      		<td>
-      			67
+              </tr>
+              <tr style="">
+                <td>
+                  67
       		</td>
-      		<td  style="padding:4px 4px;background:#d40000">  
-      			<i class="fa fa-usd fa-1x" style="color:#fff;"></i>  			
+                <td class = 'cur_sym'>
+                  <i class="fa fa-usd fa-1x"></i>
+                </td>
+                <td>
+                  69
       		</td>
-      		<td>
-      			69
-      		</td>      		
-      	</tr>
-      	<tr style="border-bottom:1px solid #d40000;">
-      		<td>
-      			77
+              </tr>
+              <tr>
+                <td>
+                  77
       		</td>
-      		<td  style="padding:4px 4px;background:#d40000">  
-      			<i class="fa fa-euro fa-1x" style="color:#fff;"></i>  			
+                <td class = 'cur_sym'>
+                  <i class="fa fa-euro fa-1x"></i>
+                </td>
+                <td>
+                  79
       		</td>
-      		<td>
-      			79
-      		</td>      		
-      	</tr>
-      	<tr style="border-bottom:1px solid #d40000d;">
-      		<td>
-      			77
+              </tr>
+              <tr>
+                <td>
+                  77
       		</td>
-      		<td  style="padding:4px 4px;background:#d40000">  
-      			<i class="fa fa-ruble fa-1x" style="color:#fff;"></i>  			
+                <td class = 'cur_sym'>
+                  <i class="fa fa-ruble fa-1x"></i>
+                </td>
+                <td>
+                  79
       		</td>
-      		<td>
-      			79
-      		</td>      		
-      	</tr>
-      	<tr style="border-bottom:1px solid #d40000;">
-      		<td>
-      			77
+              </tr>
+              <tr>
+                <td>
+                  77
       		</td>
-      		<td  style="padding:4px 4px;background:#d40000">  
-      			<%=image_tag("kzt.svg", :id => "kzt")%>  			
+                <td class = 'cur_sym'>
+                  <%=image_tag("kzt.svg", :id => "kzt")%>
+                </td>
+                <td>
+                  79
       		</td>
-      		<td>
-      			79
-      		</td>      		
-      	</tr>
-      </table>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+              Курсы валют НБКР</a>
+          </h4>
+        </div>
+        <div id="collapseFour" class="panel-collapse collapse">
+          <div class="panel-body">
+            <table class = "rates_table">
+              <tr>
+                <td width="40%">
+                  Покупка
+      		</td>
+                <td>
+                </td>
+                <td width="40%">
+                  Продажа
+      		</td>
+              </tr>
+              <tr style="">
+                <td>
+                  67
+      		</td>
+                <td class = 'cur_sym'>
+                  <i class="fa fa-usd fa-1x"></i>
+                </td>
+                <td>
+                  69
+      		</td>
+              </tr>
+              <tr>
+                <td>
+                  77
+      		</td>
+                <td class = 'cur_sym'>
+                  <i class="fa fa-euro fa-1x"></i>
+                </td>
+                <td>
+                  79
+      		</td>
+              </tr>
+              <tr>
+                <td>
+                  77
+      		</td>
+                <td class = 'cur_sym'>
+                  <i class="fa fa-ruble fa-1x"></i>
+                </td>
+                <td>
+                  79
+      		</td>
+              </tr>
+              <tr>
+                <td>
+                  77
+      		</td>
+                <td class = 'cur_sym'>
+                  <%=image_tag("kzt.svg", :id => "kzt")%>
+                </td>
+                <td>
+                  79
+      		</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
