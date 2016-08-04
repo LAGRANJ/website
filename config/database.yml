@@ -18,7 +18,7 @@ default: &default
   adapter: postgresql
   encoding: unicode
   host: localhost
-  username: deploy 
+  username: timur 
   password: <%= ENV['WEBSITE_DATABASE_PASSWORD'] %>
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
@@ -84,5 +84,5 @@ test:
 production:
   <<: *default
   database: WEBSite_production
-  username: timur 
+  username: deploy 
   password: <%= ENV['WEBSITE_DATABASE_PASSWORD'] %>
