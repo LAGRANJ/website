@@ -23,7 +23,7 @@ END; $BODY$
   LANGUAGE plpgsql VOLATILE
   COST 100;
 ALTER FUNCTION public.get_prev_currency_buyrate(integer, timestamp without time zone)
-  OWNER TO timur;
+  OWNER TO deploy;
   })
 	end
 

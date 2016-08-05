@@ -26,7 +26,7 @@ END; $BODY$
   COST 100
   ROWS 1000;
 ALTER FUNCTION public.get_currency_rates(integer)
-  OWNER TO timur;
+  OWNER TO deploy;
   })
 	end
 
