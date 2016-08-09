@@ -3,6 +3,7 @@
   <head>
     <title>WEBSite</title>
     <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= action_cable_meta_tag %>
@@ -53,9 +54,10 @@
           <div class = "row">
             <div class="hidden-xs">
               <%= image_tag("FKBLogo.svg",:id=>"mainlogo") %>
-            </div>
+            </div>            
           </div>
         </div>
+
         <div id='mainmenu'>
           <div style="position:relative">
             <span>
@@ -184,6 +186,17 @@
           <div class="row">
             <%= yield %>
           </div>
+          <div class='ftrect' style='background-position: 0px 0px; width: 120px;'>
+              <a href ='#'></a>
+            </div>
+            <div style='background: url(<%=image_url('fasttransfers.png')%>); background-repeat: no-repeat;
+background-position: 0px -40px; width: 120px;height:40px;'>
+              <a href ='#'></a>
+            </div>
+            <div style='background: url(<%=image_url('fasttransfers.png')%>); background-repeat: no-repeat;
+background-position: 0px -80px; width: 120px;height:40px;'>
+              <a href ='#' style='width: 120px;height:40px;display: block;'></a>
+            </div>
         </div>
         <br>
         <br>
