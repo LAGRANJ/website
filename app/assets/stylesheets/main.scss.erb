@@ -71,29 +71,43 @@ img#kzt{
     width: 12px;
 
 }
+img#kgs_exch{
+    width: 40px;
+}
 .rates_table{
     width:100%;
     text-align:center;
-    font-size:16px;
+    font-size:14px;
 }
 .rates_table tr td{
     border-bottom:1px solid #ddd;
 }
 .rates_table tr td.cur_sym{
-    padding:4px 4px;
+    
     color: #d40000;
 }
 body{margin-top:50px;}
 .glyphicon { margin-right:10px; }
+.panel-default > 
+.panel-heading {
+    background: linear-gradient(to top, #d40000, #dd0000) !important;
+    color:#fff;
+}
 .panel-body { padding:0px; }
 .panel-body table tr td { padding-left: 15px }
 .panel-body .table {margin-bottom: 0px; }
 
 .ftrect {
     border-radius: 5px;
-    border: 1px solid #73AD21;
-    padding: 20px; 
+    border: 2px solid rgba(221, 221, 221, 0.5);
+    padding: 0px; 
     height: 40px; 
     background: url(<%=image_url('fasttransfers.png')%>);
     background-repeat: no-repeat;
+    float:left;
+    margin-left:5px; 
+    margin-top:3px;   
+}
+.ftrect:hover {
+    border: 2px solid rgba(221, 221, 221, 1);
 }

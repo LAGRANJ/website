@@ -1,28 +1,6 @@
-<div class='row'>
-    <div class='col-md-12'>
-      <div class="carousel slide media-carousel" id="media">
-        <div class="carousel-inner">
-          <div class="item  active">
-            <div class="row">
-              <div class="col-md-12">
-                <img alt="" class ='img-thumbnail' src="http://placehold.it/150x150">                
-                <img alt="" class ='img-thumbnail' src="http://placehold.it/150x150">
-                <img alt="" class ='img-thumbnail' src="http://placehold.it/150x150">                
-                <img alt="" class ='img-thumbnail' src="http://placehold.it/150x150">
-                <img alt="" class ='img-thumbnail' src="http://placehold.it/150x150">                
-                <img alt="" class ='img-thumbnail' src="http://placehold.it/150x150">
-                <img alt="" class ='img-thumbnail' src="http://placehold.it/150x150">                
-                <img alt="" class ='img-thumbnail' style="border: 1px solid #D40000;" src="http://placehold.it/150x150">                
-              </div> 
-            </div>
-          </div>
-        </div>                
-    </div>
-  </div>
 <div class = 'row'>
   <div class = 'col-xs-6 col-md-6'>
-    <div class = 'main_content'>
-    <H1><%=@redis_message%></H1>
+    <div class = 'main_content'>    
       <h1>Новости</h1>
       <hr/>
       <% if @mainnewsitem %>
@@ -89,25 +67,27 @@
     </div>
   </div>
   <div class = "col-xs-3 col-md-3" style="padding-left:0px;">
-  
+  <div class = 'main_content'>    
+    <h4>Курсы валют на <u>08.08.2016</u></h4>
     <div class="panel-group" id="accordion">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h4 class="panel-title">
+          <h5 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-              Наличные курсы на <b style="float:right;">01.08.2016</b></a>
-          </h4>
+              Наличные</b></a>
+          </h5>
         </div>
         <div id="collapseTwo" class="panel-collapse collapse in">
           <div class="panel-body">
             <table class = "rates_table">           
             <tr>
-                <td width="45%">
+                <td width="45%" style="color:#d40000;">
                   Покупка
       			</td>
                 <td>
+                <%=image_tag("kgs_exch.svg", :id => "kgs_exch")%>
                 </td>
-                <td width="45%">
+                <td width="45%" style="color:#d40000;">
                   Продажа
       			</td>
               </tr>
@@ -118,10 +98,9 @@
                   <b><%= record['buy_rate'] %></b>
       			</td>
                 <td class = 'cur_sym'>
-                <% if record['curid'] == 840%>
-                  <i class="fa fa-usd fa-1x"></i>
+                  <% if record['curid'] == 840%>
+                    USD
                   <%end %>
-
                 </td>
                 <td>
                   <b><%= record['sell_rate'] %></b>
@@ -136,7 +115,7 @@
         <div class="panel-heading">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-              Безналичные курсы валют</a>
+              Безналичные</a>
           </h4>
         </div>
         <div id="collapseThree" class="panel-collapse collapse">
@@ -190,7 +169,7 @@
                   77
       		</td>
                 <td class = 'cur_sym'>
-                  <%=image_tag("kzt.svg", :id => "kzt")%>
+                  <%=image_tag("kgs_exch.svg", :id => "kzt")%>
                 </td>
                 <td>
                   79
@@ -204,7 +183,7 @@
         <div class="panel-heading">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
-              Курсы валют НБКР</a>
+              НБКР</a>
           </h4>
         </div>
         <div id="collapseFour" class="panel-collapse collapse">
@@ -225,7 +204,7 @@
                   67
       		</td>
                 <td class = 'cur_sym'>
-                  <i class="fa fa-usd fa-1x"></i>
+                  USD
                 </td>
                 <td>
                   69
@@ -269,5 +248,6 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
 </div>

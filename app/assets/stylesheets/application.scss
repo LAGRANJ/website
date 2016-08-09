@@ -8,3 +8,13 @@
 @import "font-awesome";
 @import "main-footer";
 @import "mt-carousel";
+
+.flag {
+	width: 25px;
+	height: 15px;
+	background:url(flags.png) no-repeat
+}
+
+.flag.flag-gb {background-position: -25px 0}
+.flag.flag-kg {background-position: 0 -15px}
+.flag.flag-ru {background-position: -25px -15px}

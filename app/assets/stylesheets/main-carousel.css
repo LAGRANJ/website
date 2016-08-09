@@ -37,7 +37,7 @@
 }
 .transition-timer-carousel .transition-timer-carousel-progress-bar {
     height: 5px;
-    background-color: #5cb85c;
+    background-color: rgba(255,255,255,0.5);
     width: 0%;
     margin: -5px 0px 0px 0px;
     border: none;
