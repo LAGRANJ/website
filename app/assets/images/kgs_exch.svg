@@ -20,7 +20,7 @@
    height="16"><metadata
      id="metadata14"><rdf:RDF><cc:Work
          rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title /></cc:Work></rdf:RDF></metadata><defs
      id="defs12" /><sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -45,10 +45,10 @@
      d="M 2.5056117,9.177026 1.466079,9.150348 3.1158843,6.3810106 4.827332,9.02933 3.8590046,9.192377 c 0.5892206,2.846179 3.0892819,5.14186 6.1151472,5.176181 2.5429522,0.02884 4.7466742,-1.450808 5.7751562,-3.604496 l 1.013548,0.949258 C 15.448553,14.115496 12.887814,15.732491 9.9590579,15.699271 6.19594,15.656587 3.1067011,12.76311 2.5056117,9.177026 Z M 16.304413,7.3175061 C 15.894946,4.2540109 13.29849,1.7581446 10.117597,1.7220647 7.4389987,1.6916821 5.1358702,3.3338407 4.1876275,5.6751997 l -1.02597,-0.9608522 c 1.2529497,-2.5850063 3.9081763,-4.3579561 6.9710365,-4.323215 3.917265,0.044432 7.107054,3.1405639 7.516746,6.9414095 l 1.033146,0.089106 -1.650392,2.739204 -1.648143,-2.8054637 z"
      id="path4"
      inkscape:connector-curvature="0"
-     style="clip-rule:evenodd;fill-rule:evenodd"
+     style="clip-rule:evenodd;fill-rule:evenodd;fill:#ffffff"
      sodipodi:nodetypes="cccccsccsccsccsccccc" /><text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.20137024px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.20137024px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
      x="5.1814423"
      y="9.325737"
      id="text4151"
