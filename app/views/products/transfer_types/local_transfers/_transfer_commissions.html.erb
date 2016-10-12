@@ -1,0 +1,35 @@
+<% (1..2).each do |senderacctypeid| %>
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading"><%= GetPayinType(senderacctypeid)%></div>
+    <!-- Table -->    
+    <table class="table">
+      <tr>
+        <th>тип получения</th>
+        <th>сумма</th>
+        <th>комиссия</th>
+      </tr>
+      <% (1..3).each do |recacctypeid| %>
+        <% count = 0%>
+        <% @branch_transfer_commissions.select{|x| x["BranchID"] == region_id and x["CurrencyID"]==currency_id and 
+        	x["SenderAccountTypeID"]==senderacctypeid and x["ReceiverAccountTypeID"]==recacctypeid}.each do |commission| %>
+          <tr>
+            <td><% if count == 0 %><%=GetPaymentType(recacctypeid)%><% end %></td>
+            <td><%= commission["Minsum"]%>-<%= commission["Maxsum"]%></td>
+            <td>
+              <% if commission["Rate"]!=0 %>
+                <%= commission["Rate"]%>
+                <% if commission["RateTypeID"]==2 %>
+                  %
+                <% end %>
+              <% else %>
+                --
+              <% end %>
+            </td>
+          </tr>
+          <% count=count+1%>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+<% end %>

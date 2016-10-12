@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  typeid: 1
+  currencyid: 1
+  countryid: 1
+  minsum: 9.99
+  maxsum: 9.99
+  commission: 9.99
+
+two:
+  typeid: 1
+  currencyid: 1
+  countryid: 1
+  minsum: 9.99
+  maxsum: 9.99
+  commission: 9.99

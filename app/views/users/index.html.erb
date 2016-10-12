@@ -1,0 +1,13 @@
+<b>Users</b>
+ 
+<ul id="users">
+</ul>
+ 
+<br>
+<%= button_to "Custom", { action: "custom", message: "custom message" }, remote: true %>
+
+<%= form_for(@user, remote: true) do |f| %>
+  <%= f.label :name %><br>
+  <%= f.text_field :name %>
+  <%= f.submit %>
+<% end %> 

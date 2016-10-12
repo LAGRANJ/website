@@ -1,0 +1,8 @@
+<% office = OFFICES.select{|x| x["ID"]==params["officeid"].to_i}.first%>
+$("#office_detailed_info").html(`<%= render partial: "office_detailed_info",locals: {office: office} %>`);
+
+<% office_details = OFFICES_DETAILS.select{|x| x.officeid == office["ID"]}.first%>
+<% coords = {lat: office_details.lat.to_f,lng: office_details.lon.to_f}%>
+addMarker(<%= raw coords.to_json %>)
+setCenter(<%= raw coords.to_json %>)
+

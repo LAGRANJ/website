@@ -1,0 +1,176 @@
+<div class="page-header">
+  <h1><%= @deposit["Name"] %> <small><%= @deposit["Description"] %></small></h1>
+</div>
+<div class="container">
+  <div class="process">
+    <div class="process-row">
+      <div class="process-step">
+        <button type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="fa fa-percent fa-3x"></i></button>
+        <p>Изучите <br>
+          процентные ставки</p>
+      </div>
+      <div class="process-step">
+        <button type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="fa fa-calculator fa-3x"></i></button>
+        <p>Рассчитайте <br>
+          размер платежа</p>
+      </div>
+      <div class="process-step">
+        <button type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="fa fa-wpforms fa-3x"></i></button>
+        <p>Заполните <br>
+          онлайн анкету</p>
+      </div>
+      <div class="process-step">
+        <button type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="fa fa-phone fa-3x"></i></button>
+        <p>Дождитесь <br>
+          звонка оператора</p>
+      </div>
+      <div class="process-step">
+        <button type="button" class="btn btn-success btn-circle" disabled="disabled"><i class="fa fa-thumbs-up fa-3x"></i></button>
+        <p>Получите кредит <br>
+          на выгодных условиях</p>
+      </div>
+    </div>
+  </div>
+  <h2 id="credit_interest_rates"><i class="fa fa-percent" aria-hidden="true"></i>  Процентные ставки</h2>
+  <div class="panel panel-primary">
+    <div class="panel-body">
+      <div class="table-responsive">
+        <table class = 'table table-responsive'>
+          <thead>
+            <tr>
+              <th></th>
+              <% GetDepositPeriods(@deposit["ProductID"]).each do |period| %>
+                <th><%= period %> мес.</th>
+              <% end %>
+            </tr>
+          </thead>
+          <tbody>
+            <% GetDepositCurrencies(@deposit["ProductID"]).each do |currency_id| %>
+              <tr>
+                <td><%= GetCurrencyName(currency_id) %></td>
+                <% GetDepositPeriods(@deposit["ProductID"]).each do |period| %>
+                  <% rate = @deposit_interests.select{|r| r["CurrencyID"]==currency_id and r["MonthPeriod"]==period }.first()%>
+                  <td>
+                    <% if rate!=nil %>
+                      <%= trim_zero(rate["InterestRate"]) %>%
+					<% else %>
+                      -
+					<% end %>
+                  </td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <h2><i class="fa fa-calculator" aria-hidden="true"></i> Рассчитайте размер платежа </h2>
+  <div class="panel panel-primary">
+    <div class="panel-body">
+      <%= form_tag({controller: "deposits", action: "calculate_rate_payment"}, remote: true, method: "post", class: "nifty_form") do %>
+        <div class = "container-fluid">
+          <div class = "row">
+            <div class ="col-lg-6">
+              <div class="form-group">
+                <%= label_tag(:summa, "Сумма вклада:") %>
+                <%= text_field_tag(:summa, "", class: "form-control", id: "txtdepositsum", type: "number", placeholder: "Введите сумму вклада")%>
+              </div>
+              <div class="form-group">
+                <label>Валюта:</label><br/>
+                <% GetDepositCurrencies(@deposit["ProductID"]).each do |currency_id| %>
+                  <%= label_tag("currency_id_#{currency_id}", GetCurrencyName(currency_id), class: "radio-inline") do %>
+                    <%= radio_button_tag(:currency_id, "#{currency_id}", currency_id == 417)%>
+                    <%= GetCurrencyName(currency_id) %>
+                  <% end %>
+                <% end %>
+              </div>
+              <div class="form-group">
+                <%= label_tag(:period, "Срок:") %>
+                <div id="slider"></div>
+              </div>
+              <br/>
+              <br/>
+            </div>
+            <div class ="col-lg-6">
+              <div class="panel panel-default" style="width:100%;">
+                <div class="panel-body">
+                  <em>Процентная ставка:</em>
+                  <p style="font-size:200%">
+                    <bold id="interest_rate"></bold>
+                    <span>%</span>
+                  </p>
+                  <em>Ежемесячный %:</em><br>
+                  <p style="font-size:200%">
+                    <bold id="payment_summ">____</bold>
+                    <span id="payment_summ_unit"></span>
+                  </p>
+                  <em>Общая сумма %:</em><br>
+                  <p style="font-size:200%">
+                    <bold id="payment_total_summ">____</bold>
+                    <span id="payment_total_summ_unit"></span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="panel panel-primary">
+    <div class="panel-body">
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  var currcodes = []
+        	currcodes["417"] = 'KGS'
+        	currcodes["840"] = 'USD'
+        	currcodes["643"] = 'RUB'
+        	currcodes["978"] = 'EUR'
+    var months = <%= GetDepositPeriods(@deposit["ProductID"]).to_s  %>
+        $(document).ready(function () {
+  
+        $("#slider").slider({
+        	min: 0,
+        	max: <%= GetDepositPeriods(@deposit["ProductID"]).count-1 %>,
+        	range: false,
+        	change: calcVals
+        })
+  
+        .slider("pips", {
+        	rest: "label",
+        	labels: months,
+        	suffix: " мес."
+        })
+        .slider('float');
+  
+        $("#txtdepositsum").on('change keyup paste input', calcVals);
+        $('input[name="currency_id"]').on('change',calcVals);
+        calcVals();
+        });
+        function calcVals()
+        {
+        	var inters = []
+        	<% @deposit_interests.each do |inter|  %>
+        		inters['<%="#{inter['CurrencyID']}_#{inter['MonthPeriod']}"%>']= <%=inter["InterestRate"]%>;
+        	<% end %>
+  
+  
+        	var currency_id = $('input[name="currency_id"]:checked').val();
+        	var periodindex = $( "#slider" ).slider( "value" );
+        	var period = months[periodindex];
+        	var rate = 0;
+        	if(inters[currency_id+'_'+period]) rate = inters[currency_id+'_'+period];
+  
+        	var sum = 0;
+        	if ($("#txtdepositsum").val()!='') sum = parseInt($("#txtdepositsum").val())
+  
+        	$("#interest_rate").html(rate);
+        	$("#payment_summ").html((sum*rate/1200.0).toFixed(2));
+        	$("#payment_summ_unit").html(currcodes[currency_id]);
+        	$("#payment_total_summ").html((sum*rate/100.0).toFixed(2));
+        	$("#payment_total_summ_unit").html(currcodes[currency_id]);
+        }
+</script>

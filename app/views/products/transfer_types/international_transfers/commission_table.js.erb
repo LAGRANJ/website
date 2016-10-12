@@ -1,0 +1,14 @@
+$("#transfer_commissions").html(`<tbody>
+	<% if(@transfer_commissions!=nil && @transfer_commissions.count>0) %>
+	<tr>
+      <th>Сумма</th>
+      <th>Комиссия</th>
+    </tr>
+    <%= render "transfer_commissions" %>    
+    <% else %>
+    <tr>
+    	<td colspan=2 align="center"><b><div class="alert alert-warning" role="alert">Тарифы отсутствуют</div></b></td>
+    </tr>
+    <% end %>
+    `
+	);

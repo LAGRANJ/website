@@ -1,0 +1,16 @@
+// Place all the styles related to the News controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.pagination>li>a, .pagination>li>span { border-radius: 50% !important;margin: 0 5px; color: #000;}
+.pagination>li.active>a, .pagination>li.active>span { border: 2px solid #ddd; background: #DCDCDC; color:#4d0000;}
+
+@media(min-width:992px) {
+.pagination {
+	margin-left:230px;
+}
+}
+@media(min-width:1200px) {
+.pagination {
+	margin-left:300px;
+}
+}

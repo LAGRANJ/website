@@ -1,0 +1,7 @@
+<% rate_payment = calculate_credit_rate_payment(params['product_id'].to_i, params['summa'].to_i, params['currency_id'].to_i, params['period'].to_i, params['mortrage_type'].to_i) %>
+$("#interest_rate").text("<%= rate_payment[:rate] %>");
+$("#payment_summ").text("<%= rate_payment[:payment] %>");
+$("#payment_unit").text("<%= rate_payment[:unit] %>");
+
+
+//alert(<%=params['currency_id'] %>);

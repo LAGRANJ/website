@@ -1,0 +1,26 @@
+<div class="container">
+	<div class="row">
+		<% @deposit_types.each do |deposit_type| %>
+		<div class="col-lg-6">
+            <div class="well">
+            	<% details = GetDepositTypeDetails(deposit_type["TypeID"]) %>
+				<% if details!=nil %>
+            		<%= image_tag(details.image_url,:style => "width: 100%;") %>
+            	<% end %>
+        		<h2 class="text-warning"><%= deposit_type["Name"] %></h2>
+        		<hr/> 
+        		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.</p>
+        		<hr>
+        		<h3>от 18% годовых</h3>
+        		<hr>
+        		<p>
+                <%= link_to products_deposit_types_deposits_path(params["client_type"].to_i, deposit_type["TypeID"]), :title => "Узнать больше", :class=> "btn btn-danger btn-large" do %>
+                        <i class="icon-ok"></i> Узнать больше
+                     <% end %>
+                     </p>
+
+        	</div>
+        </div>
+        <% end %>
+	</div>
+</div>

@@ -1,0 +1,133 @@
+<h2 id="credit_interest_rates"><i class="fa fa-percent" aria-hidden="true"></i>  Тарифы</h2>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <form class="form-inline">
+      <div class="form-group">
+        <label for="receive_country" style="padding-right:10px;">Страна получателя: </label>
+        <select id = "receive_country">
+          <% COUNTRIES.each do |country| %>
+            <option value=<%= country.code%>><%= country.shortname %></option>
+          <% end %>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="transfer_currency" style="padding:0px 10px;">Валюта перевода: </label>
+        <div class="btn-group" role="group" aria-label="..." id="transfer_currency">
+          <button type="button" class="btn btn-danger" data-currencyid=840>USD</button>
+          <button type="button" class="btn btn-default" data-currencyid=643>RUB</button>
+          <button type="button" class="btn btn-default" data-currencyid=978>EUR</button>
+          <button type="button" class="btn btn-default" data-currencyid=398>KZT</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="container">
+  <table class="table table-hover" id="transfer_commissions">
+    <tr>
+      <th>Сумма</th>
+      <th>Комиссия</th>
+    </tr>
+    <%= render partial: "transfer_commissions"%>
+  </table>
+</div>
+<h2><i class="fa fa-calculator" aria-hidden="true"></i>  Рассчитайте комиссию перевода</h2>
+<div class="panel panel-primary">
+  <div class="panel-body">
+    <%= form_tag(products_transfer_types_inter_calculate_commission_fee_path(params[:client_type].to_i,params[:typeid].to_i), remote: true, method: "post", class: "nifty_form") do %>
+      <div class = "container-fluid">
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="form-group">
+              <%= label_tag(:summa, "Сумма:") %>
+              <%= text_field_tag(:summa, "10000", class: "form-control") %>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="form-group">
+              <%= hidden_field_tag 'calculator_currencyid', 840%>
+              <label for="calculator_currency" style="padding:0px 10px;">Валюта перевода: </label><br>
+              <div class="btn-group" role="group" aria-label="..." id="calculator_currency">
+                <button type="button" class="btn btn-danger" data-currencyid=840>USD</button>
+                <button type="button" class="btn btn-default" data-currencyid=643>RUB</button>
+                <button type="button" class="btn btn-default" data-currencyid=978>EUR</button>
+                <button type="button" class="btn btn-default" data-currencyid=398>KZT</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="form-group">
+              <%= hidden_field_tag 'calculator_countryid', 2 %>
+              <label for="calculators_receive_country" style="padding-right:10px;">Страна получателя: </label><br>
+              <select id = "calculators_receive_country">
+                <% COUNTRIES.each do |country| %>
+                  <option value=<%= country.code%>><%= country.shortname %></option>
+                <% end %>
+              </select>
+            </div>
+          </div>
+          <div class='col-lg-2'>
+            <div class="form-group">
+              <br>
+              <input class="btn btn-danger" name="commit" type="submit" value="Расcчитать" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='row'>
+        <div class="col-md-12">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <table class="table table-hover" id="transfer_commission_fees">
+                <tr>
+                  <th>Система переводов</th>
+                  <th>Комиссия</th>
+                </tr>
+                <tbody>
+                <% @transfer_types.each do |trtype| %>
+                  <tr>
+                    <td><%=trtype["Name"] %></td>
+                    <td>--</td>
+                  </tr>
+                <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<script type="text/javascript">
+  $(document).ready(function() {
+  
+  updatecommissiontable = function() {
+                                  $.ajax({
+                                      url: "<%= products_transfer_types_inter_commission_table_path(params["client_type"].to_i, params["typeid"].to_i)%>",
+                                      method: 'POST',
+                                      dataType: "script",
+                                      data: {
+                                          countryid: $('#receive_country').val(),
+                                          currencyid: $('#transfer_currency > .btn-danger').data("currencyid")
+                                      },
+                                      success: function(data, textStatus) {},
+                                      error: function() {}
+                                  });
+                              }
+                              $('#receive_country').on("select2:select", updatecommissiontable);
+                              $("#transfer_currency > button").on("click", function(){
+                                $("#transfer_currency > .btn-danger").removeClass("btn-danger").addClass("btn-default")
+                                $(this).addClass("btn-danger")
+                                updatecommissiontable.call()
+                                });
+                              $("#calculator_currency > button").on("click", function(){
+                                $("#calculator_currency > .btn-danger").removeClass("btn-danger").addClass("btn-default")
+                                $(this).addClass("btn-danger")
+                                $("#calculator_currencyid").val($(this).data("currencyid"))
+                                });
+                              $('#calculators_receive_country').on("select2:select", function(){
+                                $("#calculator_countryid").val($('#calculators_receive_country').val())
+                              });
+                          })
+</script>

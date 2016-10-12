@@ -1,0 +1,12 @@
+<% commission = @branch_transfer_commissions.select{|x| x["BranchID"] == params["region_id"].to_i and x["CurrencyID"]==params["currency_id"].to_i and 
+        	x["SenderAccountTypeID"]==params["senderacctypeid"].to_i and x["ReceiverAccountTypeID"]==params["receiveracctypeid"].to_i and 
+        	x["Minsum"]<=params["summa"].to_i and params["summa"].to_i<=x["Maxsum"]}.first %>
+<% if(commission!=nil) %>	
+	<% if commission["RateTypeID"]==1 %>
+		$('#commission_fee').val(<%=commission["Rate"]%>)		
+		$('#commission_rate').val(<%=commission["Rate"]%>)
+	<% else %>
+		$('#commission_fee').val(<%=commission["Rate"]*params["summa"].to_i/100 %>)
+		$('#commission_rate').val(<%=commission["Rate"]%>+'%')
+	<% end %>
+<% end %>

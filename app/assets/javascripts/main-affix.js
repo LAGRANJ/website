@@ -21,17 +21,4 @@ $(document).ready(function () {
       if (Modernizr.mq('(min-width: 768px)'))            
         $('#minibrand').hide();
     });
-$('div#mainmenu').affix({
-  offset: {
-    top: function () {      
-      if (Modernizr.mq('(min-width: 1200px)'))
-       return 200;
-      else if (Modernizr.mq('(min-width: 992px)'))      
-        return 160;
-      else if (Modernizr.mq('(min-width: 768px)'))      
-        return 120;
-      else 
-        return 0;
-  }
-}}); 
 });

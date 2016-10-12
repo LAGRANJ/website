@@ -11,7 +11,7 @@
 }
 
 .date {
-    background: #5c94de;
+    background: #DC143C;
     height: 37px;
     width: 37px;
     color: #ffffff;
@@ -24,7 +24,11 @@
     float: left;
 }
 .main_content {
-    padding: 20px 25px 10px;
+    padding: 0px 25px 10px;
+    overflow: hidden;    
+}
+.main_content2 {
+    padding: 0px 0px 10px 15px;
     overflow: hidden;    
 }
 .news_list {
@@ -76,38 +80,114 @@ img#kgs_exch{
 }
 .rates_table{
     width:100%;
-    text-align:center;
-    font-size:14px;
+    font-size:14px;    
 }
 .rates_table tr td{
     border-bottom:1px solid #ddd;
 }
-.rates_table tr td.cur_sym{
-    
-    color: #d40000;
+.rates_table tr td.cur_sym{    
+    color: #d40000;    
+}
+.rates_table tr td.rate{   
+    text-align: right;    
+    padding: 5px 0px;
+}
+.rates_table tr td b{
+    padding-right: 30px;
+}
+.rates_table tr td span{
+    padding-right: 30px;
 }
 body{margin-top:50px;}
 .glyphicon { margin-right:10px; }
 .panel-default > 
 .panel-heading {
-    background: linear-gradient(to top, #d40000, #dd0000) !important;
-    color:#fff;
+    background: #fff !important;
+    color:#d40000;
 }
-.panel-body { padding:0px; }
-.panel-body table tr td { padding-left: 15px }
+
 .panel-body .table {margin-bottom: 0px; }
 
 .ftrect {
     border-radius: 5px;
-    border: 2px solid rgba(221, 221, 221, 0.5);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Параметры тени */
     padding: 0px; 
     height: 40px; 
     background: url(<%=image_url('fasttransfers.png')%>);
     background-repeat: no-repeat;
     float:left;
-    margin-left:5px; 
-    margin-top:3px;   
+    margin-right:10px; 
+    margin-top:3px; 
+    width: 125px;  
 }
-.ftrect:hover {
-    border: 2px solid rgba(221, 221, 221, 1);
+.ftrect.a {
+     width: 120px;
+     height:40px;
+     display: block;
+}
+.ftrect:hover {    
+    box-shadow: 0 0 15px rgba(0,0,0,0.5); /* Параметры тени */
+}
+.ftrect:first-child{
+    margin-left:50px;
+}
+
+.read_more {
+    color: #5592fc;
+    background-color: rgba(255,255,255,0.9);
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    display: none;
+    position: absolute;
+    bottom: 40px;
+    left: 30px;
+    padding: 7px 15px 8px 24px;
+}
+
+.head_contacts {
+    right: 25px;
+    padding: 20px;
+    width: 185px;
+    top: 45px;
+    background: rgba(200,200,200,0.45);
+    position: absolute;
+    right: 45px;
+    color: #ffffff;
+    padding: 25px 20px 20px 30px;
+    width: 223px;
+    top: 73px;
+    border-radius: 15px;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+}
+
+aside {
+    margin: 0px;
+    padding: 0px;
+    display: block;
+}
+
+.main_office {
+    padding: 10px 0 0;
+}
+
+.main_office span {
+    font: normal 20px/24px Tahoma, sans-serif;
+}
+
+.phone {
+    font: bold 16px Tahoma, sans-serif;
+    display: block;
+    padding: 17px 0 0;
+}
+
+.links_group {
+    padding: 43px 0 0;    
+}
+
+.first_bg, .second_bg
+{
+    box-shadow: 0 0 15px rgba(0,0,0,0.5); /* Параметры тени */
+    margin: 10px;
 }

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  product_id: 
+  full_description: 
+  image_ulr: MyString
+
+two:
+  product_id: 
+  full_description: 
+  image_ulr: MyString

@@ -1,0 +1,4 @@
+$("#commissions_table").html(`
+    <%= render partial: "transfer_commissions",locals:{currency_id:params["currency_id"].to_i, region_id: params["region_id"].to_i} %>
+    `
+);

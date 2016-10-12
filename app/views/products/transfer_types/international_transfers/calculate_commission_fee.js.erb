@@ -1,0 +1,26 @@
+
+<% commissionfees = GetCommissionFees(params["summa"].to_i,params["calculator_currencyid"].to_i, params["calculator_countryid"].to_i)%>
+
+$("#transfer_commission_fees").html(`<tbody>
+	<% if(commissionfees!=nil && commissionfees.count>0) %>	
+    <% commissionfees.each do |fee| %>
+	    <tr>
+	    	<td><%=@transfer_types.select{|x| x["TypeID"] == fee.typeid}.first["Name"]%>
+	    	
+		    <td>
+		    <% if(fee.in_percent) %>
+		    	<%=fee.commission*params["summa"].to_i/100%>
+		    <% else %>
+		    	<%= fee.commission %>
+		    <%end%>
+		    </td>
+		    <td></td>
+		</tr>
+    <% end %>    
+    <% else %>
+    <tr>
+    	<td colspan=2 align="center"><b><div class="alert alert-warning" role="alert">Тарифы отсутствуют</div></b></td>
+    </tr>
+    <% end %>
+    `
+	);

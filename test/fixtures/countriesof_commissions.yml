@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  countryid: 
+  transfer_commission_id: 
+
+two:
+  countryid: 
+  transfer_commission_id: 

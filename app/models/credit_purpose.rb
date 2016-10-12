@@ -1,0 +1,2 @@
+class CreditPurpose < ApplicationRecord
+end

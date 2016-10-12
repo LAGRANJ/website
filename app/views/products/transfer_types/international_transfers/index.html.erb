@@ -1,0 +1,52 @@
+
+<div class = "container">
+  <% @transfer_types.select{|x| x["IsForIndividuals"] && params["client_type"].to_i == 1 || x["IsForCompanies"] && params["client_type"].to_i == 2}.each do |trtype| %>
+    <% details = GetTransferTypeDetails(trtype["TypeID"])%>
+    <div class = "row">
+      <div class="col-md-9 col-lg-9 blogShort">
+        <% if details!=nil %>
+          <%= image_tag(details.image_url) %>
+        <% end %>
+        <table class="table table-condensed teble_discription">
+          <tbody>
+            <tr>
+              <td>
+                <p class="text-info">Комиссия</p>
+              </td>
+              <td>по тарифной сетке</td>
+            </tr>
+            <tr>
+              <td>
+                <p class="text-info">Территория</p>
+              </td>
+              <td>более 350 000 пунктов в 200 странах мира</td>
+            </tr>
+            <tr>
+              <td>
+                <p class="text-info">Скорость перевода</p>
+              </td>
+              <td>10 минут</td>
+            </tr>
+            <tr>
+              <td>
+                <p class="text-info">Валюта перевода</p>
+              </td>
+              <td>доллары США</td>
+            </tr>
+            <tr>
+              <td>
+                <p class="text-info">Место получения</p>
+              </td>
+              <td>в любом пункте страны назначения</td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="float:right; margin-bottom:15px;">
+          <%= link_to products_transfer_types_international_transfer_path(params["client_type"].to_i, trtype["TypeID"]) do%>
+            Подробнее <i class="fa fa-chevron-right" aria-hidden="true"></i>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

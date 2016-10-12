@@ -1,0 +1,10 @@
+<% @transfer_commissions.each do |commission| %>
+  <tr>
+    <td><%= commission.minsum %> - <%= commission.maxsum %> </td>
+    <td><%= commission.commission %>
+      <% if(commission.in_percent) %>
+        %
+        <% end %> 
+    </td>
+  </tr>
+<% end %>

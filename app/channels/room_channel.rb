@@ -9,6 +9,7 @@ class RoomChannel < ApplicationCable::Channel
   end
 
   def speak(data)
-  	ActionCable.server.broadcast "room_channel_#{uuid}", message: data['message']
+  	GetCurrencyRatesJob.set(wait: 10.seconds).perform_later(uuid, data['message'])
+  	#ActionCable.server.broadcast "room_channel_#{uuid}", message: data['message']
   end
 end

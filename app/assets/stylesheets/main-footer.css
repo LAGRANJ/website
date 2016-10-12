@@ -16,7 +16,9 @@
 	border-top-color: #003;*/
 }
 
-
+.footer1 a {
+    color:#DC143C;
+}
 
 .title-widget {
 	color: #898989;
