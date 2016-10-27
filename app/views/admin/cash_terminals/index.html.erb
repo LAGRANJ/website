@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+<h1>Банкоматы и постерминалы</h1>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cash_terminals.each do |cash_terminal| %>
+      <tr>
+        <td><%= cash_terminal.name %></td>
+        <td><%= cash_terminal.terminal_type %></td>
+        <td><%= cash_terminal.address %></td>
+        <td><%= cash_terminal.currencies %></td>
+        <td><%= cash_terminal.workdays %></td>
+        <td><%= cash_terminal.lon %></td>
+        <td><%= cash_terminal.lat %></td>
+        <td><%= link_to 'Show', admin_cash_terminal_path(cash_terminal) %></td>
+        <td><%= link_to 'Edit', edit_admin_cash_terminal_path(cash_terminal) %></td>
+        <td><%= link_to 'Destroy', admin_cash_terminal_path(cash_terminal), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<%= link_to 'New Cash Terminal', new_admin_cash_terminal_path %>

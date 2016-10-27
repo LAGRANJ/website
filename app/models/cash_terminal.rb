@@ -1,0 +1,2 @@
+class CashTerminal < ApplicationRecord
+end

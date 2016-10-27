@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Offices</h1>
+<h1>Отделения банка</h1>
 
 <table class="table table-hover">
   <thead>
@@ -13,7 +13,7 @@
   </thead>
 
   <tbody>
-    <% OFFICES.each do |absoffice|%>      
+    <% OFFICES.sort_by{|x| x["BranchID"].to_i-(x["IsMainOffice"]?1:0)}.each do |absoffice|%>      
       <% office = @offices.select{|x| x.officeid == absoffice["ID"]}.first %>
       <% unless office %>
         <% office = Office.create(officeid: absoffice["ID"])%>
@@ -22,8 +22,8 @@
       <tr>
         <td><%= absoffice["Name"] %></td>
         <td><%= office.lon %>-<%= office.lat %></td>
-        <td><%= link_to 'Show', admin_office_path(office) %></td>
-        <td><%= link_to 'Edit', edit_admin_office_path(office) %></td>
+        <td><%= link_to 'Показать', admin_office_path(office) %></td>
+        <td><%= link_to 'Изменить', edit_admin_office_path(office) %></td>
       </tr>
     <% end %>
   </tbody>

@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<h3><%=@cash_terminal.name %></h3>
+<strong>Адресс: </strong><%= @cash_terminal.address %><br/>
+<strong>Тип: </strong><%= @cash_terminal.address %><br/>
+<strong>Обслуживаемые валюты: </strong><%= @cash_terminal.currencies %><br/>
+<strong>Режим работы: </strong><%= raw(@cash_terminal.workdays) %><br/>
+<strong>долгота: </strong><%= @cash_terminal.lon %><br/>
+<strong>широта: </strong><%= @cash_terminal.lat %><br/>
+
+<%= link_to 'Изменить', edit_admin_cash_terminal_path(@cash_terminal) %> |
+<%= link_to 'Назад к списку', admin_cash_terminals_path %>

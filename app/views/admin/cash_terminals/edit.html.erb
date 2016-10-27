@@ -1,0 +1,6 @@
+<h1>Изменение иформации о банкомате/постерминале</h1>
+
+<%= render 'form', cash_terminal: @cash_terminal %>
+
+<%= link_to 'Показать', admin_cash_terminal_path(@cash_terminal) %> |
+<%= link_to 'Назад к списку', admin_cash_terminals_path %>

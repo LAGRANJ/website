@@ -1,0 +1,43 @@
+<%= form_for([:admin, cash_terminal]) do |f| %>
+  <% if cash_terminal.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(cash_terminal.errors.count, "error") %> prohibited this cash_terminal from being saved:</h2>
+      <ul>
+        <% cash_terminal.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= f.label :name, "Название(ориентир)" %>
+    <%= f.text_field :name, class:"form-control", rows:10 %>
+  </div>
+  <div class="form-group">
+    <%= f.label :address, "Адрес" %>
+    <%= f.text_field :address, class:"form-control", rows:10 %>
+  </div>  
+  <div class="form-group">
+    <%= f.label :type_id, "Тип" %>
+    <%= f.select :type_id, [["Банкомат",1],["Постерминал",2]], {}, {class:"form-control" }%>
+  </div>
+  <div class="form-group">
+    <%= f.label :currencies, "Обслуживаемые валюты" %>
+    <%= f.text_area :currencies, class:"form-control", rows:5 %>
+  </div>
+  <div class="form-group">
+    <%= f.label :workdays, "Режим работы" %>
+    <%= f.text_area :workdays, class:"form-control", rows:5 %>
+  </div>
+  <div class="form-group">
+    <%= f.label :lon, "Долгота" %>
+    <%= f.text_field :lon, class:"form-control"%>
+  </div>
+  <div class="form-group">
+    <%= f.label :lat, "Широта" %>
+    <%= f.text_field :lat, class:"form-control"%>
+  </div>
+  <div class="actions">
+    <%= f.submit "Сохранить"%>
+  </div>
+<% end %>

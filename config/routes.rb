@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     post '/garants/add_detail', to:"garants#add_detail", as: "garant_details"
     post '/garants/destroy_image/:id/:image_id', to:"garants#destroy_image", as: "destroy_garant_image"
     post '/garants/destroy_detail/:id/:detail_id', to:"garants#destroy_detail", as: "destroy_garant_detail"
+    resources :cash_terminals
     resources :garants
     resources :deposit_types
     resources :credit_types

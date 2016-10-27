@@ -24,9 +24,9 @@
         <td><%= garant.cost %></td>
         <td><%= garant.region %></td>
         <td><%= garant.phone %></td>
-        <td><%= link_to 'Show', admin_garant_path(garant) %></td>
-        <td><%= link_to 'Edit', edit_admin_garant_path(garant) %></td>
-        <td><%= link_to 'Destroy', admin_garant_path(garant), method: :delete, data: { confirm: 'Вы действительно хотите удалить?' } %></td>
+        <td><%= link_to 'Показать', admin_garant_path(garant) %></td>
+        <td><%= link_to 'Измнеить', edit_admin_garant_path(garant) %></td>
+        <td><%= link_to 'Удалить', admin_garant_path(garant), method: :delete, data: { confirm: 'Вы действительно хотите удалить?' } %></td>
       </tr>
     <% end %>
   </tbody>

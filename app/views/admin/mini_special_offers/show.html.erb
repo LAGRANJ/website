@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 <%= render 'shared/mini_special_offer', mini_special_offer: @mini_special_offer %>
 <hr>
-<strong>Цвет текста заголовка на банере: </strong><%= @mini_special_offer.caption_text_color%><br>
-<strong>Цвет текста описания на банере</strong><%= @mini_special_offer.description_text_color%><br>
+<strong>Цвет текста заголовка на баннере: </strong><%= @mini_special_offer.caption_text_color%><br>
+<strong>Цвет текста описания на баннере</strong><%= @mini_special_offer.description_text_color%><br>
 <strong><% if @mini_special_offer.enabled %>
 Активный
 <% else  %>
