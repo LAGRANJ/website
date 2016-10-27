@@ -28,6 +28,9 @@
             </div>
           </li>
           <li>
+            <%= link_to("Интернет банкинг",internetbank_path())%>
+          </li>
+          <li>
             <a href="#"><strong>КОРПОРАТИВНЫМ КЛИЕНТАМ</strong></a>
           </li>
           <li>
@@ -40,10 +43,10 @@
             <%= link_to("Денежные переводы", products_transfer_types_path(2))%>
           </li>
           <li>
-            <a href="#">Зарплатные проекты</a>
+            <%= link_to("Сейфовые ячейки", products_depository_path(2))%>
           </li>
           <li>
-            <a href="#">Интернет банкинг</a>
+            <a href="#">Зарплатные проекты</a>
           </li>
           <li>
             <a href="#"><strong>ЧАСТНЫМ КЛИЕНТАМ</strong></a>
@@ -61,7 +64,7 @@
             <a href="#">Платежные карты</a>
           </li>
           <li>
-            <a href="#">Интернет банкинг</a>
+            <%= link_to("Сейфовые ячейки", products_depository_path(1))%>
           </li>
           <li>
             <a href="#"><strong>О НАШЕМ БАНКЕ</strong></a>
@@ -76,10 +79,13 @@
             <%= link_to("Новости", news_path())%>
           </li>
           <li>
-            <a href="#">Отчетность</a>
+            <%= link_to("Отчетность", reports_path())%>
           </li>
           <li>
-            <a href="#">Корреспондентская сеть</a>
+            <%= link_to("Реквизиты", bankdetails_path())%>
+          </li>
+          <li>
+            <%= link_to("Корреспондентская сеть", corraccounts_path())%>
           </li>
           <li>
             <a href="#">Вакансии</a>
@@ -107,16 +113,20 @@
             </span>
             <ul class="nav navbar-nav" id="bs-example-navbar-collapse-1">
               <li class="dropdown menu-large">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Корпоративным клиентам</a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" 
+                  <% if params["client_type"].to_i==2%> 
+                  style="color:#d40000;text-decoration:underline"
+                  <% end %>
+                  >Корпоративным клиентам</a>
                 <ul class="dropdown-menu megamenu row">
                   <li class="col-sm-4">
                     <ul>
                       <li><a href="#" class="nav-child"><strong></strong></a></li>
                       <li>
                         <%= link_to products_deposit_types_path(2), :title => "Депозиты корпоративным клиентам", :class=> "nav-child" do %>
-                        <strong>ДЕПОЗИТЫ</strong>
-                     <% end %>
-                     </li>   
+                          <strong>ДЕПОЗИТЫ</strong>
+                        <% end %>
+                      </li>
                       <% DEPOSITS_PRODUCTS.select{|x| x["OrganizationTypeID"]==2 and x["ProductID"].in?([101,107,109,119,126])}.each do |purpose| %>
                         <li><a href="#"><%= purpose["Name"]%></a></li>
                       <% end %>
@@ -125,112 +135,141 @@
                   </li>
                   <li class="col-sm-4">
                     <ul>
-                    <li>
+                      <li>
                         <%= link_to products_credit_purposes_path(2), :title => "Кредиты корпоративным клиентам", :class=> "nav-child" do %>
-                        <strong>КРЕДИТЫ</strong>
-                     <% end %>
-                     </li>                      
+                          <strong>КРЕДИТЫ</strong>
+                        <% end %>
+                      </li>
                       <% CREDITS_PURPOSES.select{|x| x["IsForCompanies"]}.each do |credit_purpose| %>
                         <li>
-                        <%= link_to credit_purpose["Name"], products_credit_types_credits_path(2,credit_purpose["ID"]) %>
+                          <%= link_to credit_purpose["Name"], products_credit_types_credits_path(2,credit_purpose["ID"]) %>
                         </li>
                       <% end %>
-                      <li><a href="#"><strong>ИНТЕРНЕТ БАНКИНГ</strong></a></li>
-                      <li><a href="#"><strong>ЗАРПЛАТНЫЕ ПРОЕКТЫ</strong></a></li>
-                    </ul>
-                  </li>
-                  <li class="col-sm-4">
-                    <ul>
-                      <li><a href="#" class="nav-child"><strong>ДЕНЕЖНЫЕ ПЕРЕВОДЫ</strong></a></li>
-                      <li><a href="#">Переводы внутри Кыргызстана</a></li>
                       <li>
-                        <ul>
-                          <li><a href="#">Переводы Клиринг</a></li>
-                          <li><a href="#">Переводы Гросс</a></li>
-                          <li><a href="#">Межфилиальные переводы Салам</a></li>
-                        </ul>
+                        <%= link_to(internetbank_path()) do %>
+                          <strong>ИНТЕРНЕТ БАНКИНГ</strong>
+                        <% end %>
                       </li>
-                      <li><a href="#">Международные переводы</a></li>
                       <li>
-                        <ul>
-                          <li><a href="#">Переводы SWIFT</a></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-              <li class="dropdown menu-large">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Частным клиентам</a>
-                <ul class="dropdown-menu megamenu row">
-                  <li class="col-sm-3">
-                    <ul>
-                      <li>
-                        <%= link_to products_deposit_types_path(1), :title => "Депозиты частным клиентам", :class=> "nav-child" do %>
+                        <%= link_to cards_path() do %>
+                          <strong>ЗАРПЛАТНЫЕ ПРОЕКТЫ</strong>
+                      <% end %>
+                    </li>
+                  </ul>
+                </li>
+                <li class="col-sm-4">
+                  <ul>
+                    <li><%= link_to(products_depository_path(1)) do %>
+                        <strong>СЕЙФОВЫЕ ЯЧЕЙКИ</strong>
+                      <% end %>
+                    </li>
+                    <li><a href="#" class="nav-child"><strong>ДЕНЕЖНЫЕ ПЕРЕВОДЫ</strong></a></li>
+                    <li><%= link_to "Переводы Клиринг/Гросс", products_transfer_types_local_transfers_cliring_gross_path(2) %></li>
+                    <li><%= link_to "Международные переводы СВИФТ", products_transfer_types_local_transfers_swift_path(2) %></li>
+                    <li><%= link_to "Межфилиальные переводы Салам", products_transfer_types_local_transfers_branch_transfers_path(2) %></li>
+                    <li><%= link_to(garants_path(1)) do %>
+                        <strong>РЕАЛИЗАЦИЯ ЗАЛОГОВОГО ИМУЩЕСТВА</strong>
+                      <% end %>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown menu-large">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                <% if params["client_type"].to_i==1%> 
+                  style="color:#d40000;text-decoration:underline"
+                  <% end %>>Частным клиентам</a>
+              <ul class="dropdown-menu megamenu row">
+                <li class="col-sm-3">
+                  <ul>
+                    <li>
+                      <%= link_to products_deposit_types_path(1), :title => "Депозиты частным клиентам", :class=> "nav-child" do %>
                         <strong>ДЕПОЗИТЫ</strong>
-                     <% end %>
-                     </li>   
-                      <% DEPOSITS_PRODUCTS.select{|x| x["OrganizationTypeID"]==1}.each do |purpose| %>
-                        <li><a href="#"><%= purpose["Name"]%></a></li>
                       <% end %>
-                    </ul>
-                  </li>
-                  <li class="col-sm-3">
-                    <ul>
-                      <li>
-                        <%= link_to products_credit_purposes_path(1), :title => "Кредиты частным клиентам", :class=> "nav-child" do %>
+                    </li>
+                    <% DEPOSITS_PRODUCTS.select{|x| x["OrganizationTypeID"]==1}.each do |purpose| %>
+                      <li><a href="#"><%= purpose["Name"]%></a></li>
+                    <% end %>
+                  </ul>
+                </li>
+                <li class="col-sm-3">
+                  <ul>
+                    <li>
+                      <%= link_to products_credit_purposes_path(1), :title => "Кредиты частным клиентам", :class=> "nav-child" do %>
                         <strong>КРЕДИТЫ</strong>
-                     <% end %>
-                     </li>
-                      <% CREDITS_PURPOSES.select{|x| x["IsForIndividuals"]}.each do |credit_purpose| %>
-                        <li>
-                        <%= link_to credit_purpose["Name"], products_credit_types_credits_path(1,credit_purpose["ID"]) %>
-                        </li>
                       <% end %>
-                      <li><a href="#"><strong>ИНТЕРНЕТ БАНКИНГ</strong></a></li>
-                      <li><a href="#"><strong>ПЛАТЕЖНЫЕ КАРТЫ</strong></a></li>
-                    </ul>
+                    </li>
+                    <% CREDITS_PURPOSES.select{|x| x["IsForIndividuals"]}.each do |credit_purpose| %>
+                      <li>
+                        <%= link_to credit_purpose["Name"], products_credit_types_credits_path(1,credit_purpose["ID"]) %>
+                      </li>
+                    <% end %>
+                    <li>
+                      <%= link_to internetbank_path() do %>
+                        <strong>ИНТЕРНЕТ БАНКИНГ</strong>
+                      <% end %>
+                    </li>
+                    <li><%= link_to cards_path() do %>
+                        <strong>ПЛАТЕЖНЫЕ КАРТЫ</strong>
+                    <% end %>
                   </li>
-                  <li class="col-sm-3">
-                    <ul>
-                      <li><a href="#" class="nav-child"><strong>ДЕНЕЖНЫЕ ПЕРЕВОДЫ ВНУТРИ КР</strong></a></li>
-                      <li><a href="#">Переводы Клиринг</a></li>
-                      <li><a href="#">Переводы Гросс</a></li>
-                      <li><a href="#">Межфилиальные переводы Салам</a></li>                      
-                    </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="col-sm-3">
+              <ul>
+                <li><%= link_to(products_depository_path(1)) do %>
+                    <strong>СЕЙФОВЫЕ ЯЧЕЙКИ</strong>
+                  <% end %>
+                </li>
+                <li><a href="#" class="nav-child"><strong>ДЕНЕЖНЫЕ ПЕРЕВОДЫ ВНУТРИ КР</strong></a></li>
+                <li><%= link_to "Переводы Клиринг/Гросс", products_transfer_types_local_transfers_cliring_gross_path(1) %></li>
+                <li><%= link_to "Межфилиальные переводы Салам", products_transfer_types_local_transfers_branch_transfers_path(1) %></li>
+                <li><%= link_to(garants_path(1)) do %>
+                        <strong>РЕАЛИЗАЦИЯ ЗАЛОГОВОГО ИМУЩЕСТВА</strong>
+                      <% end %>
+                    </li>
+              </ul>
+            </li>
+            <li class="col-sm-3">
+              <ul>
+                <li>
+                  <%= link_to products_transfer_types_international_transfers_path(1), :class => "nav-child" do %>
+                    <strong>МЕЖДУНАРОДНЫЕ ПЕРЕВОДЫ</strong>
+                  <% end %>
+                  <li>
+                    <%= link_to "Международные переводы СВИФТ", products_transfer_types_local_transfers_swift_path(1) %>
                   </li>
-                  <li class="col-sm-3">
-                    <ul>
-                      <li><a href="#" class="nav-child"><strong>МЕЖДУНАРОДНЫЕ ПЕРЕВОДЫ</strong></a></li>                      
-                      <li><a href="#">СВИФТ</a></li>
-                      <li><a href="#">Золотая корона</a></li>
-                      <li><a href="#">Монейграм</a></li>
-                      <li><a href="#">Фастер</a></li>
-                      <li><a href="#">Контакт</a></li>
-                      <li><a href="#">Юнистрим</a></li>
-                      <li><a href="#">Экспрессмоней</a></li>
-                      <li><a href="#">Близко</a></li>
-                      <li><a href="#">Салам</a></li>
-                    </ul>
-                  </li>
+                  <li><a href="#">Золотая корона</a></li>
+                  <li><a href="#">Монейграм</a></li>
+                  <li><a href="#">Фастер</a></li>
+                  <li><a href="#">Контакт</a></li>
+                  <li><a href="#">Юнистрим</a></li>
+                  <li><a href="#">Экспрессмоней</a></li>
+                  <li><a href="#">Близко</a></li>
+                  <li><a href="#">Салам</a></li>
                 </ul>
               </li>
-              <li class="dropdown menu-large">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">О нашем банке</a>
-                <ul class="dropdown-menu megamenu row">
-                  <li class="col-sm-3">
-                    <ul>
-                      <li><a href="#" class="nav-child"><strong>О БАНКЕ</strong></a></li>                      
-                      <li><a href="#">Банк сегодня</a></li>
-                      <li><a href="#">Руководство</a></li>
-                      <li><%= link_to("Филиалы и сберкассы", offices_path())%></li>                      
-                      <li><a href="#">Банкоматы и постерминалы</a></li>
-                      <li><a href="#">Корреспондентская сеть</a></li>
+            </ul>
+          </li>
+          <li class="dropdown menu-large">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">О нашем банке</a>
+            <ul class="dropdown-menu megamenu row">
+              <li class="col-sm-3">
+                <ul>
+                  <li><a href="#" class="nav-child"><strong>О БАНКЕ</strong></a></li>
+                  <li><a href="#">Банк сегодня</a></li>
+                  <li><a href="#">Руководство</a></li>
+                  <li><%= link_to("Филиалы и сберкассы", offices_path())%></li>
+                  <li><%= link_to("Банкоматы и постерминалы",posterminals_path())%>
+                    <li><%= link_to("Корреспондентская сеть",corraccounts_path())%>
                     </ul>
                   </li>
                   <li class="col-sm-3">
                     <ul>
-                      <li><a href="#" class="nav-child"><strong>ПРЕСС ЦЕНТР</strong></a></li>                      
+                      <li><a href="#" class="nav-child"><strong>ПРЕСС ЦЕНТР</strong></a></li>
+                      <li><%= link_to("Отчетность", reports_path(), class:"nav-child")%>  </li>
                       <li><a href="#">Новости</a></li>
                       <li><a href="#">Акции</a></li>
                       <li><a href="#">Фото галерея</a></li>
@@ -238,127 +277,127 @@
                   </li>
                   <li class="col-sm-6">
                     <ul>
-                      <li><a href="#" class="nav-child"><strong>Общая информация</strong></a></li>
+                      <li><a href="#" class="nav-child"><strong>ОБЩАЯ ИНФОРМАЦИЯ</strong></a></li>
                       <li><a href="#">Вакансии</a></li>
                       <li><a href="#">Тендеры</a></li>
-                      <li><a href="#">Реализация залогового имущества</a></li>                      
-                      <li><a href="#">Реквизиты</a></li>                      
+                      <li><%= link_to("Реализация залогового имущества",garants_path())%>
+                        <li><%= link_to("Реквизиты",bankdetails_path())%>
+                        </ul>
+                      </li>
                     </ul>
                   </li>
                 </ul>
-              </li>
-            </ul>
-            <span>
-              <div id = "lang" class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" style="border:0px" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <span style="color:#d40000;">Ru</span>
-                  <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu pull-right" style="width:50px;">
-                  <li><a href="#"><span class="flag flag-kg" style='width: 32px;display: block;float: left;margin-top:-5px;margin-left:-15px;'></span><span style="margin-left:4px;">Кыргызча</span></a></li>
-                  <li><a href="#"><span class="flag flag-ru" style='width: 32px;display: block;float: left;margin-top:-5px;margin-left:-15px;'></span><span style="margin-left:4px;">Русский</span></a></li>
-                  <li><a href="#"><span class="flag flag-gb" style='width: 32px;display: block;float: left;margin-top:-5px;margin-left:-15px;'></span><span style="margin-left:4px;">English</span></a></li>
-                </ul>
-              </div>
-              <a id = 'search' href="#"><%= image_tag("search.svg") %></a>
-            </span>
-          </div>
-        </div>
-        <div class="container">
-          <div class="row">
-            <%= render_breadcrumbs %>
-            <%= yield %>
-          </div>
-        </div>
-        <div style="clear:both;width:100%"></div>
-        <br>
-        <footer class="footer1">
-          <div class="container">
-            <div class="row"><!-- row -->
-              <div class="col-lg-3 col-md-3"><!-- widgets column left -->
-                <ul class="list-unstyled clear-margins"><!-- widgets -->
-                  <li class="widget-container widget_nav_menu"><!-- widgets list -->
-                    <h1 class="title-widget">Общая информация</h1>
-                    <ul>
-                      <li><a  href="#"><i class="fa fa-angle-double-right"></i> О банке</a></li>
-                      <li><a  href="#"><i class="fa fa-angle-double-right"></i> Филиальная сеть</a></li>
-                      <li><a  href="#"><i class="fa fa-angle-double-right"></i> Новости</a></li>
-                      <li><a  href="#"><i class="fa fa-angle-double-right"></i> Реквизиты</a></li>
+                <span>
+                  <div id = "lang" class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" style="border:0px" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span style="color:#d40000;">Ru</span>
+                      <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right" style="width:50px;">
+                      <li><a href="#"><span class="flag flag-kg" style='width: 32px;display: block;float: left;margin-top:-5px;margin-left:-15px;'></span><span style="margin-left:4px;">Кыргызча</span></a></li>
+                      <li><a href="#"><span class="flag flag-ru" style='width: 32px;display: block;float: left;margin-top:-5px;margin-left:-15px;'></span><span style="margin-left:4px;">Русский</span></a></li>
+                      <li><a href="#"><span class="flag flag-gb" style='width: 32px;display: block;float: left;margin-top:-5px;margin-left:-15px;'></span><span style="margin-left:4px;">English</span></a></li>
                     </ul>
-                  </li>
-                </ul>
+                  </div>
+                  <a id = 'search' href="#"><%= image_tag("search.svg") %></a>
+                </span>
               </div>
-              <div class="col-lg-5 col-md-5"><!-- widgets column left -->
-                <ul class="list-unstyled clear-margins"><!-- widgets -->
-                  <li class="widget-container widget_nav_menu"><!-- widgets list -->
-                    <h1 class="title-widget">Режим работы</h1>
-                    <div class="footerp">
-                      <p>Понедельник - пятница:
+            </div>
+            <div class="container">
+              <div class="row">
+                <%= render_breadcrumbs %>
+                <%= yield %>
+              </div>
+            </div>
+            <div style="clear:both;width:100%"></div>
+            <br>
+            <footer class="footer1">
+              <div class="container">
+                <div class="row"><!-- row -->
+                  <div class="col-lg-3 col-md-3"><!-- widgets column left -->
+                    <ul class="list-unstyled clear-margins"><!-- widgets -->
+                      <li class="widget-container widget_nav_menu"><!-- widgets list -->
+                        <h1 class="title-widget">Общая информация</h1>
+                        <ul>
+                          <li><a  href="#"><i class="fa fa-angle-double-right"></i> О банке</a></li>
+                          <li><a  href="#"><i class="fa fa-angle-double-right"></i> Филиальная сеть</a></li>
+                          <li><a  href="#"><i class="fa fa-angle-double-right"></i> Новости</a></li>
+                          <li><a  href="#"><i class="fa fa-angle-double-right"></i> Реквизиты</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-lg-5 col-md-5"><!-- widgets column left -->
+                    <ul class="list-unstyled clear-margins"><!-- widgets -->
+                      <li class="widget-container widget_nav_menu"><!-- widgets list -->
+                        <h1 class="title-widget">Режим работы</h1>
+                        <div class="footerp">
+                          <p>Понедельник - пятница:
                       <u>9.00 - 17.00, без перерыва</u>
-                      </p>
-                      <p>Суббота:
+                          </p>
+                          <p>Суббота:
                       <u>10.00 - 14.00</u>
-                      </p>
-                      <p><u>ВЕЧЕРНЯЯ КАССА</u></p>
-                      <p>Понедельник - пятница:
+                          </p>
+                          <p><u>ВЕЧЕРНЯЯ КАССА</u></p>
+                          <p>Понедельник - пятница:
                       <u>17.00 - 21.00</u>
-                      </p>
-                      <p>Суббота:
+                          </p>
+                          <p>Суббота:
                       <u>14.00 - 21.00</u>
-                      </p>
-                      <p>Воскресенье и праздничные дни:
+                          </p>
+                          <p>Воскресенье и праздничные дни:
                       <u>10.00 - 15.00 </u>
-                      </p>
-                      <a><b>Единая служба информации:</b>
-                        (0312) 443-443,(0312) 330-333</a>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <!-- widgets column left end -->
-              <div class="col-lg-4 col-md-4"><!-- widgets column center -->
-                <ul class="list-unstyled clear-margins"><!-- widgets -->
-                  <li class="widget-container widget_recent_news"><!-- widgets list -->
-                    <h1 class="title-widget">Наши контакты </h1>
-                    <div class="footerp">
-                      <h2 class="title-median">ОАО "ФинансКредитБанк КАБ"</h2>
-                      <p><b>Email:</b> <a href="mailto:fkb@fkb.kg">fkb@fkb.kg</a></p>
-                      <p><b>Адрес: Кыргызстан, г.Бишкек, ул.Абдрахманова 105</b></p>
-                      <p><b>Тел.: </b>(312) 30-30-14, </p>
-                      <p>(312) 30-35-10,(312) 30-34-87 </p>
-                    </div>
-                    <div class="social-icons">
-                      <ul class="nomargin">
-                        <a href="https://www.facebook.com/bootsnipp"><i class="fa fa-facebook-square fa-3x social-fb" id="social"></i></a>
-                        <a href="https://twitter.com/bootsnipp"><i class="fa fa-twitter-square fa-3x social-tw" id="social"></i></a>
-                        <a href="https://plus.google.com/+Bootsnipp-page"><i class="fa fa-google-plus-square fa-3x social-gp" id="social"></i></a>
-                        <a href="mailto:bootsnipp@gmail.com"><i class="fa fa-envelope-square fa-3x social-em" id="social"></i></a>
-                      </ul>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </footer>
-        <!--header-->
-        <div class="footer-bottom">
-          <div class="container">
-            <div class="row">
-              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                <div class="copyright">
-                  © 2006-2016 ОАО "ФинансКредитБанк КАБ". Все права защищены.
+                          </p>
+                          <a><b>Единая служба информации:</b>
+                            (0312) 443-443,(0312) 330-333</a>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- widgets column left end -->
+                  <div class="col-lg-4 col-md-4"><!-- widgets column center -->
+                    <ul class="list-unstyled clear-margins"><!-- widgets -->
+                      <li class="widget-container widget_recent_news"><!-- widgets list -->
+                        <h1 class="title-widget">Наши контакты </h1>
+                        <div class="footerp">
+                          <h2 class="title-median">ОАО "ФинансКредитБанк КАБ"</h2>
+                          <p><b>Email:</b> <a href="mailto:fkb@fkb.kg">fkb@fkb.kg</a></p>
+                          <p><b>Адрес: Кыргызстан, г.Бишкек, ул.Абдрахманова 105</b></p>
+                          <p><b>Тел.: </b>(312) 30-30-14, </p>
+                          <p>(312) 30-35-10,(312) 30-34-87 </p>
+                        </div>
+                        <div class="social-icons">
+                          <ul class="nomargin">
+                            <a href="https://www.facebook.com/bootsnipp"><i class="fa fa-facebook-square fa-3x social-fb" id="social"></i></a>
+                            <a href="https://twitter.com/bootsnipp"><i class="fa fa-twitter-square fa-3x social-tw" id="social"></i></a>
+                            <a href="https://plus.google.com/+Bootsnipp-page"><i class="fa fa-google-plus-square fa-3x social-gp" id="social"></i></a>
+                            <a href="mailto:bootsnipp@gmail.com"><i class="fa fa-envelope-square fa-3x social-em" id="social"></i></a>
+                          </ul>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
-              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                <div class="design">
-                  <a href="#">Лицензия НБ КР № 047</a>
+            </footer>
+            <!--header-->
+            <div class="footer-bottom">
+              <div class="container">
+                <div class="row">
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="copyright">
+                      © 2006-2016 ОАО "ФинансКредитБанк КАБ". Все права защищены.
+                </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="design">
+                      <a href="#">Лицензия НБ КР № 047</a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </body>
-</html>
+      </body>
+    </html>

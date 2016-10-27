@@ -1,0 +1,2 @@
+module PosterminalsHelper
+end

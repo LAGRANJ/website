@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+<h1>Типы депозитов</h1>
+<table class = "table table-hover">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @abs_deposit_types.each do |abs_deposit_type| %>
+      <% deposit_type = @deposit_types.select{|x| x.type_id==abs_deposit_type["TypeID"]}.first%>
+      <% if deposit_type==nil%>
+        <% deposit_type = DepositType.create(type_id: abs_deposit_type["TypeID"]) %>
+      <% end %>
+      <tr>
+        <td><%= abs_deposit_type["Name"] %></td>
+        <td><%= image_tag(deposit_type.image.url(:small)) %></td>
+        <td><%= deposit_type.caption %></td>
+        <td><%= deposit_type.description %></td>
+        <td><%= deposit_type.footer %></td>
+        <td><%= link_to 'Show', admin_deposit_type_path(deposit_type) %></td>
+        <td><%= link_to 'Edit', edit_admin_deposit_type_path(deposit_type) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>

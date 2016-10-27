@@ -1,0 +1,21 @@
+<% commission = @cliring_gross_commissions.select{|x| x["MinSum"]<=params["summa"].to_i && (params["summa"].to_i<=x["MaxSum"] || x["MaxSum"]==-1) && x["TypeID"]==1}.first %>
+<% if(commission!=nil) %>	
+	<% if !commission["InProc"] %>
+		$('#commission_fee').val(<%=commission["Commission"]%>+' сом')
+		$('#commission_rate').val(<%=commission["Commission"]%>+' сом')
+	<% else %>
+		$('#commission_fee').val(<%=commission["Commission"]*params["summa"].to_i/100 %>+' сом')
+		$('#commission_rate').val(<%=commission["Commission"]%>+'%')
+	<% end %>
+<% end %>
+
+<% commission = @cliring_gross_commissions.select{|x| x["MinSum"]<=params["summa"].to_i && (params["summa"].to_i<=x["MaxSum"] || x["MaxSum"]==-1) && x["TypeID"]==2}.first %>
+<% if(commission!=nil) %>	
+	<% if !commission["InProc"] %>
+		$('#commission_fee_gross').val(<%=commission["Commission"]%>+' сом')
+		$('#commission_rate_gross').val(<%=commission["Commission"]%>+' сом')
+	<% else %>
+		$('#commission_fee_gross').val(<%=commission["Commission"]*params["summa"].to_i/100 %>+' сом')
+		$('#commission_rate_gross').val(<%=commission["Commission"]%>+'%')
+	<% end %>
+<% end %>

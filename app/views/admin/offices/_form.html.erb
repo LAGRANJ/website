@@ -1,0 +1,28 @@
+<%= form_for([:admin, office]) do |f| %>
+  <% if office.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(office.errors.count, "error") %> prohibited this office from being saved:</h2>
+
+      <ul>
+      <% office.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">    
+    <%= f.label :workdays, "Режим работы" %>
+    <%= f.text_area :workdays, class:"form-control", rows:10 %>
+  </div>
+  <div class="form-group">    
+    <%= f.label :lon, "Долгота" %>
+    <%= f.text_field :lon, class:"form-control"%>
+  </div>  
+  <div class="form-group">    
+    <%= f.label :lat, "Широта" %>
+    <%= f.text_field :lat, class:"form-control"%>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

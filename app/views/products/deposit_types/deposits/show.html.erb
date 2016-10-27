@@ -78,9 +78,10 @@
               </div>
               <div class="form-group">
                 <label>Валюта:</label><br/>
-                <% GetDepositCurrencies(@deposit["ProductID"]).each do |currency_id| %>
+                <% depositcurrs = GetDepositCurrencies(@deposit["ProductID"])%>
+                <% depositcurrs.each do |currency_id| %>
                   <%= label_tag("currency_id_#{currency_id}", GetCurrencyName(currency_id), class: "radio-inline") do %>
-                    <%= radio_button_tag(:currency_id, "#{currency_id}", currency_id == 417)%>
+                    <%= radio_button_tag(:currency_id, "#{currency_id}", currency_id == depositcurrs.first)%>
                     <%= GetCurrencyName(currency_id) %>
                   <% end %>
                 <% end %>
@@ -170,7 +171,7 @@
         	$("#interest_rate").html(rate);
         	$("#payment_summ").html((sum*rate/1200.0).toFixed(2));
         	$("#payment_summ_unit").html(currcodes[currency_id]);
-        	$("#payment_total_summ").html((sum*rate/100.0).toFixed(2));
+        	$("#payment_total_summ").html((period*sum*rate/1200.0).toFixed(2));
         	$("#payment_total_summ_unit").html(currcodes[currency_id]);
         }
 </script>

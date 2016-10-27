@@ -2,32 +2,36 @@
   <h1><%= @credit["Name"] %> <small><%= @credit["Description"] %></small></h1>
 </div>
 <div class="container">
-
-<div class="process">
-    <div class="process-row">        
-        <div class="process-step">
-            <button type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="fa fa-percent fa-3x"></i></button>
-            <p>Изучите <br>процентные ставки</p>
-        </div>
-        <div class="process-step">
-            <button type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="fa fa-calculator fa-3x"></i></button>
-            <p>Рассчитайте <br>размер платежа</p>
-        </div>
-        <div class="process-step">
-            <button type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="fa fa-wpforms fa-3x"></i></button>
-            <p>Заполните <br>онлайн анкету</p>
-        </div>         
-         <div class="process-step">
-            <button type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="fa fa-phone fa-3x"></i></button>
-            <p>Дождитесь <br>звонка оператора</p>
-        </div> 
-        <div class="process-step">
-            <button type="button" class="btn btn-success btn-circle" disabled="disabled"><i class="fa fa-thumbs-up fa-3x"></i></button>
-            <p>Получите кредит <br>на выгодных условиях</p>
-        </div> 
+  <div class="process">
+    <div class="process-row">
+      <div class="process-step">
+        <button type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="fa fa-percent fa-3x"></i></button>
+        <p>Изучите <br>
+          процентные ставки</p>
+      </div>
+      <div class="process-step">
+        <button type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="fa fa-calculator fa-3x"></i></button>
+        <p>Рассчитайте <br>
+          размер платежа</p>
+      </div>
+      <div class="process-step">
+        <button type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="fa fa-wpforms fa-3x"></i></button>
+        <p>Заполните <br>
+          онлайн анкету</p>
+      </div>
+      <div class="process-step">
+        <button type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="fa fa-phone fa-3x"></i></button>
+        <p>Дождитесь <br>
+          звонка оператора</p>
+      </div>
+      <div class="process-step">
+        <button type="button" class="btn btn-success btn-circle" disabled="disabled"><i class="fa fa-thumbs-up fa-3x"></i></button>
+        <p>Получите кредит <br>
+          на выгодных условиях</p>
+      </div>
     </div>
-</div>
-<h2 id="credit_interest_rates"><i class="fa fa-percent" aria-hidden="true"></i>  Процентные ставки</h2>
+  </div>
+  <h2 id="credit_interest_rates"><i class="fa fa-percent" aria-hidden="true"></i>  Процентные ставки</h2>
   <% currencies = [{id: 417,description:"В сомах"}, {id: 840,description:"В долларах"}, {id: 643,description:"В рублях"},{id: 978,description:"В евро"} ] %>
   <ul class="nav nav-tabs">
     <% currencies.each do |curr| %>
@@ -138,7 +142,7 @@
           </tr>
           <tr>
             <td>
-              <input name="commit" type="submit" value="Search" />
+              <input class="btn btn-danger" name="commit" type="submit" value="Рассчитать" style="width:100%" />
             </td>
             <td>
             </td>
@@ -149,7 +153,6 @@
   </div>
   <h2><i class="fa fa-wpforms" aria-hidden="true"></i>  Заполните анкету на получение кредита</h2>
   <div class="panel panel-primary">
-    
     <div class="panel-body">
       <div class="form-group">
         <label for="fullname">Фамилия Имя Отчество</label>

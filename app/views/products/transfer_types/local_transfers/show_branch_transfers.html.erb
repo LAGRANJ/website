@@ -1,0 +1,149 @@
+<div class="page-header">
+  <h1>Межфилиальные переводы Салам</h1>
+</div>
+<h2 id="credit_interest_rates"><i class="fa fa-percent" aria-hidden="true"></i>  Тарифы</h2>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <form class="form-inline">
+      <div class="form-group">
+        <label for="sender_region" style="padding-right:10px;">Регион отправителя: </label>
+        <select id = "sender_region">
+          <% @regions.each do |region| %>
+            <option value=<%= region[:region_id]%>><%= region[:region_name] %></option>
+          <% end %>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="transfer_currency" style="padding:0px 10px;">Валюта перевода: </label>
+        <div class="btn-group" role="group" aria-label="..." id="transfer_currency">
+          <button type="button" class="btn btn-danger" data-currencyid=417>KGS</button>
+          <button type="button" class="btn btn-default" data-currencyid=840>USD</button>
+          <button type="button" class="btn btn-default" data-currencyid=643>RUB</button>
+          <button type="button" class="btn btn-default" data-currencyid=978>EUR</button>
+          <button type="button" class="btn btn-default" data-currencyid=398>KZT</button>
+        </div>
+      </div>
+    </form>
+    <div id="commissions_table">
+      <%= render partial: "transfer_commissions", locals: {region_id: 5, currency_id: 417 } %>
+    </div>
+    <h2><i class="fa fa-calculator" aria-hidden="true"></i>Рассчитайте комиссию перевода</h2>
+    <div class="panel panel-primary">
+      <div class="panel-body">
+        <%= form_tag(products_transfer_types_branch_transfers_calculate_commission_fee_path, remote: true, method: "post", class: "nifty_form") do %>
+          <div class = "container-fluid">
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <%= label_tag(:summa, "Сумма:") %>
+                  <%= text_field_tag(:summa, "0", class: "form-control") %>
+                </div>
+                <div class="form-group">                
+                  <label for="calculator_currency" style="padding:0px 10px;">Валюта перевода: </label>
+                  <div class="btn-group" role="group" aria-label="..." id="calculator_currency">
+                    <button type="button" class="btn btn-danger" data-currencyid=417>KGS</button>
+                    <button type="button" class="btn btn-default" data-currencyid=840>USD</button>
+                    <button type="button" class="btn btn-default" data-currencyid=643>RUB</button>
+                    <button type="button" class="btn btn-default" data-currencyid=978>EUR</button>
+                    <button type="button" class="btn btn-default" data-currencyid=398>KZT</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label for="calculators_senderacctypeid" style="padding-right:10px;">Метод отправки: </label><br>
+                  <select id = "calculators_senderacctypeid" style="width:100%">
+                    <option value=1>Через кассу</option>
+                    <option value=2>С расчетного счета</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="calculators_receiveracctypeid" style="padding-right:10px;">Назначение перевода: </label><br>
+                  <select id = "calculators_receiveracctypeid" style="width:100%">
+                    <option value=1>Получить наличными</option>
+                    <option value=2>Пополнение расчетного счета</option>
+                    <option value=2>Погасить кредит</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <%= hidden_field_tag 'calculator_regionid', 5 %>
+                  <label for="calculators_region" style="padding-right:10px;">Регион отправки: </label><br>
+                  <select id = "calculators_region" style="width:100%">
+                    <% @regions.each do |region| %>
+                      <option value=<%= region[:region_id]%>><%= region[:region_name] %></option>
+                    <% end %>
+                  </select>
+                </div>
+              </div>
+              <div class='col-lg-2'>
+                <div class="form-group">
+                  <div class="panel panel-primary">                    
+                    <div class="panel-body">                    
+                    <%= label_tag(:commission_rate, "Ставка:") %>
+                      <%= text_field_tag(:commission_rate, "0", class: "form-control") %>
+                      <%= label_tag(:commission_fee, "комиссия:") %>
+                      <%= text_field_tag(:commission_fee, "0", class: "form-control") %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function() {
+        	updatecommissiontable = function() {
+            
+      	    $.ajax({
+      	    	url: "<%= products_transfer_types_branch_transfers_commission_table_path()%>",
+      	    	method: 'POST',
+      	    	dataType: "script",
+      	    	data: {
+      	    		region_id: $('#sender_region').val(),
+      	    		currency_id: $('#transfer_currency > .btn-danger').data("currencyid")
+      	    	},
+      			success: function(data, textStatus) {},
+      			error: function() {}
+      		});
+          }
+          calcCommissions = function ()
+         	{
+          	$.ajax({
+      	    	url: "<%= products_transfer_types_branch_transfers_calculate_commission_fee_path()%>",
+      	    	method: 'POST',
+      	    	dataType: "script",
+      	    	data: {
+      	    		region_id: $('#sender_region').val(),
+      	    		currency_id: $('#calculator_currency > .btn-danger').data("currencyid"),
+      	    		summa: $('#summa').val(),
+      	    		senderacctypeid: $('#calculators_senderacctypeid').val(),
+      	    		receiveracctypeid: $('#calculators_receiveracctypeid').val()
+      	    	},
+      			success: function(data, textStatus) {},
+      			error: function() {}
+      		});
+      	}
+  
+          $('#sender_region').on("select2:select", updatecommissiontable);
+          $("#transfer_currency > button").on("click", function(){
+      	    $("#transfer_currency > .btn-danger").removeClass("btn-danger").addClass("btn-default")
+      	    $(this).addClass("btn-danger")
+      	    updatecommissiontable.call()
+          });
+
+          $("#calculator_currency > button").on("click", function(){
+      	    $("#calculator_currency > .btn-danger").removeClass("btn-danger").addClass("btn-default")
+      	    $(this).addClass("btn-danger")
+      	    calcCommissions.call()
+          });
+  
+        	$('#calculators_region').on("select2:select", calcCommissions);
+          $("#summa").on('change keyup paste', calcCommissions);
+         });
+</script>

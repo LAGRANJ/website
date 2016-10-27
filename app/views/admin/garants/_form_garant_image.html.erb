@@ -1,0 +1,26 @@
+<%= form_for([:admin, garant_image]) do |f| %>
+  <% if garant_image.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(garant_image.errors.count, "error") %> prohibited this garant_image from being saved:</h2>
+
+      <ul>
+      <% garant_image.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">    
+    <%= f.label :image_description, "Описание рисунка" %>
+    <%= f.text_field :image_description, class:"form-control"%>
+    <%= f.hidden_field :garant_id %>
+  </div>
+
+  <div class="form-group">
+    <label for="image">Изображение</label>
+    <%= f.file_field :image %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Добавить"%>
+  </div>
+<% end %>

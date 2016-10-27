@@ -1,0 +1,2 @@
+module Products::DepositaryHelper
+end

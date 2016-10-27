@@ -79,6 +79,20 @@ module ApplicationHelper
       'евро'
     end
   end
+  def GetCurrencySymbol(currency_id)
+    case currency_id
+    when 417
+      'KGS'
+    when 840
+      'USD'
+    when 643
+      'RUB'
+    when 978
+      'EUR'
+    when 398
+      'KZT'
+    end
+  end
   def trim_zero num
     i, f = num.to_i, num.to_f
     i == f ? i : f

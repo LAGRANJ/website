@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+<%= render 'shared/mini_special_offer', mini_special_offer: @mini_special_offer %>
+<hr>
+<strong>Цвет текста заголовка на банере: </strong><%= @mini_special_offer.caption_text_color%><br>
+<strong>Цвет текста описания на банере</strong><%= @mini_special_offer.description_text_color%><br>
+<strong><% if @mini_special_offer.enabled %>
+Активный
+<% else  %>
+Не активный
+<% end  %>
+</strong>
+<br>
+<hr>
+<%= link_to 'Редактировать', edit_admin_mini_special_offer_path(@mini_special_offer) %> |
+<%= link_to 'Все акции', admin_mini_special_offers_path %>

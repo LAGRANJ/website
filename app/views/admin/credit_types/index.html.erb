@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Credit Types</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+      <th></th>
+      <th></th>
+      <th></th>      
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @abs_credit_types.each do |abs_credit_type| %>
+    <% credit_type = @credit_types.select{|x| x.type_id==abs_credit_type["ID"]}.first%>
+    <% if credit_type == nil%>
+      <% credit_type = CreditType.create(type_id: abs_credit_type["ID"]) %>
+    <% end %>
+
+      <tr>
+        <td><%= abs_credit_type["Name"] %></td>
+        <td><%= image_tag(credit_type.image.url(:small)) %></td>        
+        <td><%= credit_type.caption %></td>
+        <td><%= credit_type.description %></td>
+        <td><%= credit_type.footer %></td>
+        <td><%= link_to 'Show', admin_credit_types_path(credit_type) %></td>
+        <td><%= link_to 'Edit', edit_admin_credit_type_path(credit_type) %></td>        
+      </tr>
+    <% end %>
+  </tbody>
+</table>

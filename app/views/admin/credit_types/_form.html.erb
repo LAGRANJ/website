@@ -1,0 +1,31 @@
+<%= form_for([:admin, credit_type]) do |f| %>
+  <% if credit_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(credit_type.errors.count, "error") %> prohibited this credit_type from being saved:</h2>
+      <ul>
+        <% credit_type.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= f.label :caption, "Заголовок" %>
+    <%= f.text_field :caption, class:"form-control"%>
+  </div>
+  <div class="form-group">
+    <%= f.label :description, "Содержание" %>
+    <%= f.text_field :description, class:"form-control"%>
+  </div>
+  <div class="form-group">
+    <%= f.label :footer, "Нижний заголовок" %>
+    <%= f.text_field :footer, class:"form-control"%>
+  </div>
+  <div class="form-group">
+    <label for="image">Изображение</label>
+    <%= f.file_field :image %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Сохранить", class: "btn btn-primary" %>
+  </div>
+<% end %>

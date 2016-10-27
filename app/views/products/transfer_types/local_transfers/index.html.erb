@@ -1,2 +1,64 @@
-<h1>Products::TransferTypes::LocalTransfers#index</h1>
-<p>Find me in app/views/products/transfer_types/local_transfers/index.html.erb</p>
+<div class="page-header">
+  <h1>Внутренние cистемы денежных переводов <small><% if params["client_type"].to_i == 2%> 
+    Корпоративным клиентам
+    <% else %>
+    Частным клиентам
+    <% end %></small></h1>
+</div>
+<div class = "container">
+  <% @transfer_types.each do |trtype| %>
+    <% details = GetTransferTypeDetails(trtype["TypeID"])%>
+    <div class = "row">
+      <div class="col-md-9 col-lg-9 blogShort">
+        <% if details!=nil %>
+          <%= image_tag(details.image_url) %>
+        <% end %>
+        <table class="table table-condensed teble_discription">
+          <tbody>
+            <tr>
+              <td>
+                <p class="text-info">Название</p>
+              </td>
+              <td><%= trtype["Name"]%></td>
+            </tr>
+            <tr>
+              <td>
+                <p class="text-info">Комиссия</p>
+              </td>
+              <td>по тарифной сетке</td>
+            </tr>
+            <tr>
+              <td>
+                <p class="text-info">Территория</p>
+              </td>
+              <td>более 350 000 пунктов в 200 странах мира</td>
+            </tr>
+            <tr>
+              <td>
+                <p class="text-info">Скорость перевода</p>
+              </td>
+              <td>10 минут</td>
+            </tr>
+            <tr>
+              <td>
+                <p class="text-info">Валюта перевода</p>
+              </td>
+              <td>доллары США</td>
+            </tr>
+            <tr>
+              <td>
+                <p class="text-info">Место получения</p>
+              </td>
+              <td>в любом пункте страны назначения</td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="float:right; margin-bottom:15px;">
+          <%= link_to products_transfer_types_local_transfer_path(params["client_type"].to_i, trtype["TypeID"]) do%>
+            Подробнее <i class="fa fa-chevron-right" aria-hidden="true"></i>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

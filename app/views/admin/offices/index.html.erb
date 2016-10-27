@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Offices</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% OFFICES.each do |absoffice|%>      
+      <% office = @offices.select{|x| x.officeid == absoffice["ID"]}.first %>
+      <% unless office %>
+        <% office = Office.create(officeid: absoffice["ID"])%>
+        <% office.save %>
+      <% end %>
+      <tr>
+        <td><%= absoffice["Name"] %></td>
+        <td><%= office.lon %>-<%= office.lat %></td>
+        <td><%= link_to 'Show', admin_office_path(office) %></td>
+        <td><%= link_to 'Edit', edit_admin_office_path(office) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>

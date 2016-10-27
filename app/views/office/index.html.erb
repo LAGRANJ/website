@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="col-lg-7">
-      <div style='width: 100%;'>
+      <div style='width: 100%; background: #fff;box-shadow: 0 0 25px rgba(0,0,0,0.5);padding: 2px;'>
         <div id="map" style='width: 100%; height: 400px;'></div>
       </div>
       <div id="office_detailed_info">
@@ -44,7 +44,7 @@ function initMap() {
   var golovnoi = {lat: 42.866819, lng: 74.611587};
 
   map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 17,d
+    zoom: 17,
     center: golovnoi,
     mapTypeId: google.maps.MapTypeId.TERRAIN
   });

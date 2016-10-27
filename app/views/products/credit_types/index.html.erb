@@ -1,31 +1,27 @@
+<div class="page-header">
+  <h1>Кредиты<small><% if params["client_type"].to_i == 2%>
+        Корпоративным клиентам
+    <% else %>
+        Частным клиентам
+    <% end %></small></h1>
+</div>
 <div class="container">
-	<div class="row">
+  <div class="row">
     <% count =0 %>
     <% @credit_purposes.select{|purp| purp["IsForCompanies"] && params["client_type"].to_i == 2 || 
         purp["IsForIndividuals"] && params["client_type"].to_i == 1}.each do |purpose| %>
-        <% count = count+1 %>
-		<div class="col-lg-4">
-            <div class="well">
-            	<%= image_tag("credits_small_and_middle_business.jpg",:style => "width: 100%;") %>
-        		<h2 class="text-warning"><%= purpose["Name"] %></h2>
-        		<hr/> 
-        		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.</p>        		
-        		<hr>
-        		<h3>от 18% годовых</h3>
-        		<hr>
-        		<p>
-                <%= link_to products_credit_types_credits_path(params["client_type"].to_i, purpose["ID"]), :title => "Узнать больше", :class=> "btn btn-danger btn-large" do %>
-                        <i class="icon-ok"></i> Узнать больше
-                     <% end %>
-                     </p>
-        	</div>            
-        </div>    
-        <% if count == 3 %>
-                <div class="clearfix visible-lg-block"></div>
-            <% end %>    
-        <% if count == 2 %>
-                <div class="clearfix visible-sm-block"></div>
-            <% end %>    
+      <% count = count+1 %>
+      <% credit_type = @credit_types.select{|ct| ct.type_id == purpose["ID"]}.first %>
+            <% if credit_type==nil %>
+                <% credit_type = CreditType.new;%>
+            <% end %>
+      <%= render "shared/credit_type", purpose: purpose, credit_type: credit_type%>
+      <% if count == 3 %>
+        <div class="clearfix visible-lg-block"></div>
+      <% end %>
+      <% if count == 2 %>
+        <div class="clearfix visible-sm-block"></div>
+      <% end %>
     <% end %>
-	</div>
+  </div>
 </div>

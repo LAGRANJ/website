@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+<%= link_to 'Добавить новую акцию', new_admin_special_offer_path %>
+<table class = 'table table-hover'>
+  <thead>
+    <tr>
+      <th>Дата</th>
+      <th>Заголовок</th>
+      <th>Короткое описание</th>
+      <th>Приоритет</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @special_offers.each do |special_offer| %>
+      <tr>
+        <td><%= special_offer.creation_date %></td>
+        <td><%= special_offer.caption %></td>
+        <td><%= special_offer.description %></td>
+        <td><%= special_offer.priority %></td>
+        <td><%= link_to image_tag(special_offer.image.url(:med)), special_offer.image.url %></td>
+        <td><%= link_to("Просмотр", admin_special_offer_path(special_offer)) %></td>
+        <td><%= link_to("Изменить", edit_admin_special_offer_path(special_offer)) %></td>
+        <td><%= link_to("Удалить", admin_special_offer_path(special_offer), method: :delete, data: { confirm: 'Вы действительно хотите удалить акцию?' }) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

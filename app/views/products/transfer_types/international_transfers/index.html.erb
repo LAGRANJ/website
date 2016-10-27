@@ -1,6 +1,12 @@
-
+<div class="page-header">
+  <h1>Международные системы денежных переводов <small><% if params["client_type"].to_i == 2%> 
+    Корпоративным клиентам
+    <% else %>
+    Частным клиентам
+    <% end %></small></h1>
+</div>
 <div class = "container">
-  <% @transfer_types.select{|x| x["IsForIndividuals"] && params["client_type"].to_i == 1 || x["IsForCompanies"] && params["client_type"].to_i == 2}.each do |trtype| %>
+  <% @transfer_types.each do |trtype| %>
     <% details = GetTransferTypeDetails(trtype["TypeID"])%>
     <div class = "row">
       <div class="col-md-9 col-lg-9 blogShort">
@@ -9,6 +15,12 @@
         <% end %>
         <table class="table table-condensed teble_discription">
           <tbody>
+            <tr>
+              <td>
+                <p class="text-info">Название</p>
+              </td>
+              <td><%= trtype["Name"]%></td>
+            </tr>
             <tr>
               <td>
                 <p class="text-info">Комиссия</p>

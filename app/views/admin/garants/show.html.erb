@@ -1,0 +1,39 @@
+<%= render "shared/garant", garant:@garant %>
+<br/> 
+<div class="panel panel-primary">
+  <div class="panel-heading">Фотографии</div>
+  <div class="panel-body">
+  <table class="table">
+  <% @garant.garant_images.each do |gi|%>  
+  <tr>
+  <td><%=image_tag(gi.image.url(:small))%></td>
+  <td><%=gi.image_description%></td>
+  <td><%= link_to 'Удалить', admin_destroy_garant_image_path(gi.garant_id,gi.id), method: :post, data: { confirm: 'Вы действительно хотите удалить?' } %></td>
+  </tr>
+  <% end %>
+  </table>
+  <hr>
+  <h4>Добавление фотографии</h4>
+<%= render "form_garant_image", garant_image: @garant_image %>   
+  </div>
+</div>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">Добавить характеристику</div>
+  <div class="panel-body">
+  <table class="table">
+  <% @garant.garant_details.each do |gd|%>  
+  <tr>
+  <td><%=gd.prop_key%></td>
+  <td><%=gd.prop_value%></td>
+  <td><%= link_to 'Удалить', admin_destroy_garant_detail_path(gd.garant_id,gd.id), method: :post, data: { confirm: 'Вы действительно хотите удалить?' } %></td>
+  </tr>
+  <% end %>
+  </table>
+  <hr>
+  <h4>Добавление свойств</h4>
+<%= render "form_garant_detail", garant_detail: @garant_detail %>   
+  </div>
+</div>
+<%= link_to 'Edit', edit_admin_garant_path(@garant) %> |
+<%= link_to 'Back', admin_garants_path %>

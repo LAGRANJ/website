@@ -1,0 +1,16 @@
+<% commission = @swift_commissions.select{|x| x["MinSum"]<=params["summa"].to_i && 
+	(params["summa"].to_i<=x["MaxSum"] || x["MaxSum"]==-1) && 
+	x["CurrencyID"]==params["currencyid"].to_i &&
+	x["CustomerTypeID"] == params["client_type"].to_i	
+}.first %>
+<% if(commission!=nil) %>	
+	<% if !commission["CommissionInProc"] %>
+		$('#commission_fee').val(<%=commission["Commission"]%>+' <%=GetCurrencySymbol(commission["CurrencyID"])%>')
+		$('#commission_rate').val(<%=commission["Commission"]%> +' <%=GetCurrencySymbol(commission["CurrencyID"])%>')
+	<% else %>
+		<% commission_fee = commission["Commission"]*params["summa"].to_i/100 %>
+		<% commission_fee = commission["MaxCommission"] if commission_fee>commission["MaxCommission"] %>
+		$('#commission_fee').val(<%=commission_fee %> +' <%=GetCurrencySymbol(commission["CurrencyID"])%>')
+		$('#commission_rate').val(<%=commission["Commission"]%>+'%');
+	<% end %>
+<% end %>

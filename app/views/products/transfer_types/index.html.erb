@@ -1,3 +1,10 @@
+<div class="page-header">
+  <h1>Денежные переводы <small><% if params["client_type"].to_i == 2%>
+        Корпоративным клиентам
+    <% else %>
+        Частным клиентам
+    <% end %></small></h1>
+</div>
 <div class="container">
   <div class="row">
     <div class="col-lg-6">
@@ -17,16 +24,45 @@
     <div class="col-lg-6">
       <div class="well">
         <%= image_tag("local_transfers.png",:style => "width: 100%;") %>
-        <h2 class="text-warning">Системы денежных переводов внутри Кыргызстана</h2>
+        <h2 class="text-warning">Межфилиальные переводы Салам</h2>
         <hr>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.</p>
         <hr>
         <h3>$10.99 / month</h3>
         <hr>
-        <%= link_to({controller: "products/transfer_types/local_transfers", action: "index"}, class: 'btn btn-danger btn-large') do %>
+        <%= link_to(products_transfer_types_local_transfers_branch_transfers_path, class: 'btn btn-danger btn-large') do %>
           <i class="icon-ok"></i> Узнать больше
         <% end %>
       </div>
     </div>
   </div>
+  <row>
+    <div class="col-lg-6">
+      <div class="well">
+        <%= image_tag("local_transfers.png",:style => "width: 100%;") %>
+        <h2 class="text-warning">Переводы Клиринг,Гросс</h2>
+        <hr>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.</p>
+        <hr>
+        <h3>$10.99 / month</h3>
+        <hr>
+        <%= link_to(products_transfer_types_local_transfers_cliring_gross_path, class: 'btn btn-danger btn-large') do %>
+          <i class="icon-ok"></i> Узнать больше
+        <% end %>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="well">        
+        <h2 class="text-warning">Переводы СВИФТ</h2>
+        <hr>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.</p>
+        <hr>
+        <h3>$10.99 / month</h3>
+        <hr>
+        <%= link_to(products_transfer_types_local_transfers_swift_path, class: 'btn btn-danger btn-large') do %>
+          <i class="icon-ok"></i> Узнать больше
+        <% end %>
+      </div>
+    </div>
+  </row>
 </div>

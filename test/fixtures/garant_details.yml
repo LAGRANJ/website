@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  prop_key: MyString
+  prop_value: MyString
+
+two:
+  prop_key: MyString
+  prop_value: MyString

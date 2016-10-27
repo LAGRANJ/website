@@ -1,0 +1,6 @@
+<h1><%= @abs_credit_type["Name"] %></h1>
+
+<%= render 'form', credit_type: @credit_type %>
+
+<%= link_to 'Show', admin_credit_type_path(@credit_type) %> |
+<%= link_to 'Back', admin_credit_types_path %>

@@ -6,8 +6,9 @@ class MainController < ApplicationController
     cookies[:userid]=SecureRandom.uuid
     @mainnewsitem = Newsitem.where(priority:0).first    
     @newsitems = Newsitem.where(priority:1).first(5)
-    @mainbigbanner = MainBanner.where(enabled: true,priority:0).first    
-    @bigbanners = MainBanner.where(enabled: true,priority:1)
+    @allbanners = SpecialOffer.order(priority: :desc) 
+    @mainbigbanner = @allbanners.first
+    @bigbanners = @allbanners.select{|x| x!=@mainbigbanner}
 
     @records = ActiveRecord::Base.connection.execute("select * from get_currency_rates(840)")    
     redis = Redis.new(:host => "192.168.1.241", :port => 6379)

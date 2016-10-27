@@ -1,8 +1,15 @@
+<div class="page-header">
+  <h1><%=@credit_purpose["Name"]%> <small>
+  <% if params["client_type"].to_i == 2%>
+        Корпоративным клиентам
+    <% else %>
+        Частным клиентам
+    <% end %></small></h1>
+</div>
 <div class = "container">  
     <div class = "row">
       <div class="col-md-9 col-lg-9 blogShort">
-      <% @credit_products.select{|prod| prod["TypeID"]==params[:type_id].to_i and 
-          (prod["IsForCompanies"] && params[:client_type].to_i==2 || prod["IsForIndividuals"] && params[:client_type].to_i==1)}.each do |product| %>
+      <% @credit_products.each do |product| %>
         <div class="rate">&le;<%=product["MinRate"]%></div>
         <h3 style="color: #d40000;"><%=product["Name"]%></h3>
         <article>

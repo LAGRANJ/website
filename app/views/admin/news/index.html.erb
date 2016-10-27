@@ -1,0 +1,26 @@
+<%= link_to("Добавить новость",admin_newsitem_new_path())%>
+<table class = 'table table-hover'>
+<thead>
+<tr>
+<th>Дата</th>
+<th>Заголовок</th>
+<th>Короткое описание</th>
+<th>Приоритет</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<% @newsitems.each do |newsitem| %>
+<tr>
+<td><%= newsitem.creation_date %></td>
+<td><%= newsitem.caption %></td>
+<td><%= newsitem.description %></td>
+<td><%= newsitem.priority %></td>
+<td><%= link_to("Просмотр", admin_newsitem_show_path(newsitem)) %></td>
+<td><%= link_to("Изменить", admin_newsitem_edit_path(newsitem)) %></td>
+<td><%= link_to("Удалить", admin_newsitem_delete_path(newsitem), method: :delete, data: { confirm: 'Вы действительно хотите удалить новость?' }) %></td>
+</tr>
+<% end %>
+
+</tbody>
+</table>

@@ -12,9 +12,7 @@ class Products::DepositTypes::DepositsController < ApplicationController
   end
   def calculate_rate_payment
     respond_to do |format|
-      format.html { render plain: "custom action" }
       format.js {}
-      format.json { render json: { "interest" => 18, "payment" => 5699 } }
     end
   end
 

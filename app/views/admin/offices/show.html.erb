@@ -1,0 +1,8 @@
+<p id="notice"><%= notice %></p>
+<h3><%=@absoffice["Name"] %></h3>
+<strong>режим работы: </strong><%= raw(@office.workdays) %><br/>
+<strong>долгота: </strong><%= @office.lon %><br/>
+<strong>широта: </strong><%= @office.lat %><br/>
+
+<%= link_to 'Edit', edit_admin_office_path(@office) %> |
+<%= link_to 'Back', admin_offices_path %>

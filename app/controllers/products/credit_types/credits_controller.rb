@@ -1,8 +1,10 @@
 class Products::CreditTypes::CreditsController < ApplicationController  
   before_action :add_def_breadcrumb
   def index
-    @credit_purposes = JSON.parse(Redis.current.get("credit_purposes"))
-    @credit_products = JSON.parse(Redis.current.get("credit_products"))
+    @credit_purpose = JSON.parse(Redis.current.get("credit_purposes")).select{|x| x["ID"] == params[:type_id].to_i}.first
+    @credit_products = JSON.parse(Redis.current.get("credit_products")).select{|prod| prod["TypeID"]==params[:type_id].to_i and 
+          (prod["IsForCompanies"] && params[:client_type].to_i==2 || prod["IsForIndividuals"] && params[:client_type].to_i==1)}
+    @credit_types = CreditType.all
 
 
     @currencies = Redis.current.lrange('currencies',0,-1)
@@ -16,8 +18,10 @@ class Products::CreditTypes::CreditsController < ApplicationController
     end
   end
   def show
-    add_breadcrumb "Типы кредитов", products_credit_types_credits_path(params[:client_type],params[:typeid])
-    @credit = JSON.parse(Redis.current.get("credit_products")).select{|c| c["ProductID"] == params["product_id"].to_i}.first()
+    add_breadcrumb "Типы кредитов", products_credit_types_credits_path(params[:client_type],params[:typeid])    
+
+    @credit = JSON.parse(Redis.current.get("credit_products")).select{|c| c["ProductID"] == params["product_id"].to_i}.first
+    
     @credit_interests = JSON.parse(Redis.current.get("credit_interests_#{@credit["ProductID"]}"));
     @user = Hash.new()
     @user[:name] = "username"

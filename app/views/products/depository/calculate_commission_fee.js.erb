@@ -1,0 +1,6 @@
+<% commission = @safe_tariffs.select{|x| x["SafeTypeID"] == params["safetypeid"].to_i and 
+        	x["DaysFrom"]<=params["dayscount"].to_i and params["dayscount"].to_i<=x["DaysTo"]}.first %>
+<% if(commission!=nil) %>	
+		$('#safe_cost').val(<%=commission["SummPerDay"]%>+' сом')		
+		$('#total_cost').val(<%=commission["SummPerDay"]*params["dayscount"].to_i%>+ ' сом')
+<% end %>

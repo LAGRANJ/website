@@ -1,0 +1,26 @@
+<%= form_for([:admin, garant_detail]) do |f| %>
+  <% if garant_detail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(garant_detail.errors.count, "error") %> prohibited this garant_detail from being saved:</h2>
+
+      <ul>
+      <% garant_detail.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">    
+    <%= f.label :prop_key, "Поле" %>
+    <%= f.text_field :prop_key, class:"form-control"%>
+    <%= f.hidden_field :garant_id %>
+  </div>
+  <div class="form-group">    
+    <%= f.label :prop_value, "Значение" %>
+    <%= f.text_field :prop_value, class:"form-control"%>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Добавить"%>
+  </div>
+<% end %>

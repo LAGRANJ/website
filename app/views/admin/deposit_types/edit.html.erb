@@ -1,0 +1,6 @@
+<h1><%= @abs_deposit_type["Name"] %></h1>
+
+<%= render 'form', deposit_type: @deposit_type %>
+
+<%= link_to 'Показать', admin_deposit_type_path( @deposit_type) %> |
+<%= link_to 'Назад', admin_deposit_types_path %>

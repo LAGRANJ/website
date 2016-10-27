@@ -1,3 +1,10 @@
+<div class="page-header">
+  <h1> <small><% if params["client_type"].to_i == 2%>
+        Корпоративным клиентам
+    <% else %>
+        Частным клиентам
+    <% end %></small></h1>
+</div>
 <div class = "container">
   <% @deposit_products.select{|prod| prod["TypeID"]==params[:type_id].to_i && prod["OrganizationTypeID"] == params[:client_type].to_i }.each do |product| %>
     <div class = "row">

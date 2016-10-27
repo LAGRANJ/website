@@ -1,26 +1,15 @@
 
-<% commissionfees = GetCommissionFees(params["summa"].to_i,params["calculator_currencyid"].to_i, params["calculator_countryid"].to_i)%>
-
-$("#transfer_commission_fees").html(`<tbody>
-	<% if(commissionfees!=nil && commissionfees.count>0) %>	
-    <% commissionfees.each do |fee| %>
-	    <tr>
-	    	<td><%=@transfer_types.select{|x| x["TypeID"] == fee.typeid}.first["Name"]%>
-	    	
-		    <td>
-		    <% if(fee.in_percent) %>
-		    	<%=fee.commission*params["summa"].to_i/100%>
-		    <% else %>
-		    	<%= fee.commission %>
-		    <%end%>
-		    </td>
-		    <td></td>
-		</tr>
-    <% end %>    
-    <% else %>
-    <tr>
-    	<td colspan=2 align="center"><b><div class="alert alert-warning" role="alert">Тарифы отсутствуют</div></b></td>
-    </tr>
-    <% end %>
-    `
-	);
+<% commissionfee = GetCommissionFee(params["typeid"].to_i,params["summa"].to_i,params["currencyid"].to_i, params["countryid"].to_i)%>
+<% if(commissionfee!=nil) %>	
+	<% if !commissionfee.in_percent %>
+		$('#commission_fee').val(<%=commissionfee.commission %>+' <%=GetCurrencySymbol(commissionfee.currencyid)%>')
+		$('#commission_rate').val(<%=commissionfee.commission %> +' <%=GetCurrencySymbol(commissionfee.currencyid)%>')
+	<% else %>
+		<% commission_fee = commissionfee["Commission"]*params["summa"].to_i/100 %>		
+		$('#commission_fee').val(<%=commission_fee %> +' <%=GetCurrencySymbol(commissionfee.currencyid)%>')
+		$('#commission_rate').val(<%=commissionfee.commission %>+'%');
+	<% end %>
+<% else %>
+	$('#commission_rate').val('тариф отсутствует')
+	$('#commission_fee').val('не определен')
+<% end %>
