@@ -30,8 +30,8 @@
     <%= f.text_field :description_text_color, class:"form-control", type:"text"%>
   </div>
   <div class="form-group">
-    <%= f.label :priority, "Приоритет(1-10)" %>
-    <%= f.text_field :priority, class:"form-control", type:"number"%>
+    <%= f.label :priority, "Уровень" %>
+    <%= f.select :priority, [["1-уровень",1],["2-уровень",2]], {}, {class:"form-control" }%>
   </div>
   <div class="form-group">    
     <%= f.label :description, "Короткое описание" %>

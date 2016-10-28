@@ -13,8 +13,8 @@ class MainController < ApplicationController
     @bigbanners = @allbanners.select{|x| x!=@mainbigbanner}
 
     @allminibanners = MiniSpecialOffer.order(priority: :desc) 
-    @firstratebanners = @allminibanners.select{|x| x.priority>5}
-    @secondratebanners = @allminibanners.select{|x| x.priority<=5}
+    @firstratebanners = @allminibanners.select{|x| x.priority==1}
+    @secondratebanners = @allminibanners.select{|x| x.priority!=1}
 
 
     @records = ActiveRecord::Base.connection.execute("select * from get_currency_rates(840)")    
