@@ -2,7 +2,7 @@
   <%= @newsitem.caption %></h2>
 </p>
 <p>  
-  <%= @newsitem.creation_date %>
+  <i class="fa fa-calendar" aria-hidden="true"></i> <%= I18n.localize @newsitem.creation_date, format: :long %>
 </p>
 <p>
   <%= raw(@newsitem.body) %>

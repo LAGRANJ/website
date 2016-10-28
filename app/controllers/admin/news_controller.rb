@@ -2,7 +2,7 @@ class Admin::NewsController < ApplicationController
   layout "admin_application"
   before_action :set_newsitem, only: [:show, :edit, :update, :delete]
   def index
-  	@newsitems = Newsitem.all
+  	@newsitems = Newsitem.order(:creation_date=>:desc)
   end
 
   def new

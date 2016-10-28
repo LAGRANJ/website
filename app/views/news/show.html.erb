@@ -4,6 +4,20 @@
     <div class = 'col-xs-9 col-md-9'>
       <div class = 'main_content'>
         <%= render 'shared/show_newsitem', newsitem: @newsitem %>
+        <hr/>
+        <h4>Последние новости</h4>
+        <ul class = "news_list">
+          <% @newsitems.each do |newsitem| %>
+            <li>
+              <span class = 'date'><%= newsitem.creation_date.mday %><br/>
+                <%= MonthShortName(newsitem.creation_date.mon) %></span>
+              <%= link_to news_details_path(newsitem[:id]) do %>
+                <b><%= newsitem.caption %></b><br/>
+                <%= newsitem.description %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
       </div>
     </div>
     <div class = "col-xs-3 col-md-3" style="padding-right:0px;">
@@ -50,10 +64,10 @@
         </div>
         <script type="text/javascript">
           $(".banner").hover(function() {
-                                                                                                  $(this).children('.read_more').fadeIn('normal');
-                                                                                                },function() {
-                                                                                                  $(this).children('.read_more').fadeOut('normal');
-                                                                                                });
+                                                                                                            $(this).children('.read_more').fadeIn('normal');
+                                                                                                          },function() {
+                                                                                                            $(this).children('.read_more').fadeOut('normal');
+                                                                                                          });
         </script>
       </div>
     </div>

@@ -3,9 +3,11 @@ require 'json'
 
 class MainController < ApplicationController
   def index
-    cookies[:userid]=SecureRandom.uuid
-    @mainnewsitem = Newsitem.where(priority:0).first    
-    @newsitems = Newsitem.where(priority:1).first(5)
+    cookies[:userid]=SecureRandom.uuid    
+    @newsitems = Newsitem.order(creation_date: :desc, priority: :asc).first(10)
+    @mainnewsitem = @newsitems.first
+
+
     @allbanners = SpecialOffer.order(priority: :desc) 
     @mainbigbanner = @allbanners.first
     @bigbanners = @allbanners.select{|x| x!=@mainbigbanner}

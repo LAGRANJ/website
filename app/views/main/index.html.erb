@@ -82,13 +82,13 @@
           <span class = 'date'><%= @mainnewsitem.creation_date.mday %><br/>
             <%= MonthShortName(@mainnewsitem.creation_date.mon) %></span>
           <%= link_to news_details_path(@mainnewsitem[:id]) do %>
-            <b><%= @mainnewsitem.caption %></b><br/>
+            <b><%= @mainnewsitem.caption.upcase %></b><br/>
             <%= @mainnewsitem.description %>
           <% end %>
         </div>
       <% end %>
       <ul class = "news_list">
-        <% @newsitems.each do |newsitem| %>
+        <% @newsitems.select{|n| n!=@mainnewsitem}.each do |newsitem| %>
           <li>
             <span class = 'date'><%= newsitem.creation_date.mday %><br/>
               <%= MonthShortName(newsitem.creation_date.mon) %></span>
