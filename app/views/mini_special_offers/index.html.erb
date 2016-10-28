@@ -1,0 +1,14 @@
+<table class = 'table table-hover'>
+  <thead>
+  </thead>
+  <tbody>
+    <% @mini_special_offers.each do |mini_special_offer| %>
+      <tr>
+      	<td><%= link_to image_tag(mini_special_offer.image.url(:med)), mini_special_offer.image.url %></td>
+        <td><%= mini_special_offer.creation_date %></td>
+        <td><%= mini_special_offer.caption %></td>
+        <td><%= mini_special_offer.description %></td>        
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+
   get 'special_offers/index', as: "special_offers"
   get 'special_offers/show/:id', to:"special_offers#show", as: "special_offer"
+  get 'mini_special_offers/index', as: "mini_special_offers"
+  get 'mini_special_offers/show/:id', to:"mini_special_offers#show", as: "mini_special_offer"
 
   namespace :admin do
     get 'deposit_types/show'

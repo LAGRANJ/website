@@ -1,11 +1,11 @@
-<%= image_tag(@mini_special_offer.image.url(:large)) %>
+
+<%= image_tag(mini_special_offer.image.url(:large)) %>
 <h2>
-  <%= @mini_special_offer.caption %></h2>
+  <%= mini_special_offer.caption %></h2>
 </p>
 <p>  
-  <%= @mini_special_offer.creation_date %>
+  <%= mini_special_offer.creation_date %>
 </p>
 <p>
-  <%= raw(@mini_special_offer.body) %>
+  <%= raw(mini_special_offer.body) %>
 </p>
-
