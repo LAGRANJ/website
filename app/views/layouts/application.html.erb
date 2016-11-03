@@ -69,8 +69,8 @@
           <li>
             <a href="#"><strong>О НАШЕМ БАНКЕ</strong></a>
           </li>
-          <li>
-            <a href="#">Руководство</a>
+          <li>            
+            <%= link_to("Руководство", management_path())%>
           </li>
           <li>
             <%= link_to("Филиалы и сберкассы", offices_path())%>
@@ -260,7 +260,7 @@
                     <ul>
                       <li><a href="#" class="nav-child"><strong>О БАНКЕ</strong></a></li>
                       <li><a href="#">Банк сегодня</a></li>
-                      <li><a href="#">Руководство</a></li>
+                      <li><%= link_to("Руководство", management_path())%></li>
                       <li><%= link_to("Филиалы и сберкассы", offices_path())%></li>
                       <li><%= link_to("Банкоматы и постерминалы",posterminals_path())%>
                         <li><%= link_to("Корреспондентская сеть",corraccounts_path())%>

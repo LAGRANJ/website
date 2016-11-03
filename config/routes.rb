@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'management/index'
+  get 'management/index', as: "management"
 
   get 'special_offers/index', as: "special_offers"
   get 'special_offers/show/:id', to:"special_offers#show", as: "special_offer"
