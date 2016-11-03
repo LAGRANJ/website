@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'management/index'
+
   get 'special_offers/index', as: "special_offers"
   get 'special_offers/show/:id', to:"special_offers#show", as: "special_offer"
   get 'mini_special_offers/index', as: "mini_special_offers"
@@ -34,6 +36,7 @@ Rails.application.routes.draw do
     resources :special_offers
     resources :mini_special_offers
     resources :offices
+    resources :managers
     root "offices#index"
 
   end

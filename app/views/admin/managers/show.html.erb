@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+<% if @manager.type_id==1 %>
+          <td>Член правления банка</td>
+        <% else %>
+          <td>Член совета директоров</td>
+        <% end %>
+<%= render "shared/manager", manager:@manager %>
+
+<%= link_to 'Edit', edit_admin_manager_path(@manager) %> |
+<%= link_to 'Back', admin_managers_path %>

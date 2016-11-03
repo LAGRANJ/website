@@ -1,0 +1,49 @@
+#management .container {  
+  
+  background-color: #fff;
+  padding: 0 20px 20px;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.075);
+  -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.075);
+  -moz-box-shadow: 0 2px 5px rgba(0,0,0,0.075);
+  text-align: left;
+}
+.avatar-flip {
+  border-radius: 10px;
+  overflow: hidden;
+  height: 200px;
+  width: 150px;
+  position: relative;
+  margin: 20px 40px 10px 10px;
+  float: left;
+  top: 0px;
+  box-shadow: 0 0 0 2px #f0f0f0;
+  -webkit-box-shadow: 0 0 0 2px #f0f0f0;
+  -moz-box-shadow: 0 0 0 2px #f0f0f0;
+}
+.avatar-flip img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+#management.h2 {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #333;
+}
+#management.h4 {
+  font-size: 13px;
+  color: #00baff;
+  letter-spacing: 1px;
+  margin-bottom: 25px
+}
+#management.p {
+  font-size: 16px;
+  line-height: 26px;
+  margin-bottom: 20px;
+  color: #666;
+}

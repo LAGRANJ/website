@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+<h1>Managers</h1>
+<table class='table table-hover'>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>ФИО</th>
+      <th>Должность</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @managers.each do |manager| %>
+      <tr>
+        <td><%= link_to image_tag(manager.photo.url(:small)), manager.photo.url %></td>        
+        <% if manager.type_id==1 %>
+          <td>Член правления банка</td>
+        <% else %>
+          <td>Член совета директоров</td>
+        <% end %>
+        <td><%= manager.fullname %></td>
+        <td><%= manager.title %></td>
+
+        <td><%= link_to("Просмотр", admin_manager_path(manager)) %></td>
+        <td><%= link_to("Изменить", edit_admin_manager_path(manager)) %></td>
+        <td><%= link_to("Удалить", admin_managers_path(manager), method: :delete, data: { confirm: 'Вы действительно хотите удалить?' }) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<%= link_to 'New Manager', new_admin_manager_path %>

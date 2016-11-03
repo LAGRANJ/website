@@ -1,0 +1,44 @@
+<%= form_for([:admin, manager]) do |f| %>
+  <% if manager.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(manager.errors.count, "error") %> prohibited this manager from being saved:</h2>
+
+      <ul>
+      <% manager.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= f.label :type_id, "Тип" %>
+    <%= f.select :type_id, [["Член правления банка",1],["Член совета директоров",2]], {}, {class:"form-control" }%>
+  </div>
+  <div class="form-group">
+    <%= f.label :fullname, "ФИО" %>
+    <%= f.text_field :fullname, class:"form-control", rows:10 %>
+  </div>
+  <div class="form-group">
+    <%= f.label :title, "Должность" %>
+    <%= f.text_field :title, class:"form-control", rows:10 %>
+  </div>  
+  <div class="form-group">
+    <%= f.label :biography, "Биография" %>
+    <%= f.text_area :biography, class:"form-control", rows:5 %>
+  </div>
+  <div class="form-group">
+    <%= f.label :addresstoclients, "Обращение к клиентам" %>
+    <%= f.text_area :addresstoclients, class:"form-control", rows:5 %>
+  </div>
+  <div class="form-group">
+    <%= f.label :dateofbirht, "Дата рождения" %>
+    <%= f.text_field :dateofbirth, class:"form-control"%>
+  </div>
+  <div class="form-group">
+    <label for="image">Фото</label>
+    <%= f.file_field :photo %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Сохранить"%>
+  </div>
+<% end %>
