@@ -1,5 +1,5 @@
 #Redis.current = Redis.new(:host => ENV["REDIS_HOST"], :port => ENV["REDIS_PORT"])
-Redis.current = Redis.new(:host => "176.126.167.105", :port => 6379)
+Redis.current = Redis.new(:host => "176.126.167.105", :port => 6379, :password=>"foobared")
 
 OFFICES = JSON.parse(Redis.current.get("offices"))
 CREDITS_PURPOSES = JSON.parse(Redis.current.get("credit_purposes"))
