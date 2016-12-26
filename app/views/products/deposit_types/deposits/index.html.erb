@@ -1,35 +1,24 @@
-<div class="page-header">
-  <h1> <small><% if params["client_type"].to_i == 2%>
-        Корпоративным клиентам
-    <% else %>
-        Частным клиентам
-    <% end %></small></h1>
-</div>
-<div class = "container">
+<%= render layout: "shared/one_column_sidebar", locals:{title: @deposit_type["Name"], subtitle: params["client_type"].to_i == 2?"Корпоративным клиентам": "Частным клиентам"} do %>
   <% @deposit_products.select{|prod| prod["TypeID"]==params[:type_id].to_i && prod["OrganizationTypeID"] == params[:client_type].to_i }.each do |product| %>
-    <div class = "row">
-      <div class="col-md-9 col-lg-9 blogShort">
-        <div class="rate">&le;<%=product["MaxRate"]%></div>
-        <h3 style="color: #d40000;"><%=product["Name"]%></h3>
-        <article>
-          <p>
-            <%=product["Description"]%>
-          </p>
-        </article>
-        <table class="table table-striped">
-          <tbody>
-            <% @deposit_currencies.select{|depcurr| depcurr["ProductID"]==product["ProductID"] }.each do |depcurr| %>
-              <tr>
-                <td><%= GetCurrencyName(depcurr["CurrencyID"])%></td>                
-                <td><%= depcurr["MinPeriod"]%>-<%= depcurr["MaxPeriod"]%>мес.</td>
-                <td><%= depcurr["MinRate"]%>-<%= depcurr["MaxRate"]%>%</td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-        <div style="float:right; margin-bottom:15px;"><a href="<%=products_deposit_types_depositdetails_path(params[:client_type],params[:type_id],product["ProductID"])%>" >Подробнее <i class="fa fa-chevron-right" aria-hidden="true"></i></a></div>
-      </div>
-    </div>
+    <div class="rate">&le;<%=product["MaxRate"]%></div>
+    <h3 style="color: #d40000;"><%=product["Name"]%></h3>
+    <article>
+      <p>
+        <%=product["Description"]%>
+      </p>
+    </article>
+    <table class="table table-striped">
+      <tbody>
+        <% @deposit_currencies.select{|depcurr| depcurr["ProductID"]==product["ProductID"] }.each do |depcurr| %>
+          <tr>
+            <td><%= GetCurrencyName(depcurr["CurrencyID"])%></td>
+            <td><%= depcurr["MinPeriod"]%>-<%= depcurr["MaxPeriod"]%>мес.</td>
+            <td><%= depcurr["MinRate"]%>-<%= depcurr["MaxRate"]%>%</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div style="float:right; margin-bottom:15px;"><a href="<%=products_deposit_types_depositdetails_path(params[:client_type],params[:type_id],product["ProductID"])%>" >Подробнее <i class="fa fa-chevron-right" aria-hidden="true"></i></a></div>
+    <div style="clear:both;"></div>
   <% end %>
-</div>
- 
+<% end %>

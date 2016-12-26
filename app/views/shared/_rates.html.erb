@@ -1,0 +1,151 @@
+<div class = 'main_content2'>
+  <h4><i class="fa fa-line-chart fa-1x" style="color:#d40000;padding-right:10px;"></i>
+    Текущие курсы валют</h4>
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h5 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Наличные</a>
+          <a data-container="body" data-toggle="popover" data-placement="bottom" data-html=true data-title="Уважаемые клиенты!" data-content="<b>ОАО 'ФинансКредитБанк КАБ'</b> оставляет за собой право устанавливать индивидуальные курсы, согласно решению уполномоченных органов, в соответствии с законодательством Кыргызской Республики." data-trigger='hover' style="position:absolute;right:30px;">
+                <i class="fa fa-exclamation-circle fa-lg" aria-hidden="true"></i>
+        </a>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <table class = "rates_table">
+          <tr>
+            <td width="45%" class=rate>
+              <span>Покупка</span>
+            </td>
+            <td>
+            </td>
+            <td width="45%" class='rate'>
+              <span>Продажа</span>
+            </td>
+          </tr>
+          <% currencies.each do |currencyid| %>
+            <tr>
+              <td class='rate'>
+                <b>
+                  <% if market_rates_cash["#{currencyid}"]["BuyStatus"] == 1%>
+                    <i class="fa fa-caret-up" aria-hidden="true" style="color:red;"></i>
+                  <% elsif market_rates_cash["#{currencyid}"]["BuyStatus"] == -1 %>
+                    <i class="fa fa-caret-down" aria-hidden="true" style="color:blue;"></i>
+                  <% end %>
+                  <%= market_rates_cash["#{currencyid}"]["BuyRate"] %>
+                </b>
+              </td>
+              <td class = 'cur_sym'>
+                <%= market_rates_cash["#{currencyid}"]["Code"] %>
+              </td>
+              <td class='rate'>
+                <b>
+                  <% if market_rates_cash["#{currencyid}"]["SellStatus"] == 1%>
+                    <i class="fa fa-caret-up" aria-hidden="true" style="color:red;"></i>
+                  <% elsif market_rates_cash["#{currencyid}"]["SellStatus"] == -1 %>
+                    <i class="fa fa-caret-down" aria-hidden="true" style="color:blue;"></i>
+                  <% end %>
+                  <%= market_rates_cash["#{currencyid}"]["SellRate"] %>
+                </b>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+          Безналичные</a>
+        <a data-container="body" data-toggle="popover" data-placement="bottom" 
+                data-html=true 
+                data-title="Уважаемые клиенты!"
+                data-content="<b>ОАО 'ФинансКредитБанк КАБ'</b> оставляет за собой право устанавливать индивидуальные курсы, согласно решению уполномоченных органов, в соответствии с законодательством Кыргызской Республики."
+              data-trigger='hover' style="position:absolute;right:30px;">
+                <i class="fa fa-exclamation-circle fa-lg" aria-hidden="true"></i>    </a>
+    </h4>
+  </div>
+  <div id="collapseThree" class="panel-collapse collapse">
+    <div class="panel-body">
+      <table class = "rates_table">
+        <tr>
+          <td width="40%" class=rate>
+            <span>Покупка</span>
+          </td>
+          <td>
+          </td>
+          <td width="40%" class=rate>
+            <span>Продажа</span>
+          </td>
+        </tr>
+        <% currencies.each do |currencyid| %>
+          <tr>
+            <td class=rate>
+              <b><% if market_rates_noncash["#{currencyid}"]["BuyStatus"] == 1%>
+                  <i class="fa fa-caret-up" aria-hidden="true" style="color:red;"></i>
+                <% elsif market_rates_noncash["#{currencyid}"]["BuyStatus"] == -1 %>
+                  <i class="fa fa-caret-down" aria-hidden="true" style="color:blue;"></i>
+                <%end%>
+                <%= market_rates_noncash["#{currencyid}"]["BuyRate"] %></b>
+            </td>
+            <td class='cur_sym'>
+              <%= market_rates_noncash["#{currencyid}"]["Code"] %>
+            </td>
+            <td class=rate>
+              <b><% if market_rates_noncash["#{currencyid}"]["SellStatus"] == 1%>
+                  <i class="fa fa-caret-up" aria-hidden="true" style="color:red;"></i>
+                <% elsif market_rates_noncash["#{currencyid}"]["SellStatus"] == -1 %>
+                  <i class="fa fa-caret-down" aria-hidden="true" style="color:blue;"></i>
+                <%end%>
+                <%= market_rates_noncash["#{currencyid}"]["SellRate"] %></b>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+        НБКР</a>
+    </h4>
+  </div>
+  <div id="collapseFour" class="panel-collapse collapse">
+    <div class="panel-body">
+      <table class = "rates_table">
+        <tr>
+          <td width="30%" class=rate>
+            Валюта
+                </td>
+          <td width="70%" class=rate>
+            <span>Ставка</span>
+          </td>
+        </tr>
+        <% currencies.each do |currencyid| %>
+          <tr>
+            <td class=rate style="color:#d40000;">
+              <%= currency_rates["#{currencyid}"]["Code"] %>
+            </td>
+            <td class=rate>
+              <b>
+                <% if currency_rates["#{currencyid}"]["SellStatus"] == 1%>
+                  <i class="fa fa-caret-up" aria-hidden="true" style="color:red;"></i>
+                <% elsif currency_rates["#{currencyid}"]["SellStatus"] == -1 %>
+                  <i class="fa fa-caret-down" aria-hidden="true" style="color:blue;"></i>
+                <%end%>
+                <%= currency_rates["#{currencyid}"]["SellRate"] %>
+              </b>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+</div>

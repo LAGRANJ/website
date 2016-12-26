@@ -1,3 +1,4 @@
+<%= render layout: "/admin/admin_menu" do %>
 <%= form_for([:admin, cash_terminal]) do |f| %>
   <% if cash_terminal.errors.any? %>
     <div id="error_explanation">

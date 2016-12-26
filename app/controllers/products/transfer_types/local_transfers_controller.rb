@@ -1,4 +1,7 @@
-class Products::TransferTypes::LocalTransfersController < ApplicationController
+class Products::TransferTypes::LocalTransfersController < ApplicationController  
+    add_breadcrumb "Главная страница", :root_path 
+  before_action :init_sidebar_data, only:[:index,:show_cliring_gross,:show_swift,:show_branch_transfers]
+  before_action :add_def_breadcrumb, only:[:index,:show_cliring_gross,:show_swift,:show_branch_transfers]  
   def index        
     @transfer_type_details = TransferTypeDetail.all
     @transfer_types = JSON.parse(Redis.current.get("transfer_types")).select{
@@ -55,4 +58,7 @@ class Products::TransferTypes::LocalTransfersController < ApplicationController
       format.json { render json: {"interest" => 18,"payment"=> 5699 } }
     end
   end
+  def add_def_breadcrumb
+    add_breadcrumb "Виды переводов", products_transfer_types_path(params["client_type"])
+  end 
 end

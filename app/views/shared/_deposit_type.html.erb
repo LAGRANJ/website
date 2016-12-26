@@ -1,19 +1,14 @@
-<div class="col-lg-6">
-            <div class="well">            	
-                <%= image_tag(details.image.url(:large)) %>
 
-        		<h2 class="text-warning"><%= abs_deposit_type["Name"] %></h2>
-                <h3><%=details.caption %></h3>
-        		<hr/> 
-        		<p><%=raw(details.description)%></p>
-        		<hr>
-        		<h3><%=details.footer %></h3>
-        		<hr>
-        		<p>
-                <%= link_to products_deposit_types_deposits_path(params["client_type"].to_i, abs_deposit_type["TypeID"]), :title => "Узнать больше", :class=> "btn btn-danger btn-large" do %>
-                        <i class="icon-ok"></i> Узнать больше
-                     <% end %>
-                     </p>
-
-        	</div>
-        </div>
+<div class="col-sm-6 col-md-6">
+  <div class="thumbnail">
+    <%= image_tag(details.image.url(:large), :style => "width: 100%;") %>
+    <div class="caption">
+      <h3 class="text-warning"><%= abs_deposit_type["Name"] %></h3>
+      <p class="card-description"><strong><%=details.description %></strong>
+        <strong><%=details.footer %></strong></p>
+      <p><%= link_to products_deposit_types_deposits_path(params["client_type"].to_i, abs_deposit_type["TypeID"]), :title => "Узнать больше", :class=> "btn btn-danger btn-large" do %>
+          <i class="icon-ok"></i> Узнать больше
+                     <% end %></p>
+    </div>
+  </div>
+</div>

@@ -1,14 +1,33 @@
-<table class = 'table table-hover'>
-  <thead>
-  </thead>
-  <tbody>
-    <% @mini_special_offers.each do |mini_special_offer| %>
-      <tr>
-      	<td><%= link_to image_tag(mini_special_offer.image.url(:med)), mini_special_offer.image.url %></td>
-        <td><%= mini_special_offer.creation_date %></td>
-        <td><%= mini_special_offer.caption %></td>
-        <td><%= mini_special_offer.description %></td>        
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render layout: "shared/one_column_sidebar", locals:{title:"Акции", subtitle:""} do %>
+  <% @special_offers.each do |banner| %>
+    <div class="col-lg-10 col-md-10">
+      <div style="box-shadow: 0 0 15px rgba(0,0,0,0.5); margin: 10px;">
+        <div class = "banner ac_ban" style="height:300px;">
+          <%= link_to special_offer_path(banner.id) do %>
+            <%= image_tag(banner.image.url(:large)) %>
+          <% end %>
+        </div>
+      </div>
+      <div style="margin:10px">
+        <small><%= banner.creation_date %></small><br/> 
+        <strong><%= banner.caption %></strong>
+      </div>
+    </div>
+  <% end %>
+
+  <% @mini_special_offers.each do |minibanner| %>
+    <div class="col-lg-4 col-md-4">
+      <div style="box-shadow: 0 0 15px rgba(0,0,0,0.5); margin: 10px;">
+        <div class = "banner ac_ban" style="height:300px;">
+          <%= link_to mini_special_offer_path(minibanner.id) do %>
+            <%= image_tag(minibanner.image.url(:large)) %>
+          <% end %>
+        </div>
+      </div>
+      <div style="margin:10px">
+        <small><%= minibanner.creation_date %></small><br/>
+        <strong><%= minibanner.caption %></strong>
+      </div>
+    </div>
+  <% end %>
+<% end %>

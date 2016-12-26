@@ -1,6 +1,5 @@
 class OfficeController < ApplicationController
-  add_breadcrumb "Главная страница", :root_path
-  add_breadcrumb "Филиалы и отделения Банка", :offices_path
+  add_breadcrumb "Главная страница", :root_path  
   def index
   	@office = OFFICES.select{|x| x["ID"] == 19 }.first
   end

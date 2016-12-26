@@ -1,31 +1,28 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Отделения банка</h1>
-
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% OFFICES.sort_by{|x| x["BranchID"].to_i-(x["IsMainOffice"]?1:0)}.each do |absoffice|%>      
-      <% office = @offices.select{|x| x.officeid == absoffice["ID"]}.first %>
-      <% unless office %>
-        <% office = Office.create(officeid: absoffice["ID"])%>
-        <% office.save %>
-      <% end %>
+  <p id="notice"><%= notice %></p>
+  <h1>Отделения банка</h1>
+  <table class="table table-hover">
+    <thead>
       <tr>
-        <td><%= absoffice["Name"] %></td>
-        <td><%= office.lon %>-<%= office.lat %></td>
-        <td><%= link_to 'Показать', admin_office_path(office) %></td>
-        <td><%= link_to 'Изменить', edit_admin_office_path(office) %></td>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-<br>
+    </thead>
+    <tbody>
+      <% OFFICES.sort_by{|x| x["BranchID"].to_i-(x["IsMainOffice"]?1:0)}.each do |absoffice|%>
+        <% office = @offices.select{|x| x.officeid == absoffice["ID"]}.first %>
+        <% unless office %>
+          <% office = Office.create(officeid: absoffice["ID"])%>
+          <% office.save %>
+        <% end %>
+        <tr>
+          <td><%= absoffice["Name"] %></td>
+          <td><%= office.lon %>-<%= office.lat %></td>
+          <td><%= link_to 'Показать', admin_office_path(office) %></td>
+          <td><%= link_to 'Изменить', edit_admin_office_path(office) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>

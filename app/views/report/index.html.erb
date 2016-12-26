@@ -1,48 +1,44 @@
-<div class = "container">
-  <div class = "row">
-    <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
-      <h3> Ежемесячные отчеты</h3>
-      <hr/>
-      <% @reports.select{|x| x.type_id==1}.each do |report| %>
-        <div class="item-report annual">
+<%= render layout: "shared/one_column_sidebar", locals:{title:"Финансовые отчеты", subtitle:""} do %>
+  <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+    <h3> Ежемесячные отчеты</h3>
+    <hr/>
+    <% @reports.select{|x| x.type_id==1}.each do |report| %>
+      <div class="item-report annual">
         <%=link_to "/files/fin_reports/#{report.report_path}" do %>
           <div class="title-block">
             <div class="big">Финансовый отчет за <%=MonthLongName(report.period_id)%> <%=report.year%> г.</div>
           </div>
           <i class="file fa fa-file-pdf-o fa-2x"></i>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-    <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
-      <h3> Ежеквартальные отчеты</h3>
-      <hr/>
-      <% @reports.select{|x| x.type_id==2}.each do |report| %>
-        <div class="item-report annual">
-          <%=link_to "/files/fin_reports/#{report.report_path}" do %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+    <h3> Ежеквартальные отчеты</h3>
+    <hr/>
+    <% @reports.select{|x| x.type_id==2}.each do |report| %>
+      <div class="item-report annual">
+        <%=link_to "/files/fin_reports/#{report.report_path}" do %>
           <div class="title-block">
-          	
             <div class="big">Финансовый отчет за <%=QuaterName(report.period_id)%> <%=report.year%> г.</div>
-
           </div>
           <i class="file fa fa-file-pdf-o fa-2x"></i>
-          <%end %>
-        </div>
-      <% end %>
-    </div>
-    <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
-      <h3> Ежегодные отчеты</h3>
-      <hr/>
-      <% @reports.select{|x| x.type_id==3}.each do |report| %>
-        <div class="item-report annual">
+        <%end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+    <h3> Ежегодные отчеты</h3>
+    <hr/>
+    <% @reports.select{|x| x.type_id==3}.each do |report| %>
+      <div class="item-report annual">
         <%=link_to "/files/fin_reports/#{report.report_path}" do %>
           <div class="title-block">
             <div class="big">Финансовый отчет за <%=report.year%> г.</div>
           </div>
           <i class="file fa fa-file-pdf-o fa-2x"></i>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
-</div>
+<% end %>

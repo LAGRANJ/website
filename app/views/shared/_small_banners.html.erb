@@ -1,0 +1,11 @@
+<div class = 'banners'>
+    <%= render partial: "/shared/small_banner", locals:{banners:banners.select{|x| x.priority==1},class_name:"first_bg",interval:6000}%>  
+    <%= render partial: "/shared/small_banner", locals:{banners:banners.select{|x| x.priority!=1},class_name:"second_bg",interval:10000}%>
+</div>
+<script type="text/javascript">
+  $(".banner").hover(function() {
+        $(this).children('.read_more').fadeIn('normal');
+        },function() {
+        $(this).children('.read_more').fadeOut('normal');
+        });
+</script>

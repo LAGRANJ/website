@@ -1,18 +1,13 @@
-<div class="col-lg-4">
-        <div class="well">
-          <%= image_tag(credit_type.image.url(:large), :style => "width: 100%;") %>
-          <h2 class="text-warning"><%= purpose["Name"] %></h2>
-          <hr/>
-          <h3><%=credit_type.footer %></h3>
-          <hr/>
-          <p><%=credit_type.description %></p>
-          <hr>
-          <h3><%=credit_type.footer %></h3>
-          <hr>
-          <p>
-            <%= link_to products_credit_types_credits_path(params["client_type"].to_i, purpose["ID"]), :title => "Узнать больше", :class=> "btn btn-danger btn-large" do %>
-              <i class="icon-ok"></i> Узнать больше
-                     <% end %>
-          </p>
-        </div>
-      </div>
+<div class="col-sm-6 col-md-6">
+  <div class="thumbnail">
+    <%= image_tag(credit_type.image.url(:large), :style => "width: 100%;") %>
+    <div class="caption">
+      <h3 class="text-warning"><%= purpose["Name"] %></h3>
+      <p class="card-description"><strong><%=credit_type.description %></strong>
+        <strong><%=credit_type.footer %></strong></p>
+      <p><%= link_to products_credit_types_credits_path(params["client_type"].to_i, purpose["ID"]), :title => "Узнать больше", :class=> "btn btn-danger btn-large" do %>
+          <i class="icon-ok"></i> Узнать больше
+                     <% end %></p>
+    </div>
+  </div>
+</div>

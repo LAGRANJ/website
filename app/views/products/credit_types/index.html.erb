@@ -1,27 +1,18 @@
-<div class="page-header">
-  <h1>Кредиты<small><% if params["client_type"].to_i == 2%>
-        Корпоративным клиентам
-    <% else %>
-        Частным клиентам
-    <% end %></small></h1>
-</div>
-<div class="container">
-  <div class="row">
-    <% count =0 %>
-    <% @credit_purposes.select{|purp| purp["IsForCompanies"] && params["client_type"].to_i == 2 || 
+<%= render layout: "shared/one_column_sidebar", locals:{title:"Кредиты",subtitle:params["client_type"].to_i == 2?"Корпоративным клиентам": "Частным клиентам"} do %>
+  <% count =0 %>
+  <% @credit_purposes.select{|purp| purp["IsForCompanies"] && params["client_type"].to_i == 2 || 
         purp["IsForIndividuals"] && params["client_type"].to_i == 1}.each do |purpose| %>
-      <% count = count+1 %>
-      <% credit_type = @credit_types.select{|ct| ct.type_id == purpose["ID"]}.first %>
-            <% if credit_type==nil %>
-                <% credit_type = CreditType.new;%>
-            <% end %>
-      <%= render "shared/credit_type", purpose: purpose, credit_type: credit_type%>
-      <% if count == 3 %>
-        <div class="clearfix visible-lg-block"></div>
-      <% end %>
-      <% if count == 2 %>
-        <div class="clearfix visible-sm-block"></div>
-      <% end %>
+    <% count = count+1 %>
+    <% credit_type = @credit_types.select{|ct| ct.type_id == purpose["ID"]}.first %>
+    <% if credit_type==nil %>
+      <% credit_type = CreditType.new;%>
     <% end %>
-  </div>
-</div>
+    <%= render "shared/credit_type", purpose: purpose, credit_type: credit_type%>
+    <% if count == 2 %>
+      <div class="clearfix visible-lg-block"></div>
+    <% end %>
+    <% if count == 1 %>
+      <div class="clearfix visible-sm-block"></div>
+    <% end %>
+  <% end %>
+<% end %>

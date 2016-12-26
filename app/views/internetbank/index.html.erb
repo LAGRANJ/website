@@ -1,89 +1,91 @@
-<div class="page-header">
-  <h1>Тарифы за Интернет банкинг</h1>
-</div>
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Наименование тарифа</th>
-      <th>Физ.лицам</th>
-      <th>Юр.лицам</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td scope="row">Подключение</td>
-      <td>Бесплатно</td>
-      <td>Бесплатно</td>
-    </tr>
-    <tr>
-      <td>Абонентская плата (ежемесячно)</td>
-      <td>Бесплатно</td>
-      <td>300 сом</td>
-    </tr>
-    <tr>
-      <th scope="row">Предоставление сертификата</td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td scope="row"><i class="fa fa-caret-right" aria-hidden="true"></i>  на СD</td>
-      <td>100 сом</td>
-      <td>100 сом</td>
-    </tr>
-    <tr>
-      <td scope="row"><i class="fa fa-caret-right" aria-hidden="true"></i>  на флеш-карту</td>
-      <td>500 сом</td>
-      <td>500 сом</td>
-    </tr>
-    <tr>
-      <td scope="row"><i class="fa fa-caret-right" aria-hidden="true"></i>  Е-токен (ЭЦП)</td>
-      <td>2700 сом</td>
-      <td>2700 сом</td>
-    </tr>
-    <tr>
-      <td scope="row">Повторное предоставление Пин-конверта (логин/пароль)</td>
-      <td>100 сом</td>
-      <td>100 сом</td>
-    </tr>
-    <tr>
-      <td scope="row">Предоставление дополнительного доступа</td>
-      <td>1000 сом</td>
-      <td>1000 сом</td>
-    </tr>
-    <tr>
-      <td scope="row">Блокировка/разблокировка доступа к системе</td>
-      <td>Бесплатно</td>
-      <td>Бесплатно</td>
-    </tr>
-    <tr>
-      <td scope="row">Удаленная помощь специалиста Банка клиенту по телефону при самостоятельной установке</td>
-      <td>Бесплатно</td>
-      <td>Бесплатно</td>
-    </tr>
-    <tr>
-      <th scope="row">Выезд специалиста Банка к Клиенту для установки:</td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td scope="row"><i class="fa fa-caret-right" aria-hidden="true"></i>  в пределах г. Бишкек, г. Ош;</td>
-      <td>500 сом</td>
-      <td>500 сом</td>
-    </tr>
-    <tr>
-      <td scope="row"><i class="fa fa-caret-right" aria-hidden="true"></i>  за пределы г. Бишкек, г. Ош;</td>
-      <td>700 сом</td>
-      <td>700 сом</td>
-    </tr>
-    <tr>
-      <td scope="row"><i class="fa fa-caret-right" aria-hidden="true"></i>  в отдаленные регионы (более 100 км. от г. Бишкек, г. Ош.)</td>
-      <td>1000 сом</td>
-      <td>1000 сом</td>
-    </tr>
-    <tr>
-      <td scope="row">Абонентская плата при уровне доступа «Интернет выписка»</td>
-      <td>Бесплатно</td>
-      <td>Бесплатно</td>
-    </tr>
-  </tbody>
-</table>
+<%= render layout: "shared/one_column_sidebar", locals:{title:"Внутренние cистемы денежных переводов", subtitle:params["client_type"].to_i == 2?"Корпоративным клиентам": "Частным клиентам"} do %>
+  <div class="page-header">
+    <h1>Тарифы за Интернет банкинг</h1>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Наименование тарифа</th>
+        <th>Физ.лицам</th>
+        <th>Юр.лицам</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td scope="row">Подключение</td>
+        <td>Бесплатно</td>
+        <td>Бесплатно</td>
+      </tr>
+      <tr>
+        <td>Абонентская плата (ежемесячно)</td>
+        <td>Бесплатно</td>
+        <td>300 сом</td>
+      </tr>
+      <tr>
+        <th scope="row">Предоставление сертификата</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td scope="row"><i class="fa fa-caret-right" aria-hidden="true"></i>  на СD</td>
+        <td>100 сом</td>
+        <td>100 сом</td>
+      </tr>
+      <tr>
+        <td scope="row"><i class="fa fa-caret-right" aria-hidden="true"></i>  на флеш-карту</td>
+        <td>500 сом</td>
+        <td>500 сом</td>
+      </tr>
+      <tr>
+        <td scope="row"><i class="fa fa-caret-right" aria-hidden="true"></i>  Е-токен (ЭЦП)</td>
+        <td>2700 сом</td>
+        <td>2700 сом</td>
+      </tr>
+      <tr>
+        <td scope="row">Повторное предоставление Пин-конверта (логин/пароль)</td>
+        <td>100 сом</td>
+        <td>100 сом</td>
+      </tr>
+      <tr>
+        <td scope="row">Предоставление дополнительного доступа</td>
+        <td>1000 сом</td>
+        <td>1000 сом</td>
+      </tr>
+      <tr>
+        <td scope="row">Блокировка/разблокировка доступа к системе</td>
+        <td>Бесплатно</td>
+        <td>Бесплатно</td>
+      </tr>
+      <tr>
+        <td scope="row">Удаленная помощь специалиста Банка клиенту по телефону при самостоятельной установке</td>
+        <td>Бесплатно</td>
+        <td>Бесплатно</td>
+      </tr>
+      <tr>
+        <th scope="row">Выезд специалиста Банка к Клиенту для установки:</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td scope="row"><i class="fa fa-caret-right" aria-hidden="true"></i>  в пределах г. Бишкек, г. Ош;</td>
+        <td>500 сом</td>
+        <td>500 сом</td>
+      </tr>
+      <tr>
+        <td scope="row"><i class="fa fa-caret-right" aria-hidden="true"></i>  за пределы г. Бишкек, г. Ош;</td>
+        <td>700 сом</td>
+        <td>700 сом</td>
+      </tr>
+      <tr>
+        <td scope="row"><i class="fa fa-caret-right" aria-hidden="true"></i>  в отдаленные регионы (более 100 км. от г. Бишкек, г. Ош.)</td>
+        <td>1000 сом</td>
+        <td>1000 сом</td>
+      </tr>
+      <tr>
+        <td scope="row">Абонентская плата при уровне доступа «Интернет выписка»</td>
+        <td>Бесплатно</td>
+        <td>Бесплатно</td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>

@@ -1,68 +1,63 @@
-<div class="page-header">
-  <h1>Сейфовые ячейки</h1>
-</div>
-<h2 id="credit_interest_rates"><i class="fa fa-percent" aria-hidden="true"></i>  Тарифы</h2>
-<div class="panel panel-default">
-  <div class="panel-body">
-    <div id="commissions_table">
-      <div class="panel panel-warning">
-        <!-- Default panel contents -->
-        <% @safe_types.each do |safetype|%>
-          <div class="panel-heading"><%=safetype["TypeName"]%></div>
-          <!-- Table -->
-          <table class="table">
-            <tr>
-              <th>Период(кол-во дней)</th>
-              <th>Стоимость за каждый день</th>
-            </tr>
-            <% @safe_tariffs.select{|x| x["SafeTypeID"]==safetype["TypeID"]}.each do |tariff|%>
+<%= render layout: "shared/one_column_sidebar", locals:{title:"Сейфовые ячейки", subtitle:params["client_type"].to_i == 2?"Корпоративным клиентам": "Частным клиентам"} do %>
+  <h2 id="credit_interest_rates"><i class="fa fa-percent" aria-hidden="true"></i>  Тарифы</h2>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div id="commissions_table">
+        <div class="panel panel-warning">
+          <!-- Default panel contents -->
+          <% @safe_types.each do |safetype|%>
+            <div class="panel-heading"><%=safetype["TypeName"]%></div>
+            <!-- Table -->
+            <table class="table">
               <tr>
-                <td>
-                  <%=tariff["DaysFrom"]%>-<%=tariff["DaysTo"]%>
-                </td>
-                <td><%= tariff["SummPerDay"]%> сом</td>
+                <th>Период(кол-во дней)</th>
+                <th>Стоимость за каждый день</th>
               </tr>
-            <% end %>
-          </table>
-        <% end %>
+              <% @safe_tariffs.select{|x| x["SafeTypeID"]==safetype["TypeID"]}.each do |tariff|%>
+                <tr>
+                  <td>
+                    <%=tariff["DaysFrom"]%>-<%=tariff["DaysTo"]%>
+                  </td>
+                  <td><%= tariff["SummPerDay"]%> сом</td>
+                </tr>
+              <% end %>
+            </table>
+          <% end %>
+        </div>
       </div>
     </div>
-    <h2><i class="fa fa-calculator" aria-hidden="true"></i>Рассчитайте комиссию перевода</h2>
-    <div class="panel panel-warning">
-      <div class="panel-body">
-        <%= form_tag(products_transfer_types_branch_transfers_calculate_commission_fee_path, remote: true, method: "post", class: "nifty_form") do %>
-          <div class = "container-fluid">
-            <div class="row">
-              <div class="col-lg-4">
-                <div class="form-group">
-                  <%= label_tag(:dayscount, "Количество дней:") %>
-                  <%= text_field_tag(:dayscount, "0", class: "form-control") %>
+  </div>
+  <h2><i class="fa fa-calculator" aria-hidden="true"></i>Рассчитайте комиссию перевода</h2>
+  <div class="panel panel-warning">
+    <div class="panel-body">
+      <%= form_tag(products_transfer_types_branch_transfers_calculate_commission_fee_path, remote: true, method: "post", class: "nifty_form") do %>
+        <div class = "container-fluid">
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="form-group">
+                <%= label_tag(:dayscount, "Количество дней:") %>
+                <%= text_field_tag(:dayscount, "0", class: "form-control") %>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="form-group">
+                <div class="btn-group" role="group" aria-label="..." id="calculator_safesize">
+                  <b>Размер сейфа:</b><Br/>
+                  <% @safe_types.each do |safetype|%>
+                    <button type="button" class="btn <%= 'btn-danger' if @safe_types.first==safetype %> <%= 'btn-default' if @safe_types.first!=safetype %>" data-safetypeid=<%= safetype["TypeID"]%> style="margin-top:3px; width:100%;"><%= safetype["TypeName"]%></button><Br/>
+                  <% end %>
                 </div>
               </div>
-              <div class="col-lg-4">
-                <div class="form-group">
-                  <div class="btn-group" role="group" aria-label="..." id="calculator_safesize">
-                    <b>Размер сейфа:</b><Br>
-                      <% @safe_types.each do |safetype|%>
-                      <% if @safe_types.first==safetype %>
-                      <button type="button" class="btn btn-danger" data-safetypeid=<%= safetype["TypeID"]%> style="margin-top:3px; width:100%;"><%= safetype["TypeName"]%></button></Br>
-                        <% else %>
-                        <button type="button" class="btn btn-default" data-safetypeid=<%= safetype["TypeID"]%> style="margin-top:3px; width:100%;"><%= safetype["TypeName"]%></button></Br>
-                        <% end %>
-                      <% end %>
-                  </div>
-                </div>
-              </div>
-              <div class='col-lg-4'>
-                <div class="form-group">
-                <b>Стоимость сейфа:</b><Br>
-                  <div class="panel panel-primary">
-                    <div class="panel-body">                      
-                      <%= label_tag(:safe_cost, "За один день:") %>
-                      <%= text_field_tag(:safe_cost, "0", class: "form-control") %>
-                      <%= label_tag(:total_cost, "За период:") %>
-                      <%= text_field_tag(:total_cost, "0", class: "form-control") %>
-                    </div>
+            </div>
+            <div class='col-lg-4'>
+              <div class="form-group">
+                <b>Стоимость сейфа:</b><Br/>
+                <div class="panel panel-primary">
+                  <div class="panel-body">
+                    <%= label_tag(:safe_cost, "За один день:") %>
+                    <%= text_field_tag(:safe_cost, "0", class: "form-control") %>
+                    <%= label_tag(:total_cost, "За период:") %>
+                    <%= text_field_tag(:total_cost, "0", class: "form-control") %>
                   </div>
                 </div>
               </div>
@@ -72,28 +67,28 @@
       <% end %>
     </div>
   </div>
-</div>
+<% end %>
 <script type="text/javascript">
   $(document).ready(function() {
-                    calcCommissions = function ()
-                    {
-                      $.ajax({
-                        url: "<%= products_depository_calculate_commission_fee_path(params["client_type"])%>",
-                        method: 'POST',
-                        dataType: "script",
-                        data: {
-                          dayscount: $('#dayscount').val(),
-                          safetypeid: $('#calculator_safesize > .btn-danger').data("safetypeid"),
-                        },
-                      success: function(data, textStatus) {},
-                      error: function() {}
-                    });
-                  }
-                    $("#dayscount").on('change keyup paste', calcCommissions);
-                   });
-            $("#calculator_safesize > button").on("click", function(){
-                $("#calculator_safesize > .btn-danger").removeClass("btn-danger").addClass("btn-default")
-                $(this).addClass("btn-danger")
-                calcCommissions.call()
-              });
+                            calcCommissions = function ()
+                            {
+                              $.ajax({
+                                url: "<%= products_depository_calculate_commission_fee_path(params["client_type"])%>",
+                                method: 'POST',
+                                dataType: "script",
+                                data: {
+                                  dayscount: $('#dayscount').val(),
+                                  safetypeid: $('#calculator_safesize > .btn-danger').data("safetypeid"),
+                                },
+                              success: function(data, textStatus) {},
+                              error: function() {}
+                            });
+                          }
+                            $("#dayscount").on('change keyup paste', calcCommissions);
+                           });
+                    $("#calculator_safesize > button").on("click", function(){
+                        $("#calculator_safesize > .btn-danger").removeClass("btn-danger").addClass("btn-default")
+                        $(this).addClass("btn-danger")
+                        calcCommissions.call()
+                      });
 </script>

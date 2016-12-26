@@ -1,40 +1,35 @@
-<div class="page-header">
-  <h1>Реализация залогового имущества <span style="float:right;color:#000;"><i class="fa fa-phone-square" aria-hidden="true" style="color:#d40000"></i> 0555-555555</span></h1>
-</div>
-<div class = 'container'>
-  <div class = 'row'>
-    <div class = 'col-xs-12 col-md-12'>
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Залоговое обеспечение</th>
-            <th>Местоположение</th>
-            <th>Краткое описание</th>
-            <th>Стоимость с уч.НДС</th>
+<%= render layout: "shared/one_column_sidebar", locals:{title:"Реализация залогового имущества ", subtitle:"<span style='float:right;color:#000;'><i class='fa fa-phone-square' aria-hidden='true' style='color:#d40000'></i> 0555-555555</span>"} do %>
+  <div class = 'col-xs-12 col-md-12'>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Залоговое обеспечение</th>
+          <th>Местоположение</th>
+          <th>Краткое описание</th>
+          <th>Стоимость с уч.НДС</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @garants.each do |garant|%>
+          <tr data-href="<%=garant_show_path(garant.id)%>" style="cursor:pointer;">
+            <td>
+              <% if garant.garant_images.first!=nil%>
+                <%= image_tag(garant.garant_images.first.image.url(:med), class: "img-responsive img-rounded center-block")%>
+              <% end %>
+            </td>
+            <td><%= garant.name%></td>
+            <td><%= garant.region%></td>
+            <td><%= garant.description%></td>
+            <td><%= garant.cost%> сом</td>
           </tr>
-        </thead>
-        <tbody>
-          <% @garants.each do |garant|%>
-            <tr data-href="<%=garant_show_path(garant.id)%>" style="cursor:pointer;">
-              <td>
-                <% if garant.garant_images.first!=nil%>
-                  <%= image_tag(garant.garant_images.first.image.url(:med), class: "img-responsive img-rounded center-block")%>
-                <% end %>
-              </td>
-              <td><%= garant.name%></td>
-              <td><%= garant.region%></td>
-              <td><%= garant.description%></td>
-              <td><%= garant.cost%> сом</td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+        <% end %>
+      </tbody>
+    </table>
   </div>
-</div>
+<% end %>
 <script type="text/javascript">
   $('tr[data-href]').click( function() {
-      window.location = $(this).data('href');
-  });
+          window.location = $(this).data('href');
+      });
 </script>

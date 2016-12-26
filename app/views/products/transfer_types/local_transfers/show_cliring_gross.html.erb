@@ -1,6 +1,5 @@
-<div class="page-header">
-  <h1>Переводы клиринг гросс</h1>
-</div>
+<%= render layout: "shared/one_column_sidebar", locals:{title:"Переводы клиринг гросс", subtitle:params["client_type"].to_i == 2?"Корпоративным клиентам": "Частным клиентам"} do %>
+
 <h2 id="credit_interest_rates"><i class="fa fa-percent" aria-hidden="true"></i>  Тарифы</h2>
 <div class="panel panel-default">
   <div class="panel-body">
@@ -86,6 +85,7 @@
     </div>
   </div>
 </div>
+<% end %>
 <script type="text/javascript">
   $(document).ready(function() {              
               calcCommissions = function ()

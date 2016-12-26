@@ -1,11 +1,4 @@
-<div class="page-header">
-  <h1>Международные системы денежных переводов <small><% if params["client_type"].to_i == 2%> 
-    Корпоративным клиентам
-    <% else %>
-    Частным клиентам
-    <% end %></small></h1>
-</div>
-<div class = "container">
+<%= render layout: "shared/one_column_sidebar", locals:{title:"Международные системы денежных переводов", subtitle:params["client_type"].to_i == 2?"Корпоративным клиентам": "Частным клиентам"} do %>
   <% @transfer_types.each do |trtype| %>
     <% details = GetTransferTypeDetails(trtype["TypeID"])%>
     <div class = "row">
@@ -61,4 +54,4 @@
       </div>
     </div>
   <% end %>
-</div>
+<% end %>

@@ -1,0 +1,17 @@
+<%content_for :header do %>
+	<%= render partial: "/shared/header", locals: {title: title, subtitle: subtitle} %>
+<% end %>
+<%content_for :breadcrumbs do %>
+  <ol class="breadcrumb">
+    <%= render_breadcrumbs :tag => :li, :separator => "" %>
+  </ol>
+<% end %>
+<div class = 'col-xs-9 col-md-9'>
+  <%= yield %>
+</div>
+<%content_for :sidebar do %>
+  <div class = "col-xs-3 col-md-3" style="padding-right:0px;">
+    <%= render partial: "/shared/small_banners", locals: {banners:@allminibanners}%>
+    <%= render partial: "/shared/rates", locals: {market_rates_cash:@market_rates_cash,market_rates_noncash:@market_rates_noncash, currency_rates:@currency_rates, currencies: @currencies}%>
+  </div>
+<% end %>

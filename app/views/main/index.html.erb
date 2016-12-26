@@ -1,357 +1,137 @@
-<div class = "row">
-  <!-- The carousel -->
-  <div class = 'col-md-12 col-lg-12 hidden-xs hidden-sm'>
-    <div id="carousel-main" style='position: relative;'>
-      <div id="transition-timer-carousel" class="carousel slide transition-timer-carousel" data-ride="carousel">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-          <li data-target="#transition-timer-carousel" data-slide-to="0" class="active"></li>
-          <% i = 1 %>
-          <% @bigbanners.each do |bigbanner|%>
-            <li data-target="#transition-timer-carousel" data-slide-to="<%=i%>"></li>
-            <% i = i+1 %>
-          <% end %>
-        </ol>
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-          <div class="item active">
-            <% if @mainbigbanner %>
-              <%= image_tag(@mainbigbanner.image.url(:large))%>
-              <div class="slider_info">
-                <h1 class="carousel-caption-header" style="padding-bottom: 12px;color:<%=@mainbigbanner.caption_text_color%>"><%= @mainbigbanner.caption %></h1>
-                <p class="carousel-caption-text hidden-sm hidden-xs" style="color:<%=@mainbigbanner.description_text_color%>">
-                  <%= @mainbigbanner.description %>
-                </p>
-                <%=link_to special_offer_path(@mainbigbanner.id), class: "learn_more", style:"color:#{@mainbigbanner.caption_text_color}" do %>
-                  Узнать подробнее <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
-          <% @bigbanners.each do |bigbanner|%>
-            <div class="item">
-              <%= image_tag(bigbanner.image.url(:large))%>
-              <div class="slider_info">
-                <h1 class="carousel-caption-header" style="padding-bottom: 12px;color:<%=bigbanner.caption_text_color%>"><%= bigbanner.caption %></h1>
-                <p class="carousel-caption-text hidden-sm hidden-xs" style="color:<%=@mainbigbanner.description_text_color%>">
-                  <%= bigbanner.description %>
-                </p>
-                <%=link_to special_offer_path(bigbanner.id), class: "learn_more", style:"color:#{bigbanner.caption_text_color}" do %>
-                  Узнать подробнее <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                <% end %>
-              </div>
+<% content_for :bigbanners do %>
+  <div id="carousel-main" style='position: relative;'>
+    <div id="transition-timer-carousel" class="carousel slide transition-timer-carousel" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#transition-timer-carousel" data-slide-to="0" class="active"></li>
+        <% i = 1 %>
+        <% @bigbanners.each do |bigbanner|%>
+          <li data-target="#transition-timer-carousel" data-slide-to="<%=i%>"></li>
+          <% i = i+1 %>
+        <% end %>
+      </ol>
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <div class="item active">
+          <% if @mainbigbanner %>
+            <%= image_tag(@mainbigbanner.image.url(:large))%>
+            <div class="slider_info">
+              <h1 class="carousel-caption-header" style="padding-bottom: 12px;color:<%=@mainbigbanner.caption_text_color%>"><%= @mainbigbanner.caption %></h1>
+              <p class="carousel-caption-text hidden-sm hidden-xs" style="color:<%=@mainbigbanner.description_text_color%>">
+                <%= @mainbigbanner.description %>
+              </p>
+              <%=link_to special_offer_path(@mainbigbanner.id), class: "learn_more", style:"color:#{@mainbigbanner.caption_text_color}" do %>
+                Узнать подробнее <i class="fa fa-chevron-right" aria-hidden="true"></i>
+              <% end %>
             </div>
           <% end %>
         </div>
-        <!-- Controls -->
-        <a class="left carousel-control" href="#transition-timer-carousel" data-slide="prev">
-        </a>
-        <a class="right carousel-control" href="#transition-timer-carousel" data-slide="next">
-        </a>
-        <!-- Timer "progress bar" -->
-        <hr class="transition-timer-carousel-progress-bar animate" />
+        <% @bigbanners.each do |bigbanner|%>
+          <div class="item">
+            <%= image_tag(bigbanner.image.url(:large))%>
+            <div class="slider_info">
+              <h1 class="carousel-caption-header" style="padding-bottom: 12px;color:<%=bigbanner.caption_text_color%>"><%= bigbanner.caption %></h1>
+              <p class="carousel-caption-text hidden-sm hidden-xs" style="color:<%=@mainbigbanner.description_text_color%>">
+                <%= bigbanner.description %>
+              </p>
+              <%=link_to special_offer_path(bigbanner.id), class: "learn_more", style:"color:#{bigbanner.caption_text_color}" do %>
+                Узнать подробнее <i class="fa fa-chevron-right" aria-hidden="true"></i>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
       </div>
-      <aside class="head_contacts" style="height: auto; top: 42px;">
-        <div class="base">
-          <div class="main_office">
-            <span>
-              Головной офис в г.Бишкек                                    
+      <!-- Controls -->
+      <a class="left carousel-control" href="#transition-timer-carousel" data-slide="prev">
+      </a>
+      <a class="right carousel-control" href="#transition-timer-carousel" data-slide="next">
+      </a>
+      <!-- Timer "progress bar" -->
+      <hr class="transition-timer-carousel-progress-bar animate" />
+    </div>
+    <aside class="head_contacts" style="height: auto; top: 42px;">
+      <div class="base">
+        <div class="main_office">
+          <span>
+            Головной офис в г.Бишкек                                    
           </span>
-          </div>
-          <span class="phone">
-            <span>(0312)</span> 443-443
+        </div>
+        <span class="phone">
+          <span>(0312)</span> 443-443
           <br>
-            <span>(0312)</span> 330-333
+          <span>(0312)</span> 330-333
         </span>
-          <div class="links_group">
-            <%= link_to "Офисы обслуживания", offices_path(), :title=>"Офисы обслуживания",  data: { turbolinks: false } %>
-            <a href="/atm/" title="Банкоматы">Банкоматы</a>
-          </div>
+        <div class="links_group">
+          <%= link_to "Офисы обслуживания", offices_path(), :title=>"Офисы обслуживания",  data: { turbolinks: false } %>
+          <a href="/atm/" title="Банкоматы">Банкоматы</a>
         </div>
-      </aside>
-    </div>
+      </div>
+    </aside>
   </div>
-</div>
-<div class = 'row'>
-  <div class = 'col-xs-6 col-md-6'>
-    <div class = 'main_content'>
-      <h1>Новости</h1>
-      <hr/>
-      <% if @mainnewsitem %>
-        <div class='main_news'>
-          <span class = 'date'><%= @mainnewsitem.creation_date.mday %><br/>
-            <%= MonthShortName(@mainnewsitem.creation_date.mon) %></span>
-          <%= link_to news_details_path(@mainnewsitem[:id]) do %>
-            <b><%= @mainnewsitem.caption.upcase %></b><br/>
-            <%= @mainnewsitem.description %>
+<% end %>
+<div class='col-xs-6 col-md-6'>
+  <div class='main_content'>
+    <h1>Новости</h1>
+    <hr/>
+    <% if @mainnewsitem %>
+      <div class='main_news'>
+        <span class = 'date'><%= @mainnewsitem.creation_date.mday %><br/>
+          <%= MonthShortName(@mainnewsitem.creation_date.mon) %></span>
+        <%= link_to news_details_path(@mainnewsitem[:id]) do %>
+          <b><%= @mainnewsitem.caption.upcase %></b><br/>
+          <%= @mainnewsitem.description %>
+        <% end %>
+      </div>
+    <% end %>
+    <ul class = "news_list">
+      <% @newsitems.select{|n| n!=@mainnewsitem}.each do |newsitem| %>
+        <li>
+          <span class = 'date'><%= newsitem.creation_date.mday %><br/>
+            <%= MonthShortName(newsitem.creation_date.mon) %></span>
+          <%= link_to news_details_path(newsitem[:id]) do %>
+            <b><%= newsitem.caption %></b><br/>
+            <%= newsitem.description %>
           <% end %>
-        </div>
+        </li>
       <% end %>
-      <ul class = "news_list">
-        <% @newsitems.select{|n| n!=@mainnewsitem}.each do |newsitem| %>
-          <li>
-            <span class = 'date'><%= newsitem.creation_date.mday %><br/>
-              <%= MonthShortName(newsitem.creation_date.mon) %></span>
-            <%= link_to news_details_path(newsitem[:id]) do %>
-              <b><%= newsitem.caption %></b><br/>
-              <%= newsitem.description %>
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
-      <a href="<%= news_path()%>" style="float:right;color:#000;"><i class="fa fa-list-ul" aria-hidden="true"></i> ВСЕ НОВОСТИ </i></a>
+    </ul>
+    <a href="<%= news_path()%>" style="float:right;color:#000;">
+      <i class="fa fa-list-ul" aria-hidden="true"></i> ВСЕ НОВОСТИ
+    </a>
   </div>
 </div>
-<div class = "col-xs-3 col-md-3" style="padding-right:0px;">
-  <div class = 'banners'>
-    <div class = 'first_bg'>
-      <% firstbanner = @firstratebanners.first %>
-      <% @firstratebanners.each do |minibanner| %>
-        <% if minibanner==firstbanner %>
-          <div class = 'banner _ac_ban ac_ban'>
-          <% else %>
-            <div class = 'banner _ac_ban'>
-            <% end %>
-            <%= link_to mini_special_offer_path(minibanner.id) do %>
-              <%= image_tag(minibanner.image.url(:large)) %>
-            <% end %>
-            <span class="read_more">
-              <%= link_to mini_special_offer_path(minibanner.id) do %>
-                Подробнее <i class="fa fa-chevron-right" aria-hidden="true"></i>
-              <% end %>
-            </span>
-          </div>
-        <% end %>
-      </div>
-      <div class = 'second_bg'>
-        <% firstbanner = @secondratebanners.first %>
-      <% @secondratebanners.each do |minibanner| %>
-        <% if minibanner==firstbanner %>
-          <div class = 'banner _ac_ban ac_ban'>
-          <% else %>
-            <div class = 'banner _ac_ban'>
-            <% end %>
-            <%= link_to mini_special_offer_path(minibanner.id) do %>
-              <%= image_tag(minibanner.image.url(:large)) %>
-            <% end %>
-            <span class="read_more">
-              <%= link_to mini_special_offer_path(minibanner.id) do %>
-                Подробнее <i class="fa fa-chevron-right" aria-hidden="true"></i>
-              <% end %>
-            </span>
-          </div>
-        <% end %>
-      </div>
-      <script type="text/javascript">
-        $(".banner").hover(function() {
-                                                                                              $(this).children('.read_more').fadeIn('normal');
-                                                                                            },function() {
-                                                                                              $(this).children('.read_more').fadeOut('normal');
-                                                                                            });
-      </script>
-    </div>
+<% content_for :sidebar do %>
+  <div class = "col-xs-3 col-md-3" style="padding-right:0px;">
+    <%= render partial: "/shared/small_banners", locals: {banners:@allminibanners}%>
   </div>
   <div class = "col-xs-3 col-md-3" style="padding-left:0px;">
-    <div class = 'main_content2'>
-      <h4><i class="fa fa-line-chart fa-1x" style="color:#d40000;padding-right:10px;"></i>
-        Текущие курсы валют</h4>
-      <div class="panel-group" id="accordion">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h5 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Наличные</a>
-              <a data-container="body" data-toggle="popover" data-placement="bottom" data-html=true data-title="Уважаемые клиенты!" data-content="<b>ОАО 'ФинансКредитБанк КАБ'</b> оставляет за собой право устанавливать индивидуальные курсы, согласно решению уполномоченных органов, в соответствии с законодательством Кыргызской Республики." data-trigger='hover' style="position:absolute;right:30px;">
-                <i class="fa fa-exclamation-circle fa-lg" aria-hidden="true"></i>
-            </a>
-          </h5>
-        </div>
-        <div id="collapseTwo" class="panel-collapse collapse in">
-          <div class="panel-body">
-            <table class = "rates_table">
-              <tr>
-                <td width="45%" class=rate>
-                  <span>Покупка</span>
-                </td>
-                <td>
-                </td>
-                <td width="45%" class='rate'>
-                  <span>Продажа</span>
-                </td>
-              </tr>
-              <% @currencies.each do |currencyid| %>
-                <tr>
-                  <td class='rate'>
-                    <b>
-                      <% if @market_rates_cash["#{currencyid}"]["BuyStatus"] == 1%>
-                        <i class="fa fa-caret-up" aria-hidden="true" style="color:red;"></i>
-                      <% elsif @market_rates_cash["#{currencyid}"]["BuyStatus"] == -1 %>
-                        <i class="fa fa-caret-down" aria-hidden="true" style="color:blue;"></i>
-                      <% end %>
-                      <%= @market_rates_cash["#{currencyid}"]["BuyRate"] %>
-                    </b>
-                  </td>
-                  <td class = 'cur_sym'>
-                    <%= @market_rates_cash["#{currencyid}"]["Code"] %>
-                  </td>
-                  <td class='rate'>
-                    <b>
-                      <% if @market_rates_cash["#{currencyid}"]["SellStatus"] == 1%>
-                        <i class="fa fa-caret-up" aria-hidden="true" style="color:red;"></i>
-                      <% elsif @market_rates_cash["#{currencyid}"]["SellStatus"] == -1 %>
-                        <i class="fa fa-caret-down" aria-hidden="true" style="color:blue;"></i>
-                      <% end %>
-                      <%= @market_rates_cash["#{currencyid}"]["SellRate"] %>
-                    </b>
-                  </td>
-                </tr>
-              <% end %>
-            </table>
-          </div>
-        </div>
-      </div>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-              Безналичные</a>
-            <a data-container="body" data-toggle="popover" data-placement="bottom" 
-                data-html=true 
-                data-title="Уважаемые клиенты!"
-                data-content="<b>ОАО 'ФинансКредитБанк КАБ'</b> оставляет за собой право устанавливать индивидуальные курсы, согласно решению уполномоченных органов, в соответствии с законодательством Кыргызской Республики."
-              data-trigger='hover' style="position:absolute;right:30px;">
-                <i class="fa fa-exclamation-circle fa-lg" aria-hidden="true"></i>    </a>
-        </h4>
-      </div>
-      <div id="collapseThree" class="panel-collapse collapse">
-        <div class="panel-body">
-          <table class = "rates_table">
-            <tr>
-              <td width="40%" class=rate>
-                <span>Покупка</span>
-              </td>
-              <td>
-              </td>
-              <td width="40%" class=rate>
-                <span>Продажа</span>
-              </td>
-            </tr>
-            <% @currencies.each do |currencyid| %>
-              <tr>
-                <td class=rate>
-                  <b><% if @market_rates_noncash["#{currencyid}"]["BuyStatus"] == 1%>
-                      <i class="fa fa-caret-up" aria-hidden="true" style="color:red;"></i>
-                    <% elsif @market_rates_noncash["#{currencyid}"]["BuyStatus"] == -1 %>
-                      <i class="fa fa-caret-down" aria-hidden="true" style="color:blue;"></i>
-                    <%end%>
-                    <%= @market_rates_noncash["#{currencyid}"]["BuyRate"] %></b>
-                </td>
-                <td class='cur_sym'>
-                  <%= @market_rates_noncash["#{currencyid}"]["Code"] %>
-                </td>
-                <td class=rate>
-                  <b><% if @market_rates_noncash["#{currencyid}"]["SellStatus"] == 1%>
-                      <i class="fa fa-caret-up" aria-hidden="true" style="color:red;"></i>
-                    <% elsif @market_rates_noncash["#{currencyid}"]["SellStatus"] == -1 %>
-                      <i class="fa fa-caret-down" aria-hidden="true" style="color:blue;"></i>
-                    <%end%>
-                    <%= @market_rates_noncash["#{currencyid}"]["SellRate"] %></b>
-                </td>
-              </tr>
-            <% end %>
-          </table>
-        </div>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
-            НБКР</a>
-        </h4>
-      </div>
-      <div id="collapseFour" class="panel-collapse collapse">
-        <div class="panel-body">
-          <table class = "rates_table">
-            <tr>
-              <td width="30%" class=rate>
-                Валюта
-                </td>
-              <td width="70%" class=rate>
-                <span>Ставка</span>
-              </td>
-            </tr>
-            <% @currencies.each do |currencyid| %>
-              <tr>
-                <td class=rate style="color:#d40000;">
-                  <%= @currency_rates["#{currencyid}"]["Code"] %>
-                </td>
-                <td class=rate>
-                  <b>
-                    <% if @currency_rates["#{currencyid}"]["SellStatus"] == 1%>
-                      <i class="fa fa-caret-up" aria-hidden="true" style="color:red;"></i>
-                    <% elsif @currency_rates["#{currencyid}"]["SellStatus"] == -1 %>
-                      <i class="fa fa-caret-down" aria-hidden="true" style="color:blue;"></i>
-                    <%end%>
-                    <%= @currency_rates["#{currencyid}"]["SellRate"] %>
-                  </b>
-                </td>
-              </tr>
-            <% end %>
-          </table>
-        </div>
-      </div>
-    </div>
+    <%= render partial: "/shared/rates", locals: {market_rates_cash:@market_rates_cash,market_rates_noncash:@market_rates_noncash, currency_rates:@currency_rates, currencies: @currencies}%>
+    <h4><i class="fa fa-bar-chart fa-1x" style="color:#d40000;padding-right:10px;"></i>
+      Финансовая отчетность</h4>
+    <ul class="nav nav-pills nav-stacked">
+      <li role="presentation">
+        <%= link_to(reports_path()) do %>
+          <i class="fa fa-file-pdf-o fa-2x" style="color:#d40000;padding-right:10px;"></i>Ежемесячная отчетность
+      <% end %>
+      </li>
+      <li role="presentation">
+        <%= link_to(reports_path()) do %>
+          <i class="fa fa-file-pdf-o fa-2x" style="color:#d40000;padding-right:10px;"></i>Квартальная отчетность
+      <% end %>
+      </li>
+      <li role="presentation">
+        <%= link_to(reports_path()) do %>
+          <i class="fa fa-file-pdf-o fa-2x" style="color:#d40000;padding-right:10px;"></i>Годовая отчетность
+    <% end %>
+      </li>
+    </ul>
+    <br>
+    <br>
   </div>
-  <h4><i class="fa fa-bar-chart fa-1x" style="color:#d40000;padding-right:10px;"></i>
-    Финансовая отчетность</h4>
-  <ul class="nav nav-pills nav-stacked">
-    <li role="presentation">
-      <%= link_to(reports_path()) do %>
-        <i class="fa fa-file-pdf-o fa-2x" style="color:#d40000;padding-right:10px;"></i>Ежемесячная отчетность</a></li>
-  <% end %>
-  <li role="presentation">
-    <%= link_to(reports_path()) do %>
-      <i class="fa fa-file-pdf-o fa-2x" style="color:#d40000;padding-right:10px;"></i>Квартальная отчетность</a></li>
+  <br/>
+  <br/>
+  <br/>
 <% end %>
-</li>
-<li role="presentation">
-  <%= link_to(reports_path()) do %>
-    <i class="fa fa-file-pdf-o fa-2x" style="color:#d40000;padding-right:10px;"></i>Годовая отчетность</a></li>
+<% content_for :footer do %>
+  <%= render partial: "/shared/fasttransfers"%>
 <% end %>
-</li>
-</ul>
-<br>
-<br>
-</div>
-</div>
-</div>
-<br>
-<br>
-<br>
-<div class="row">
-  <a href ='#'>
-    <div class='ftrect' style='background-position: 0px 0px;'>
-    </div>
-  </a>
-  <div class='ftrect' style='background-position: 0px -40px;'>
-    <a href ='#'></a>
-  </div>
-  <div class='ftrect' style='background-position: 0px -80px;'>
-    <a href ='#'></a>
-  </div>
-  <div class='ftrect' style='background-position: 0px -122px;'>
-    <a href ='#'></a>
-  </div>
-  <div class='ftrect' style='background-position: 0px -162px;'>
-    <a href ='#'></a>
-  </div>
-  <div class='ftrect' style='background-position: 0px -202px;'>
-    <a href ='#'></a>
-  </div>
-  <div class='ftrect' style='background-position: 0px -242px;'>
-    <a href ='#'></a>
-  </div>
-  <div class='ftrect' style='background-position: 0px -280px;'>
-    <a href ='#'></a>
-  </div>
-</div>

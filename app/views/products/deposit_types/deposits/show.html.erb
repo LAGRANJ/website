@@ -1,7 +1,4 @@
-<div class="page-header">
-  <h1><%= @deposit["Name"] %> <small><%= @deposit["Description"] %></small></h1>
-</div>
-<div class="container">
+<%= render layout: "shared/one_column_sidebar", locals:{title: @deposit["Name"], subtitle: params["client_type"].to_i == 2?"Корпоративным клиентам": "Частным клиентам"} do %>
   <div class="process">
     <div class="process-row">
       <div class="process-step">
@@ -53,9 +50,9 @@
                   <td>
                     <% if rate!=nil %>
                       <%= trim_zero(rate["InterestRate"]) %>%
-					<% else %>
+          <% else %>
                       -
-					<% end %>
+          <% end %>
                   </td>
                 <% end %>
               </tr>
@@ -123,55 +120,55 @@
     <div class="panel-body">
     </div>
   </div>
-</div>
+<% end %>
 <script type="text/javascript">
   var currcodes = []
-        	currcodes["417"] = 'KGS'
-        	currcodes["840"] = 'USD'
-        	currcodes["643"] = 'RUB'
-        	currcodes["978"] = 'EUR'
-    var months = <%= GetDepositPeriods(@deposit["ProductID"]).to_s  %>
-        $(document).ready(function () {
+                currcodes["417"] = 'KGS'
+                currcodes["840"] = 'USD'
+                currcodes["643"] = 'RUB'
+                currcodes["978"] = 'EUR'
+          var months = <%= GetDepositPeriods(@deposit["ProductID"]).to_s  %>
+              $(document).ready(function () {
   
-        $("#slider").slider({
-        	min: 0,
-        	max: <%= GetDepositPeriods(@deposit["ProductID"]).count-1 %>,
-        	range: false,
-        	change: calcVals
-        })
+              $("#slider").slider({
+                min: 0,
+                max: <%= GetDepositPeriods(@deposit["ProductID"]).count-1 %>,
+                range: false,
+                change: calcVals
+              })
   
-        .slider("pips", {
-        	rest: "label",
-        	labels: months,
-        	suffix: " мес."
-        })
-        .slider('float');
+              .slider("pips", {
+                rest: "label",
+                labels: months,
+                suffix: " мес."
+              })
+              .slider('float');
   
-        $("#txtdepositsum").on('change keyup paste input', calcVals);
-        $('input[name="currency_id"]').on('change',calcVals);
-        calcVals();
-        });
-        function calcVals()
-        {
-        	var inters = []
-        	<% @deposit_interests.each do |inter|  %>
-        		inters['<%="#{inter['CurrencyID']}_#{inter['MonthPeriod']}"%>']= <%=inter["InterestRate"]%>;
-        	<% end %>
+              $("#txtdepositsum").on('change keyup paste input', calcVals);
+              $('input[name="currency_id"]').on('change',calcVals);
+              calcVals();
+              });
+              function calcVals()
+              {
+                var inters = []
+                <% @deposit_interests.each do |inter|  %>
+                  inters['<%="#{inter['CurrencyID']}_#{inter['MonthPeriod']}"%>']= <%=inter["InterestRate"]%>;
+                <% end %>
   
   
-        	var currency_id = $('input[name="currency_id"]:checked').val();
-        	var periodindex = $( "#slider" ).slider( "value" );
-        	var period = months[periodindex];
-        	var rate = 0;
-        	if(inters[currency_id+'_'+period]) rate = inters[currency_id+'_'+period];
+                var currency_id = $('input[name="currency_id"]:checked').val();
+                var periodindex = $( "#slider" ).slider( "value" );
+                var period = months[periodindex];
+                var rate = 0;
+                if(inters[currency_id+'_'+period]) rate = inters[currency_id+'_'+period];
   
-        	var sum = 0;
-        	if ($("#txtdepositsum").val()!='') sum = parseInt($("#txtdepositsum").val())
+                var sum = 0;
+                if ($("#txtdepositsum").val()!='') sum = parseInt($("#txtdepositsum").val())
   
-        	$("#interest_rate").html(rate);
-        	$("#payment_summ").html((sum*rate/1200.0).toFixed(2));
-        	$("#payment_summ_unit").html(currcodes[currency_id]);
-        	$("#payment_total_summ").html((period*sum*rate/1200.0).toFixed(2));
-        	$("#payment_total_summ_unit").html(currcodes[currency_id]);
-        }
+                $("#interest_rate").html(rate);
+                $("#payment_summ").html((sum*rate/1200.0).toFixed(2));
+                $("#payment_summ_unit").html(currcodes[currency_id]);
+                $("#payment_total_summ").html((period*sum*rate/1200.0).toFixed(2));
+                $("#payment_total_summ_unit").html(currcodes[currency_id]);
+              }
 </script>

@@ -1,6 +1,7 @@
 class Products::TransferTypes::InternationalTransfersController < ApplicationController
   add_breadcrumb "Главная страница", :root_path 
-  before_action :add_def_breadcrumb   
+  before_action :add_def_breadcrumb, only:[:index,:show]  
+  before_action :init_sidebar_data, only:[:index,:show]
   def index        
     @transfer_type_details = TransferTypeDetail.all
     @transfer_types = JSON.parse(Redis.current.get("transfer_types")).select{

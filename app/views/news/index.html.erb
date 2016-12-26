@@ -1,108 +1,30 @@
-<%=@pageno%>
-<div class = 'container'>
-  <div class = 'row'>
-    <div class = 'col-xs-9 col-md-9'>
-      <div class = 'main_content'>
-        <h1>Новости</h1>
-        <hr/>
-        <ul class = "news_list">
-          <% @newsitems.each do |newsitem| %>
-            <li>
-              <span class = 'date'><%= newsitem.creation_date.mday %><br/>
-                <%= MonthShortName(newsitem.creation_date.mon) %></span>
-                <%= link_to news_details_path(newsitem[:id]) do %>
-                  <b><%= newsitem.caption %></b><br/>
-                  <%= newsitem.description %>
-                <% end %>
-            </li>
+<%= render layout: "shared/one_column_sidebar", locals:{title:"Новости", subtitle:""} do %>
+  <div class = 'main_content'>
+    <ul class = "news_list">
+      <% @newsitems.each do |newsitem| %>
+        <li>
+          <span class = 'date'><%= newsitem.creation_date.mday %><br/>
+            <%= MonthShortName(newsitem.creation_date.mon) %></span>
+          <%= link_to news_details_path(newsitem[:id]) do %>
+            <b><%= newsitem.caption %></b><br/>
+            <%= newsitem.description %>
           <% end %>
-        </ul>
-        <ul class="pagination pagination-sm">
-          <% if @currentpage == 1 %>
-            <li class="disabled">
-            <% else %>
-              <li>
-              <% end %>
-              <a href="<%= news_path() %>"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a></li>
-          <% if @currentpage == 1 %>
-            <li class="disabled">
-            <% else %>
-              <li>
-              <% end %>
-            <a href="<%= news_path(:pageno=>@currentpage-1) %>"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
-            <% for pageno in @startpage..@endpage%>
-              <% if @currentpage == pageno %>
-                <li class="active">
-                <% else %>
-                  <li>
-                  <% end %>
-                  <%= link_to pageno, news_path(:pageno=>pageno) %></li>
-              <% end %>
-            <% if @currentpage == @lastpage %>
-            <li class="disabled">
-            <% else %>
-              <li>
-              <% end %>
-              <a href="<%= news_path(@currentpage+1) %>"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-          <% if @currentpage == @lastpage %>
-            <li class="disabled">
-            <% else %>
-              <li>
-              <% end %>
-              <a href="<%= news_path(@lastpage) %>"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
-            </ul>
-          </div>
-        </div>
-        <div class = "col-xs-3 col-md-3" style="padding-right:0px;">
-          <div class = 'banners'>
-            <div class = 'first_bg'>
-              <div class = 'banner _ac_ban ac_ban'>
-                <a href='#'>
-                  <%= image_tag("ban_main_11.jpg") %>
-                </a>
-                <span class="read_more">Подробнее <i class="fa fa-chevron-right" aria-hidden="true"></i></span>
-              </div>
-              <div class = 'banner _ac_ban'>
-                <a href='#'>
-                  <%= image_tag("ban_main_1280_6.jpg") %>
-                </a>
-                <span class="read_more">Подробнее <i class="fa fa-chevron-right" aria-hidden="true"></i></span>
-              </div>
-              <div class = 'banner _ac_ban'>
-                <a href='#'>
-                  <%= image_tag("ban_main_2.jpg") %>
-                </a>
-                <span class="read_more">Подробнее <i class="fa fa-chevron-right" aria-hidden="true"></i></span>
-              </div>
-            </div>
-            <div class = 'second_bg'>
-              <div class = 'banner _ac_ban ac_ban'>
-                <a href='#'>
-                  <%= image_tag("ban_main_11.jpg") %>
-                </a>
-                <span class="read_more">Подробнее <i class="fa fa-chevron-right" aria-hidden="true"></i></span>
-              </div>
-              <div class = 'banner _ac_ban'>
-                <a href='#'>
-                  <%= image_tag("ban_main_1280_6.jpg") %>
-                </a>
-                <span class="read_more">Подробнее <i class="fa fa-chevron-right" aria-hidden="true"></i></span>
-              </div>
-              <div class = 'banner _ac_ban'>
-                <a href='#'>
-                  <%= image_tag("ban_main_2.jpg") %>
-                </a>
-                <span class="read_more">Подробнее <i class="fa fa-chevron-right" aria-hidden="true"></i></span>
-              </div>
-            </div>
-            <script type="text/javascript">
-              $(".banner").hover(function() {
-                                                                                        $(this).children('.read_more').fadeIn('normal');
-                                                                                      },function() {
-                                                                                        $(this).children('.read_more').fadeOut('normal');
-                                                                                      });
-            </script>
-          </div>
-        </div>
-      </div>
-    </div>
+        </li>
+      <% end %>
+    </ul>
+    <ul class="pagination pagination-sm">
+      <li class="<%= 'disabled' if @currentpage == 1 %>">
+        <a href="<%= news_path() %>"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a></li>
+      <li class="<%= 'disabled' if @currentpage == 1 %>">
+        <a href="<%= news_path(:pageno=>@currentpage-1) %>"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+      <% for pageno in @startpage..@endpage%>
+        <li class="<%= 'active' if @currentpage == pageno %>">
+          <%= link_to pageno, news_path(:pageno=>pageno) %></li>
+      <% end %>
+      <li class="<%= 'disabled' if @currentpage == @lastpage %>">
+        <a href="<%= news_path(@currentpage+1) %>"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+      <li class="<%= 'disabled' if @currentpage == @lastpage %>">
+        <a href="<%= news_path(@lastpage) %>"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+    </ul>
+  </div>
+<% end %>

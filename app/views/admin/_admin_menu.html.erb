@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+      <h3> </h3>
+      <ul class= "nav nav-pills nav-stacked">
+        <li>
+          <%= link_to("Новости", admin_newsitems_path())%>
+        </li>
+        <li>
+          <%= link_to("Баннеры большого рамера", admin_special_offers_path())%>
+        </li>
+        <li>
+          <%= link_to("Баннеры молого рамера", admin_mini_special_offers_path())%>
+        </li>
+        <li>
+          <%= link_to("Отделения банка", admin_offices_path())%>
+        </li>
+        <li>
+          <%= link_to("Виды депозитов", admin_deposit_types_path())%>
+        </li>
+        <li>
+          <%= link_to("Виды кредитов", admin_credit_types_path())%>
+        </li>
+        <li>
+          <%= link_to("Залоговые имущества", admin_garants_path())%>
+        </li>
+        <li>
+          <%= link_to("Руководство", admin_managers_path())%>
+        </li>
+      </ul>
+    </div>
+    <div class="col-lg-9">
+      <%= yield %>
+    </div>
+  </div>
+</div>

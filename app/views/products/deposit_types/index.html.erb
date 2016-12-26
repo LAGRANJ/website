@@ -1,18 +1,9 @@
-<div class="page-header">
-  <h1>Депозитов <small><% if params["client_type"].to_i == 2%>
-        Корпоративным клиентам
-    <% else %>
-        Частным клиентам
-    <% end %></small></h1>
-</div>
-<div class="container">
-	<div class="row">
-		<% @abs_deposit_types.each do |abs_deposit_type| %>
-            <% details = @deposit_types.select{|d| d.type_id == abs_deposit_type["TypeID"]}.first %>
-            <% if details==nil %>
-                <% details = DepositType.new;%>
-            <% end %>
-		    <%= render 'shared/deposit_type', abs_deposit_type: abs_deposit_type, details: details %>
-        <% end %>
-	</div>
-</div>
+<%= render layout: "shared/one_column_sidebar", locals:{title:"Депозиты", subtitle:params["client_type"].to_i == 2?"Корпоративным клиентам": "Частным клиентам"} do %>
+  <% @abs_deposit_types.each do |abs_deposit_type| %>
+    <% details = @deposit_types.select{|d| d.type_id == abs_deposit_type["TypeID"]}.first %>
+    <% if details==nil %>
+      <% details = DepositType.new;%>
+    <% end %>
+    <%= render 'shared/deposit_type', abs_deposit_type: abs_deposit_type, details: details %>
+  <% end %>
+<% end %>

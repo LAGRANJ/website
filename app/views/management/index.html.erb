@@ -1,23 +1,21 @@
-<div class="page-header">
-  <h2>Правление Банка</h2>
-</div>
-<div id="management">
-  <div class="container">
-    <% @managers.select{|x| x.type_id==1}.each do |manager| %>
-      <%= render "shared/manager",{manager: manager} %>
-      <div class="clearfix"></div>
-    <% end %>
+<%= render layout: "shared/one_column_sidebar", locals:{title:"Правление Банка", subtitle:""} do %>
+<h3>Члены Правления Банка</h3>
+  <div id="management">
+    <div class="container">
+      <% @managers.select{|x| x.type_id==1}.each do |manager| %>
+        <%= render "shared/manager",{manager: manager} %>
+        <div class="clearfix"></div>
+      <% end %>
+    </div>
   </div>
-</div>
-
-<div class="page-header">
-  <h2>Совет диреторов Банка</h2>
-</div>
-<div id="management">
-  <div class="container">
-    <% @managers.select{|x| x.type_id==2}.each do |manager| %>
-      <%= render "shared/manager",{manager: manager} %>
-      <div class="clearfix"></div>
-    <% end %>
+  
+    <h3>Члены Совета диреторов Банка</h3>
+  <div id="management">
+    <div class="container">
+      <% @managers.select{|x| x.type_id==2}.each do |manager| %>
+        <%= render "shared/manager",{manager: manager} %>
+        <div class="clearfix"></div>
+      <% end %>
+    </div>
   </div>
-</div>
+<% end %>

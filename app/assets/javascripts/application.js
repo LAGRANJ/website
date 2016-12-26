@@ -86,14 +86,14 @@ $(document).on('page:load', loaded)
 $(document).on("turbolinks:load", loaded)
 $( window ).resize(function() {
         if (Modernizr.mq('(min-width: 1200px)')){            
-            $('#carousel-main').css('background','url("http://www.rsk.kg/img/frontend/slider-shadow.png") no-repeat center 390px');
+            $('#carousel-main').css('background','url("http://www.rsk.kg/img/frontend/slider-shadow.png") no-repeat center 380px');
             $('#carousel-main').height(440);
             $('.slider_info').css('top', 190);
             $('.slider_info').css('left', 55);
         }
         else if (Modernizr.mq('(min-width: 992px)'))
         {
-            $('#carousel-main').css('background','url("http://www.rsk.kg/img/frontend/slider-shadow.png") no-repeat center 320px');
+            $('#carousel-main').css('background','url("http://www.rsk.kg/img/frontend/slider-shadow.png") no-repeat center 310px');
             $('#carousel-main').height(370);
             $('.slider_info').css('top', 140);
             $('.slider_info').css('left', 35);
