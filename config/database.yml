@@ -85,4 +85,4 @@ production:
   <<: *default
   database: website_production
   username: deploy 
-  password: <%= ENV['WEBSITE_DATABASE_PASSWORD'] %>
+  password: 'sapass' %>
