@@ -5,4 +5,4 @@ $("#office_detailed_info").html(`<%= render partial: "office_detailed_info",loca
 <% coords = {lat: office_details.lat.to_f,lng: office_details.lon.to_f}%>
 addMarker(<%= raw coords.to_json %>)
 setCenter(<%= raw coords.to_json %>)
-
+alert(123);

@@ -11,7 +11,7 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery-ui/slider
+//= require jquery-ui/widgets/slider
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require turbolinks
